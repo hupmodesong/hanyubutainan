@@ -1,0 +1,11 @@
+# Local OS & Python artifacts
+.DS_Store
+__pycache__/
+*.pyc
+
+# Large / copyrighted textbook PDFs (kept locally only)
+*.pdf
+
+# Generated standalone bundle & Vercel local state
+hanyubutainan.standalone.html
+.vercel

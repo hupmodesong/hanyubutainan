@@ -1,0 +1,6 @@
+*.pdf
+*.py
+*.md
+__pycache__/
+.DS_Store
+.git

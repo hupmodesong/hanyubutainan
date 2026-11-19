@@ -1,0 +1,10 @@
+{
+  "name": "HanyuBuTaiNan — Chinese Etymology & Story Guide",
+  "short_name": "HanyuBuTaiNan",
+  "description": "Offline-first HSK 1-9 Chinese etymology, radical lab, flashcards (SRS), and textbook companion.",
+  "start_url": "./hanyubutainan.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#18181b",
+  "icons": []
+}
