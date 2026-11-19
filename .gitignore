@@ -3,8 +3,11 @@
 __pycache__/
 *.pyc
 
-# Large / copyrighted textbook PDFs (kept locally only)
+# Ignore original/duplicate PDFs, allow only the 3 web-optimized standardized PDFs
 *.pdf
+!hsk1_vi.pdf
+!hsk2_en.pdf
+!hsk3_vi.pdf
 
 # Generated standalone bundle & Vercel local state
 hanyubutainan.standalone.html

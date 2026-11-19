@@ -1,4 +1,4 @@
-const CACHE_NAME = "hanyubutainan-v2";
+const CACHE_NAME = "hanyubutainan-v3";
 const CORE_ASSETS = [
   "./hanyubutainan.html",
   "./manifest.json",
@@ -33,10 +33,11 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
+  if (url.pathname.toLowerCase().endsWith(".pdf")) return;
   event.respondWith(
     caches.match(event.request).then((cached) =>
       cached || fetch(event.request).then((resp) => {
-        if (resp && resp.ok) {
+        if (resp && resp.status === 200) {
           const copy = resp.clone();
           caches.open(CACHE_NAME).then((c) => c.put(event.request, copy));
         }

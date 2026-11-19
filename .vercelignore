@@ -1,4 +1,7 @@
 *.pdf
+!hsk1_vi.pdf
+!hsk2_en.pdf
+!hsk3_vi.pdf
 *.py
 *.md
 __pycache__/
