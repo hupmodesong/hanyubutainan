@@ -1196,6 +1196,7 @@
       min-width: 0;
       max-width: 100%;
       overflow: hidden;
+      cursor: pointer;
       content-visibility: auto;
       contain-intrinsic-size: 220px;
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -1220,12 +1221,10 @@
     }
 
     .vocab-char-lockup {
-      display: inline-flex;
-      flex-wrap: wrap;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 4px;
+      display: block;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       max-width: 100%;
       flex: 0 1 auto;
       cursor: pointer;
@@ -1233,6 +1232,7 @@
       border: 1px solid var(--border);
       border-radius: calc(var(--radius) - 2px);
       padding: 6px 10px;
+      text-align: center;
     }
 
     .vocab-char-lockup ruby {
@@ -1240,20 +1240,19 @@
       font-size: 1.8rem;
       font-weight: 700;
       line-height: 1.15;
-      max-width: 100%;
       white-space: nowrap;
     }
 
-    .vocab-char-lockup[data-len="3"] { gap: 3px; padding: 5px 9px; }
+    .vocab-char-lockup[data-len="3"] { padding: 5px 9px; }
     .vocab-char-lockup[data-len="3"] ruby { font-size: 1.48rem; }
     .vocab-char-lockup[data-len="3"] rt { font-size: 0.65rem; }
-    .vocab-char-lockup[data-len="4"] { gap: 2px; padding: 5px 8px; }
+    .vocab-char-lockup[data-len="4"] { padding: 5px 8px; }
     .vocab-char-lockup[data-len="4"] ruby { font-size: 1.28rem; }
     .vocab-char-lockup[data-len="4"] rt { font-size: 0.62rem; }
     .vocab-char-lockup[data-len="5"],
-    .vocab-char-lockup[data-len="6"] { gap: 2px; padding: 5px 8px; white-space: normal; }
+    .vocab-char-lockup[data-len="6"] { padding: 5px 8px; }
     .vocab-char-lockup[data-len="5"] ruby,
-    .vocab-char-lockup[data-len="6"] ruby { font-size: 1.14rem; white-space: normal; }
+    .vocab-char-lockup[data-len="6"] ruby { font-size: 1.14rem; white-space: nowrap; }
     .vocab-char-lockup[data-len="5"] rt,
     .vocab-char-lockup[data-len="6"] rt { font-size: 0.58rem; }
 
@@ -1262,8 +1261,7 @@
       font-size: 0.7rem;
       color: var(--muted);
       font-weight: 600;
-      max-width: 100%;
-      white-space: normal;
+      white-space: nowrap;
       text-align: center;
     }
 
@@ -1277,6 +1275,10 @@
       font-weight: 600;
       font-size: 0.94rem;
       line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
       overflow-wrap: anywhere;
       word-break: break-word;
     }
@@ -1403,7 +1405,7 @@
 
     .comb-btn:hover { background: hsl(var(--accent-hsl)); }
     .comb-btn.active { background: hsl(var(--primary)); border-color: hsl(var(--primary)); color: hsl(var(--primary-foreground)); font-weight: 600; }
-    .comb-btn.valid-rad { border-color: var(--teal); }
+    .comb-btn.valid-rad, .comb-btn.valid-combo { border-color: var(--teal); box-shadow: inset 0 0 0 1px var(--teal); }
 
     .comb-stage {
       background: var(--surface-alt);
@@ -1704,6 +1706,104 @@
 
     .flash-nav-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
 
+    .flash-hearts {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+    .flash-heart { color: #dc2626; }
+    .flash-heart.lost { color: var(--border); }
+    .flash-dual-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+    @media (max-width: 600px) { .flash-dual-inputs { grid-template-columns: 1fr; } }
+    .flash-option-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+    .flash-complete-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 16px;
+    }
+    .add-word-candidates {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .cand-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: calc(var(--radius) - 2px);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 0.84rem;
+      cursor: pointer;
+    }
+    .cand-chip:hover { border-color: var(--teal); background: hsl(var(--accent-hsl)); }
+    .import-help-details {
+      margin-top: 8px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .import-help-details summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+    .import-help-body {
+      margin-top: 6px;
+      padding: 10px 12px;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) - 2px);
+      line-height: 1.5;
+    }
+    .etymology-trust-card {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--teal);
+      border-radius: var(--radius);
+      background: var(--surface-alt);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .trust-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: var(--teal-soft);
+      color: var(--teal);
+      border: 1px solid var(--teal);
+    }
+    .trust-badge.medium { background: hsl(var(--secondary)); color: var(--ink); border-color: var(--border); }
+    .trust-source { font-size: 0.9rem; font-weight: 700; color: var(--ink); }
+    .trust-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.45; }
+    .ancient-lab-controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+    .ancient-char-strip { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+
     /* shadcn Buttons */
     .btn-primary {
       height: 38px;
@@ -1781,6 +1881,7 @@
     .kbd-tip { margin-top: 12px; text-align: center; font-size: 0.78rem; color: var(--muted); }
 
     /* Dialog Modal — shadcn DialogContent */
+    body.modal-open { overflow: hidden; }
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -1791,13 +1892,16 @@
       align-items: center;
       justify-content: center;
       padding: 18px;
+      overscroll-behavior: contain;
     }
 
     .modal-dialog {
       width: 100%;
       max-width: 780px;
-      max-height: 90vh;
+      max-height: 90dvh;
       overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
       background: hsl(var(--background));
       color: var(--ink);
       border: 1px solid var(--border);
@@ -1855,13 +1959,6 @@
     }
 
     .hidden { display: none !important; }
-
-    .comb-btn.valid-rad::after {
-      content: " [+]";
-      font-size: 0.7rem;
-      font-weight: 700;
-      opacity: 0.85;
-    }
 
     .io-btn-row {
       display: flex;
@@ -2270,6 +2367,12 @@
       font-size: 0.84rem;
       font-weight: 600;
       text-align: center;
+      -moz-appearance: textfield;
+    }
+    .tb-page-input::-webkit-outer-spin-button,
+    .tb-page-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
     .tb-pill:focus-visible, .tb-lesson-pill:focus-visible, .tb-page-input:focus-visible, .tb-ref-chip:focus-visible {
       outline: none;
@@ -2772,12 +2875,13 @@
             id="addWordInput"
             class="add-word-input"
             type="text"
-            placeholder="Enter Chinese word to analyze &amp; add..."
-            aria-label="Enter Chinese word to analyze and add"
+            placeholder="Enter Chinese word or Pinyin (e.g. 百货, baihuo, ni3 hao3)..."
+            aria-label="Enter Chinese word or Pinyin to analyze and add"
           />
           <button id="addWordBtn" class="btn-primary">Analyze &amp; Add Word</button>
         </div>
         <div id="addWordStatus" class="add-word-status"></div>
+        <div id="addWordCandidates" class="add-word-candidates hidden"></div>
 
         <div class="dropdown-row">
           <div class="select-group">
@@ -2795,10 +2899,17 @@
           <button id="exportJsonBtn" class="btn-secondary" type="button">Export JSON Backup</button>
           <button id="exportCsvBtn" class="btn-secondary" type="button">Export CSV (Anki)</button>
           <button id="importBackupBtn" class="btn-secondary" type="button">Import JSON / CSV</button>
-          <button id="printVocabBtn" class="btn-secondary" type="button">Print / Save PDF</button>
+          <button id="exportExcelBtn" class="btn-secondary" type="button">Export Excel (.xlsx)</button>
           <input id="importFileInput" type="file" accept=".json,.csv,.tsv,application/json,text/csv" class="hidden" />
           <div id="backupStatusNote" class="backup-status-note"></div>
         </div>
+        <details class="import-help-details" id="importFormatHelp">
+          <summary id="importFormatSummary">Import JSON / CSV format guide</summary>
+          <div class="import-help-body" id="importFormatBody">
+            <strong>JSON:</strong> Exported app backup file (<code>vocabListIds</code>, <code>customEntries</code>, <code>srs</code>, <code>studyStats</code>).<br/>
+            <strong>CSV / TSV:</strong> Columns <code>Simplified, Traditional, Pinyin, English, Vietnamese, HanViet, HSK, Breakdown, Example</code> (or a simple 1-column Chinese word list with optional header <code>Simplified</code>).
+          </div>
+        </details>
       </section>
 
       <div id="myVocabEmpty" class="empty-state">
@@ -2884,11 +2995,11 @@
           <div class="combinator-layout">
             <div>
               <div class="comb-group">
-                <div class="comb-label" id="labCombRootLabel">1. Sound Root (Phonetic)</div>
+                <div class="comb-label" id="labCombRootLabel">1. Sound Root (Phonetic) — works both ways</div>
                 <div class="comb-buttons" id="combRootBtns"></div>
               </div>
               <div class="comb-group">
-                <div class="comb-label" id="labCombRadLabel">2. Meaning Radical (Topic) — teal border &amp; [+] = real combo</div>
+                <div class="comb-label" id="labCombRadLabel">2. Meaning Radical (Topic) — teal border = real combo</div>
                 <div class="comb-buttons" id="combRadBtns"></div>
               </div>
             </div>
@@ -2920,6 +3031,25 @@
             <span id="familyCountBadge" class="result-count">0 families</span>
           </div>
           <div class="family-matrix" id="familyMatrix"></div>
+        </div>
+
+        <div class="lab-panel" id="ancientScriptLabPanel">
+          <h2 id="labAncientTitle">Ancient Script Evolution (汉字演变 — Oracle Bone to Regular)</h2>
+          <p class="lead" id="labAncientLead">
+            Trace how Chinese characters evolved from Oracle Bone carvings (甲骨文) and Bronze inscriptions to Seal, Clerical, and modern Regular script.
+          </p>
+          <div class="ancient-lab-controls">
+            <input
+              id="ancientSearchInput"
+              class="search-input"
+              type="search"
+              placeholder="Filter characters with ancient script (e.g., 日, 月, 山, 水, 马)..."
+              aria-label="Filter ancient script characters"
+            />
+            <span id="ancientCountBadge" class="result-count">0 chars</span>
+          </div>
+          <div class="ancient-char-strip" id="ancientCharStrip"></div>
+          <div id="ancientLabStage"></div>
         </div>
 
         <div class="lab-panel">
@@ -2966,6 +3096,7 @@
             <select id="flashModeSelect" class="scroll-select" style="width:auto;" aria-label="Practice mode">
               <option value="flip">Flip Card</option>
               <option value="type-pinyin">Type Pinyin</option>
+              <option value="definition">Definition</option>
               <option value="dictation">Dictation (Hanzi)</option>
             </select>
             <button id="flashShuffleBtn" class="btn-secondary">Shuffle</button>
@@ -3042,11 +3173,11 @@
               <button type="button" class="tb-pill" data-tb-layout="guide" id="tbLayoutGuideBtn" aria-pressed="false">Companion Only</button>
               <button type="button" class="tb-pill" data-tb-layout="pdf" id="tbLayoutPdfBtn" aria-pressed="false">PDF Only</button>
             </div>
-            <div id="tbLangGroup" class="tb-pill-row" role="group" aria-label="Companion Language">
-              <button type="button" class="tb-pill active" data-tb-lang="bilingual" id="tbLangBiBtn" aria-pressed="true">EN + VI</button>
-              <button type="button" class="tb-pill" data-tb-lang="en" id="tbLangEnBtn" aria-pressed="false">English</button>
-              <button type="button" class="tb-pill" data-tb-lang="vi" id="tbLangViBtn" aria-pressed="false">Tiếng Việt</button>
-            </div>
+            <select id="tbLangSelect" class="scroll-select" style="width:auto;" aria-label="Companion Language">
+              <option value="bilingual">EN + VI</option>
+              <option value="en">English</option>
+              <option value="vi">Tiếng Việt</option>
+            </select>
           </div>
         </div>
         <div id="tbBookMeta" style="font-size:0.82rem;color:var(--text-muted);"></div>
@@ -3055,7 +3186,7 @@
           <div class="tb-stepper">
             <button type="button" class="btn-outline" id="tbPrevPageBtn">Prev PDF Page</button>
             <label for="tbPageInput" style="font-size:0.8rem;color:var(--text-muted);" id="tbPageLabel">PDF Page</label>
-            <input type="number" id="tbPageInput" class="tb-page-input" min="1" value="17" />
+            <input type="text" inputmode="numeric" pattern="[0-9]*" id="tbPageInput" class="tb-page-input" value="17" />
             <span id="tbTotalPagesLabel" style="font-size:0.8rem;color:var(--text-muted);">/ 148</span>
             <button type="button" class="btn-outline" id="tbNextPageBtn">Next PDF Page</button>
             <span id="tbBookPageBadge" class="tb-lang-tag" style="margin-left:4px;">Book p. 001</span>
@@ -3132,10 +3263,12 @@
       const CHAR_DICT = (typeof window !== "undefined" && window.CHAR_DICT) || {};
       const STORY_ENTRIES = (typeof window !== "undefined" && Array.isArray(window.STORY_ENTRIES)) ? window.STORY_ENTRIES : [];
       const IDIOM_STORIES = (typeof window !== "undefined" && window.IDIOM_STORIES) || {};
+      const WORD_ORIGIN_STORIES = (typeof window !== "undefined" && window.WORD_ORIGIN_STORIES) || {};
       const HSK_EXAMPLES = (typeof window !== "undefined" && window.HSK_EXAMPLES) || {};
       const VI_RADICAL_DB = (typeof window !== "undefined" && window.VI_RADICAL_DB) || {};
       const VI_WORD_GLOSS = (typeof window !== "undefined" && window.VI_WORD_GLOSS) || {};
       const VI_STORY_MAP = (typeof window !== "undefined" && window.VI_STORY_MAP) || {};
+      const VI_WORD_ORIGIN_STORIES = (typeof window !== "undefined" && window.VI_WORD_ORIGIN_STORIES) || {};
       const HAN_VIET_DICT = (typeof window !== "undefined" && window.HAN_VIET_DICT) || {};
       const HSK_COMPLETE_RAW = (typeof window !== "undefined" && Array.isArray(window.HSK_COMPLETE_RAW)) ? window.HSK_COMPLETE_RAW : [];
       const HSK3_RAW = (typeof window !== "undefined" && Array.isArray(window.HSK3_RAW)) ? window.HSK3_RAW : [];
@@ -3277,7 +3410,7 @@
           dictRelatedTitle: "Related Words & Shared Character Roots",
           dictRelatedTag: "Connected Entries",
           dictNoResultsMsg: "No local dictionary match found.",
-          addWordPlaceholder: "Enter Chinese word to analyze & add...",
+          addWordPlaceholder: "Enter Chinese word or Pinyin (e.g. 百货, baihuo, ni3 hao3)...",
           addWordBtn: "Analyze & Add Word",
           myHskLabel: "HSK Level:",
           myCatLabel: "Category:",
@@ -3292,9 +3425,14 @@
           hskClearTagBtn: "Clear Component Filter",
           hskEmptyState: "No HSK entries match the current filter.",
           labCombTitle: "Interactive Component Combinator (形声字合成器)",
-          labCombLead: "Pick a sound root on the left and pair it with a meaning radical to see how Chinese builds new words from sound + topic.",
-          labCombRootLabel: "1. Sound Root (Phonetic)",
+          labCombLead: "Pick a sound root or meaning radical on either side to see how Chinese builds characters from sound + topic.",
+          labCombRootLabel: "1. Sound Root (Phonetic) — works both ways",
           labCombRadLabel: "2. Meaning Radical (Topic) — teal border = real combo",
+          labAncientTitle: "Ancient Script Evolution (汉字演变 — Oracle Bone to Regular)",
+          labAncientLead: "Trace how Chinese characters evolved from Oracle Bone carvings (甲骨文) and Bronze inscriptions to Seal, Clerical, and modern Regular script.",
+          ancientPlaceholder: "Filter characters with ancient script (e.g., 日, 月, 山, 水, 马)...",
+          ancientAriaLabel: "Filter ancient script characters",
+          viewAncientInLab: "View Ancient Script Evolution in Radical Lab →",
           labLiushuTitle: "The 6 Ways Chinese Characters Are Made (六书 — Simple Guide)",
           labLiushuLead: "Every Chinese character fits into one of these 6 simple patterns. Click any example below to inspect its story.",
           labFamilyTitle: "Shared Sound Families",
@@ -3334,7 +3472,8 @@
           exportJsonBtn: "Export JSON Backup",
           exportCsvBtn: "Export CSV (Anki)",
           importBackupBtn: "Import JSON / CSV",
-          printVocabBtn: "Print / Save PDF",
+          exportExcelBtn: "Export Excel (.xlsx)",
+          importFormatSummary: "Import JSON / CSV format guide",
           hskStdLabel: "Standard:",
           hskSortFreq: "Most Frequent First",
           srsAgain: "Again (1)",
@@ -3359,11 +3498,14 @@
           applyBtn: "Apply",
           flashModeFlip: "Flip Card",
           flashModeTypePinyin: "Type Pinyin",
+          flashModeDefinition: "Definition",
           flashModeDictation: "Dictation (Hanzi)",
-          typePinyinPlaceholder: "Type pinyin (e.g. ni3 hao3 or nǐ hǎo)...",
-          typeHanziPlaceholder: "Type Chinese characters...",
+          typeMeaningPlaceholder: "Type meaning (e.g. hello)...",
+          typePinyinPlaceholder: "Type pinyin (e.g. ni3 hao3, nihao, nǐ hǎo, or 你好)...",
+          typeHanziPlaceholder: "Type Chinese characters (Simplified or Traditional)...",
           checkAnswerBtn: "Check",
-          revealAnswerBtn: "Reveal",
+          hintBtn: "Hint",
+          revealAnswerBtn: "不知道",
           noZhVoiceHint: "No Chinese voice installed on this device; your browser may fall back to the default voice.",
           lastBackupLabel: "Last backup:",
           neverLabel: "Never",
@@ -3413,7 +3555,7 @@
           dictRelatedTitle: "Từ Liên Quan & Chung Bộ Thủ Gốc",
           dictRelatedTag: "Mục Liên Kết",
           dictNoResultsMsg: "Không tìm thấy kết quả trong từ điển ngoại tuyến.",
-          addWordPlaceholder: "Nhập chữ Hán để phân tích & thêm...",
+          addWordPlaceholder: "Nhập chữ Hán hoặc Pinyin (vd: 百货, baihuo, ni3 hao3)...",
           addWordBtn: "Phân Tích & Thêm Từ",
           myHskLabel: "Cấp HSK:",
           myCatLabel: "Nhóm cấu tạo:",
@@ -3429,9 +3571,14 @@
           hskClearTagBtn: "Bỏ Lọc Bộ Thủ",
           hskEmptyState: "Không có từ vựng HSK nào khớp bộ lọc hiện tại.",
           labCombTitle: "Máy Ghép Thanh Phù & Bộ Thủ (形声字合成器)",
-          labCombLead: "Chọn một âm gốc bên trái và ghép với bộ thủ nghĩa bên phải để xem cách chữ Hán tạo từ mới từ Âm thanh + Chủ đề.",
-          labCombRootLabel: "1. Âm Gốc (Thanh Phù)",
-          labCombRadLabel: "2. Bộ Thủ Nghĩa (Chủ Đề) — viền xanh & [+] = tổ hợp thật",
+          labCombLead: "Chọn âm gốc hoặc bộ thủ nghĩa theo cả hai chiều để xem cách chữ Hán ghép từ Âm thanh + Chủ đề.",
+          labCombRootLabel: "1. Âm Gốc (Thanh Phù) — chọn hai chiều",
+          labCombRadLabel: "2. Bộ Thủ Nghĩa (Chủ Đề) — viền xanh = tổ hợp thật",
+          labAncientTitle: "Diễn Biến Chữ Cổ (汉字演变 — Giáp Cốt đến Khải Thư)",
+          labAncientLead: "Theo dõi quá trình chữ Hán biến đổi từ chữ khắc mai rùa Giáp Cốt Văn, Kim Văn, Tiểu Triện đến chữ Khải hiện đại.",
+          ancientPlaceholder: "Lọc chữ có diễn biến chữ cổ (vd: 日, 月, 山, 水, 马)...",
+          ancientAriaLabel: "Lọc chữ có diễn biến chữ cổ",
+          viewAncientInLab: "Xem Diễn Biến Chữ Cổ trong Xưởng Bộ Thủ →",
           labLiushuTitle: "6 Cách Tạo Chữ Hán (Lục Thư — Dễ Hiểu)",
           labLiushuLead: "Mọi chữ Hán đều thuộc một trong 6 quy tắc trực quan dưới đây. Nhấn vào từng chữ ví dụ để đọc câu chuyện nguồn gốc.",
           labFamilyTitle: "Nhóm Chữ Chung Âm Gốc",
@@ -3471,7 +3618,8 @@
           exportJsonBtn: "Xuất Sao Lưu JSON",
           exportCsvBtn: "Xuất CSV (Anki)",
           importBackupBtn: "Nhập JSON / CSV",
-          printVocabBtn: "In / Lưu PDF",
+          exportExcelBtn: "Xuất Excel (.xlsx)",
+          importFormatSummary: "Hướng dẫn định dạng Nhập JSON / CSV",
           hskStdLabel: "Chuẩn HSK:",
           srsAgain: "Học Lại (1)",
           srsHard: "Khó (2)",
@@ -3495,11 +3643,14 @@
           applyBtn: "Áp Dụng",
           flashModeFlip: "Lật Thẻ",
           flashModeTypePinyin: "Gõ Pinyin",
+          flashModeDefinition: "Định Nghĩa",
           flashModeDictation: "Nghe Chép (Chữ Hán)",
-          typePinyinPlaceholder: "Nhập pinyin (vd: ni3 hao3 hoặc nǐ hǎo)...",
-          typeHanziPlaceholder: "Nhập chữ Hán bạn nghe được...",
+          typeMeaningPlaceholder: "Nhập nghĩa của từ...",
+          typePinyinPlaceholder: "Nhập pinyin (vd: ni3 hao3, nihao, nǐ hǎo hoặc 你好)...",
+          typeHanziPlaceholder: "Nhập chữ Hán (Giản thể hoặc Phồn thể)...",
           checkAnswerBtn: "Kiểm Tra",
-          revealAnswerBtn: "Hiện Đáp Án",
+          hintBtn: "Gợi Ý",
+          revealAnswerBtn: "不知道",
           noZhVoiceHint: "Thiết bị chưa cài giọng đọc tiếng Trung; trình duyệt có thể dùng giọng mặc định.",
           lastBackupLabel: "Sao lưu gần nhất:",
           neverLabel: "Chưa có",
@@ -3607,6 +3758,12 @@
         });
       })();
 
+      function formatSafeInlineStrongHtml(str) {
+        return escapeHtml(String(str == null ? "" : str))
+          .replace(/&lt;strong&gt;/gi, "<strong>")
+          .replace(/&lt;\/strong&gt;/gi, "</strong>");
+      }
+
       function ensureEntryAnalyzed(e) {
         if (!e || e.type === "deep-dive" || e._analyzed) return e;
         e._analyzed = true;
@@ -3627,9 +3784,13 @@
         if (sylls && sylls.length === chars.length) e.syllables = sylls;
 
         const idiomData = typeof IDIOM_STORIES !== "undefined" ? IDIOM_STORIES[cleanSimp] : null;
+        const originData = typeof WORD_ORIGIN_STORIES !== "undefined" ? WORD_ORIGIN_STORIES[cleanSimp] : null;
         if (idiomData) {
           e.classicalSource = idiomData.source;
           e.storyVi = idiomData.storyVi;
+        } else if (originData) {
+          e.wordOriginSource = originData.source;
+          e.wordOriginConfidence = originData.confidence;
         }
 
         let defStructure = "";
@@ -3668,6 +3829,8 @@
 
           if (idiomData) {
             defStory = `${idiomData.source}: ${idiomData.storyEn}`;
+          } else if (originData) {
+            defStory = originData.story;
           } else {
             const stories = uniqueChars.map((c) => CHAR_DICT[c] ? `${c}: ${CHAR_DICT[c].story}` : null).filter(Boolean);
             if (stories.length) {
@@ -3677,7 +3840,7 @@
               defStory = `Combines ${uniqueChars.join(" + ")}${radHint}.`;
             }
           }
-          defWhy = `${uniqueChars.map((c) => {
+          defWhy = (originData && originData.why) || `${uniqueChars.map((c) => {
             const count = charCounts.get(c) || 1;
             const rep = count > 1 ? ` ×${count}` : "";
             const g = CHAR_DICT[c]
@@ -4608,6 +4771,9 @@
         viCache: {},
         combRoot: "青",
         combRad: "日",
+        combAnchor: "root",
+        ancientQuery: "",
+        ancientChar: "日",
         familyQuery: "",
         radicalQuery: "",
         radicalGroup: "all",
@@ -5201,11 +5367,15 @@
           b.classList.toggle("active", isAct);
           b.setAttribute("aria-pressed", isAct ? "true" : "false");
         });
-        document.querySelectorAll("[data-tb-lang]").forEach((b) => {
-          const isAct = b.getAttribute("data-tb-lang") === mode;
-          b.classList.toggle("active", isAct);
-          b.setAttribute("aria-pressed", isAct ? "true" : "false");
-        });
+        const langSel = document.getElementById("tbLangSelect");
+        if (langSel) {
+          if (langSel.options && langSel.options.length >= 3) {
+            langSel.options[0].textContent = t("tbLangBi");
+            langSel.options[1].textContent = t("tbLangEn");
+            langSel.options[2].textContent = t("tbLangVi");
+          }
+          langSel.value = mode;
+        }
 
         const ws = document.getElementById("tbWorkspace");
         if (ws) {
@@ -5437,14 +5607,6 @@
             return;
           }
 
-          const langBtn = ev.target.closest("[data-tb-lang]");
-          if (langBtn) {
-            state.tbLangMode = langBtn.getAttribute("data-tb-lang");
-            saveState();
-            renderTextbooksView();
-            return;
-          }
-
           if (ev.target.closest("#tbAddLessonVocabBtn")) {
             addLessonVocabToMyList();
             return;
@@ -5461,6 +5623,16 @@
             switchView("flashcards");
           }
         });
+
+        const tbLangSel = document.getElementById("tbLangSelect");
+        if (tbLangSel) {
+          tbLangSel.addEventListener("change", () => {
+            const v = tbLangSel.value;
+            state.tbLangMode = ["bilingual", "en", "vi"].includes(v) ? v : "bilingual";
+            saveState();
+            renderTextbooksView();
+          });
+        }
 
         const frontSel = document.getElementById("tbFrontSelect");
         if (frontSel) {
@@ -5771,7 +5943,7 @@
 
       let lastSaveErrorAt = 0;
       const VALID_FLASH_DECKS = ["due", "vocab-list", "stories", "hsk1", "hsk2", "hsk3", "hsk4", "hsk5", "hsk6", "hsk7", "textbook-lesson", "all"];
-      const VALID_FLASH_MODES = ["flip", "type-pinyin", "dictation"];
+      const VALID_FLASH_MODES = ["flip", "type-pinyin", "definition", "dictation"];
 
       function sanitizeStudyStats(rawStats, baseStats) {
         const base = baseStats || { streak: 0, lastDate: "", todayCount: 0, dailyGoal: 20, newPerDay: 60, newTodayDate: "", newTodayIds: [], lastBackupAt: "", reviewsSinceBackup: 0 };
@@ -6030,38 +6202,105 @@
         return parts.join(" · ");
       }
 
-      function getEtymologyMeta(entry) {
+      function getEtymologyTrustDetails(entry) {
         const isVi = state.lang === "vi";
         const stdTag = getHskStandardsLabel(entry);
-        const hskSuffix = stdTag ? ` · HSK (${stdTag})` : "";
+        const hskNote = stdTag ? (isVi ? `Chuẩn HSK: ${stdTag}` : `HSK Standards: ${stdTag}`) : "";
         if (entry.classicalSource) {
-          return (isVi
-            ? `Nguồn kinh điển: ${entry.classicalSource} · Độ tin cậy: Cao`
-            : `Source: ${entry.classicalSource} · Confidence: High (Classical Canon)`) + hskSuffix;
+          return {
+            level: "high",
+            badge: isVi ? "Độ tin cậy: Cao · Kinh điển cổ thư" : "Confidence: High · Classical Canon",
+            source: entry.classicalSource,
+            detail: isVi
+              ? "Trích trực tiếp từ thư tịch và điển tích cổ đại (Sử Ký, Chiến Quốc Sách, Hàn Phi Tử, Trang Tử...)."
+              : "Directly attested in classical Chinese texts and historical chronicles (Shiji, Zhan Guo Ce, Han Feizi, Zhuangzi, etc.).",
+            hskNote
+          };
+        }
+        if (entry.wordOriginSource) {
+          return {
+            level: "high",
+            badge: isVi ? "Độ tin cậy: Cao · Nguồn từ nguyên xác thực" : `Confidence: High · ${entry.wordOriginConfidence || "Verified Lexical Origin"}`,
+            source: entry.wordOriginSource,
+            detail: isVi
+              ? "Nguồn gốc hình thành từ ghép đã được đối chiếu theo sử liệu và từ điển học thuật."
+              : "Compound word creation history verified against historical lexicons and attested usage.",
+            hskNote
+          };
         }
         if (entry.type === "deep-dive") {
-          return (isVi
-            ? "Nguồn: Thuyết Văn & Giáp Cốt Văn · Độ tin cậy: Cao"
-            : "Source: Shuowen & Oracle-Bone Corpus · Confidence: High") + hskSuffix;
+          return {
+            level: "high",
+            badge: isVi ? "Độ tin cậy: Cao · Thuyết Văn & Giáp Cốt Văn" : "Confidence: High · Paleography & Shuowen",
+            source: isVi ? "Thuyết Văn Giải Tự (說文解字), Giáp Cốt Văn & Kim Văn" : "Shuowen Jiezi (說文解字), Oracle-Bone & Bronze Corpus",
+            detail: isVi
+              ? "Giải mã cấu tạo chữ dựa trên văn tự cổ giáp cốt / kim văn và đối chiếu ngữ nghĩa lịch sử."
+              : "Analyzed via attested Oracle-Bone / Bronze inscriptions, Shuowen Seal Script, and historical semantics.",
+            hskNote
+          };
         }
         if (entry.isOnlineWikt) {
-          return (isVi
-            ? "Nguồn: Wiktionary API · Độ tin cậy: Trung bình (cộng đồng)"
-            : "Source: Wiktionary API · Confidence: Community Etymology") + hskSuffix;
-        }
-        if (entry.cat === "unclassified" || entry.isAutoCedict && !(Array.from(entry.simp || "").length === 1 && CHAR_DICT[entry.simp])) {
-          return (isVi
-            ? "Nguồn: CC-CEDICT & Bộ Thủ Khang Hy · Từ điển chuẩn hóa"
-            : "Source: CC-CEDICT & Kangxi Radical · Lexicon Entry") + hskSuffix;
+          return {
+            level: "medium",
+            badge: isVi ? "Độ tin cậy: Trung bình · Nguồn cộng đồng" : "Confidence: Medium · Community Lexicon",
+            source: "Wiktionary API",
+            detail: isVi
+              ? "Dữ liệu chiết tự lấy từ mục từ cộng đồng trực tuyến Wiktionary; nên đối chiếu thêm nguồn kinh điển."
+              : "Glyph notes retrieved from Wiktionary community entries; cross-check classical references for deeper study.",
+            hskNote
+          };
         }
         if (Array.from(entry.simp || "").length === 1 && CHAR_DICT[entry.simp]) {
-          return (isVi
-            ? "Nguồn: Chiết tự cổ điển (Thuyết Văn) · Độ tin cậy: Cao"
-            : "Source: Curated Glyph Etymology (Shuowen) · Confidence: High") + hskSuffix;
+          return {
+            level: "high",
+            badge: isVi ? "Độ tin cậy: Cao · Chiết tự cổ điển" : "Confidence: High · Curated Paleography",
+            source: isVi ? "Thuyết Văn Giải Tự & Văn tự học cổ đại" : "Shuowen Jiezi & Curated Glyph Corpus",
+            detail: isVi
+              ? "Phân tích bộ thủ và thanh phù dựa trên cấu trúc tự nguyên lịch sử (phân biệt rõ giữa chữ gốc và dạng giản thể)."
+              : "Root structure verified against historical paleography (distinguishing original Seal/Oracle roots from modern simplifications).",
+            hskNote
+          };
         }
-        return (isVi
-          ? "Nguồn: Phân tích thành phần chữ & Từ điển · Có cấu trúc"
-          : "Source: Component Synthesis + Dictionary · Confidence: Structured") + hskSuffix;
+        if (entry.cat === "unclassified" || (entry.isAutoCedict && !(Array.from(entry.simp || "").length === 1 && CHAR_DICT[entry.simp]))) {
+          return {
+            level: "medium",
+            badge: isVi ? "Độ tin cậy: Từ điển chuẩn · Phân tích bộ thủ" : "Confidence: Lexicon Standard · Radical Match",
+            source: isVi ? "CC-CEDICT & Hệ thống Bộ thủ Khang Hy" : "CC-CEDICT & Kangxi Radical System",
+            detail: isVi
+              ? "Nghĩa và phiên âm lấy từ từ điển mở CC-CEDICT; cấu tạo tách theo từng chữ cấu thành hiện đại."
+              : "Definitions and pinyin sourced from CC-CEDICT; breakdown synthesized from modern constituent characters.",
+            hskNote
+          };
+        }
+        return {
+          level: "medium",
+          badge: isVi ? "Độ tin cậy: Cấu trúc · Ghép nghĩa từng chữ" : "Confidence: Structured · Component Synthesis",
+          source: isVi ? "Từ điển HSK chuẩn hóa & Phân tích thành phần chữ" : "Holistic HSK Lexicon & Character Component Synthesis",
+          detail: isVi
+            ? "Giải thích nghĩa từ ghép dựa trên nghĩa gốc của từng chữ Hán cấu thành trong từ."
+            : "Compound meaning explained by combining the attested meanings of its individual component characters.",
+          hskNote
+        };
+      }
+
+      function renderEtymologyTrustCard(entry) {
+        const info = getEtymologyTrustDetails(entry);
+        const isVi = state.lang === "vi";
+        return `
+          <div class="etymology-trust-card">
+            <div class="trust-head">
+              <span class="trust-badge ${info.level === "medium" ? "medium" : ""}">${escapeHtml(info.badge)}</span>
+              ${info.hskNote ? `<span style="font-size:0.78rem;font-weight:600;color:var(--muted);">${escapeHtml(info.hskNote)}</span>` : ""}
+            </div>
+            <div class="trust-source">${escapeHtml(isVi ? "Nguồn:" : "Source:")} ${escapeHtml(info.source)}</div>
+            <div class="trust-desc">${escapeHtml(info.detail)}</div>
+          </div>
+        `;
+      }
+
+      function getEtymologyMeta(entry) {
+        const info = getEtymologyTrustDetails(entry);
+        return `${info.source} · ${info.badge}${info.hskNote ? ` · ${info.hskNote}` : ""}`;
       }
 
       function externalLinksHtml(entry) {
@@ -6205,6 +6444,212 @@
         if (triggerDownload("my_chinese_vocab_anki.csv", csvContent, "text/csv;charset=utf-8")) {
           markBackupExported();
           showToast(state.lang === "vi" ? `Đã xuất ${entries.length} từ sang CSV (Anki)` : `Exported ${entries.length} words to CSV (Anki)`);
+        }
+      }
+
+      const CRC32_TABLE = (() => {
+        const tbl = new Uint32Array(256);
+        for (let i = 0; i < 256; i++) {
+          let c = i;
+          for (let k = 0; k < 8; k++) c = (c & 1) ? (0xedb88320 ^ (c >>> 1)) : (c >>> 1);
+          tbl[i] = c >>> 0;
+        }
+        return tbl;
+      })();
+
+      function crc32Bytes(u8) {
+        let crc = 0xffffffff;
+        for (let i = 0; i < u8.length; i++) {
+          crc = CRC32_TABLE[(crc ^ u8[i]) & 0xff] ^ (crc >>> 8);
+        }
+        return (crc ^ 0xffffffff) >>> 0;
+      }
+
+      function buildZipStore(files) {
+        const enc = new TextEncoder();
+        const chunks = [];
+        const central = [];
+        let offset = 0;
+        files.forEach((f) => {
+          const nameBytes = enc.encode(f.name);
+          const dataBytes = typeof f.data === "string" ? enc.encode(f.data) : f.data;
+          const crc = crc32Bytes(dataBytes);
+          const lh = new Uint8Array(30 + nameBytes.length);
+          const lv = new DataView(lh.buffer);
+          lv.setUint32(0, 0x04034b50, true);
+          lv.setUint16(4, 20, true);
+          lv.setUint16(6, 0x0800, true);
+          lv.setUint16(8, 0, true);
+          lv.setUint16(10, 0, true);
+          lv.setUint16(12, 0x5421, true);
+          lv.setUint32(14, crc, true);
+          lv.setUint32(18, dataBytes.length, true);
+          lv.setUint32(22, dataBytes.length, true);
+          lv.setUint16(26, nameBytes.length, true);
+          lv.setUint16(28, 0, true);
+          lh.set(nameBytes, 30);
+          chunks.push(lh, dataBytes);
+
+          const ch = new Uint8Array(46 + nameBytes.length);
+          const cv = new DataView(ch.buffer);
+          cv.setUint32(0, 0x02014b50, true);
+          cv.setUint16(4, 20, true);
+          cv.setUint16(6, 20, true);
+          cv.setUint16(8, 0x0800, true);
+          cv.setUint16(10, 0, true);
+          cv.setUint16(12, 0, true);
+          cv.setUint16(14, 0x5421, true);
+          cv.setUint32(16, crc, true);
+          cv.setUint32(20, dataBytes.length, true);
+          cv.setUint32(24, dataBytes.length, true);
+          cv.setUint16(28, nameBytes.length, true);
+          cv.setUint16(30, 0, true);
+          cv.setUint16(32, 0, true);
+          cv.setUint16(34, 0, true);
+          cv.setUint16(36, 0, true);
+          cv.setUint32(38, 0, true);
+          cv.setUint32(42, offset, true);
+          ch.set(nameBytes, 46);
+          central.push(ch);
+          offset += lh.length + dataBytes.length;
+        });
+        const centralSize = central.reduce((s, c) => s + c.length, 0);
+        const eocd = new Uint8Array(22);
+        const ev = new DataView(eocd.buffer);
+        ev.setUint32(0, 0x06054b50, true);
+        ev.setUint16(4, 0, true);
+        ev.setUint16(6, 0, true);
+        ev.setUint16(8, files.length, true);
+        ev.setUint16(10, files.length, true);
+        ev.setUint32(12, centralSize, true);
+        ev.setUint32(16, offset, true);
+        ev.setUint16(20, 0, true);
+
+        const totalLen = offset + centralSize + eocd.length;
+        const out = new Uint8Array(totalLen);
+        let pos = 0;
+        chunks.forEach((c) => { out.set(c, pos); pos += c.length; });
+        central.forEach((c) => { out.set(c, pos); pos += c.length; });
+        out.set(eocd, pos);
+        return out;
+      }
+
+      function escapeXml(str) {
+        return String(str == null ? "" : str)
+          .replace(/[\x00-\x08\x0b\x0c\x0e-\x1f]/g, "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&apos;");
+      }
+
+      function buildXlsxBytes(rows) {
+        const colLetters = ["A", "B", "C", "D", "E", "F"];
+        const rowsXml = rows.map((row, rIdx) => {
+          const rNum = rIdx + 1;
+          const cellsXml = row.map((val, cIdx) => {
+            const ref = `${colLetters[cIdx]}${rNum}`;
+            if (typeof val === "number" && Number.isFinite(val)) {
+              return `<c r="${ref}"${rIdx === 0 ? ' s="1"' : ""}><v>${val}</v></c>`;
+            }
+            return `<c r="${ref}" t="inlineStr"${rIdx === 0 ? ' s="1"' : ""}><is><t xml:space="preserve">${escapeXml(val)}</t></is></c>`;
+          }).join("");
+          return `<row r="${rNum}">${cellsXml}</row>`;
+        }).join("");
+
+        const sheetXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+  <cols>
+    <col min="1" max="1" width="8" customWidth="1"/>
+    <col min="2" max="2" width="18" customWidth="1"/>
+    <col min="3" max="3" width="18" customWidth="1"/>
+    <col min="4" max="4" width="34" customWidth="1"/>
+    <col min="5" max="5" width="40" customWidth="1"/>
+    <col min="6" max="6" width="46" customWidth="1"/>
+  </cols>
+  <sheetData>${rowsXml}</sheetData>
+</worksheet>`;
+
+        const stylesXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+  <fonts count="2">
+    <font><sz val="11"/><name val="Calibri"/></font>
+    <font><b/><sz val="11"/><name val="Calibri"/></font>
+  </fonts>
+  <fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills>
+  <borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders>
+  <cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
+  <cellXfs count="2">
+    <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>
+    <xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/>
+  </cellXfs>
+</styleSheet>`;
+
+        const contentTypesXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.relationships+xml"/>
+  <Default Extension="xml" ContentType="application/xml"/>
+  <Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>
+  <Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>
+  <Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>
+</Types>`;
+
+        const relsXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>
+</Relationships>`;
+
+        const workbookXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+  <sheets><sheet name="My Vocab List" sheetId="1" r:id="rId1"/></sheets>
+</workbook>`;
+
+        const workbookRelsXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/>
+  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+</Relationships>`;
+
+        return buildZipStore([
+          { name: "[Content_Types].xml", data: contentTypesXml },
+          { name: "_rels/.rels", data: relsXml },
+          { name: "xl/workbook.xml", data: workbookXml },
+          { name: "xl/_rels/workbook.xml.rels", data: workbookRelsXml },
+          { name: "xl/styles.xml", data: stylesXml },
+          { name: "xl/worksheets/sheet1.xml", data: sheetXml }
+        ]);
+      }
+
+      function buildVocabExcelRows() {
+        const ids = state.vocabListIds.length ? state.vocabListIds : [];
+        const entries = ids.map((id) => findAnyEntryById(id)).filter(Boolean);
+        const rows = [["Order", "Words", "Pinyin", "Definition", "Breakdown", "Example"]];
+        entries.forEach((e, idx) => {
+          ensureEntryAnalyzed(e);
+          const loc = getLocalizedVocabDetails(e);
+          const exDisp = getExampleDisplay(e);
+          const wordCell = e.trad && e.trad !== e.simp ? `${e.simp} (${e.trad})` : e.simp;
+          const defCell = getEntryMeaning(e);
+          const bdCell = String(loc.structure || "").replace(/<[^>]+>/g, "");
+          const exCell = exDisp
+            ? `${exDisp.zh}${exDisp.py ? ` (${exDisp.py})` : ""}${exDisp.trans ? ` — ${exDisp.trans}` : ""}`
+            : "";
+          rows.push([idx + 1, wordCell, e.pinyin || "", defCell, bdCell, exCell]);
+        });
+        return { entries, rows };
+      }
+
+      function exportVocabExcel() {
+        const { entries, rows } = buildVocabExcelRows();
+        if (!entries.length) {
+          showToast(state.lang === "vi" ? "Sổ Từ Vựng đang trống — hãy thêm từ trước khi xuất Excel." : "My Vocab List is empty — add words before exporting Excel.");
+          return;
+        }
+        const xlsxBytes = buildXlsxBytes(rows);
+        if (triggerDownload("my_chinese_vocab.xlsx", xlsxBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+          markBackupExported();
+          showToast(state.lang === "vi" ? `Đã xuất ${entries.length} từ sang Excel (.xlsx)` : `Exported ${entries.length} words to Excel (.xlsx)`);
         }
       }
 
@@ -6580,7 +7025,7 @@
       }
 
       function rateSrsCard(id, quality) {
-        if (!id) return;
+        if (!id || flashSessionCompleted) return;
         const wasNew = !state.srs[id] || !state.srs[id].lastReviewed;
         const next = computeNextSrsState(state.srs[id], quality);
         state.srs[id] = next;
@@ -6611,13 +7056,19 @@
           const reinsertAt = Math.min(state.flashOrder.length, state.flashIndex + 2);
           state.flashOrder.splice(reinsertAt, 0, curId);
         } else {
+          flashSessionRatedIds.add(id);
           state.flashIndex++;
+          if (state.flashIndex >= state.flashOrder.length) {
+            flashSessionCompleted = true;
+          }
         }
         state.flashFlipped = false;
-        flashPracticeState = { checked: false, ok: false, input: "", revealed: false, hintVisible: false };
+        resetFlashPracticeState();
         renderFlashcard();
         if (state.studyStats.reviewsSinceBackup === 25) {
           showToast(t("backupReminder"));
+        } else if (flashSessionCompleted) {
+          showToast(state.lang === "vi" ? "Hoàn thành phiên ôn tập!" : "Flashcard session complete!");
         } else {
           showToast(state.lang === "vi" ? `Đã xếp lịch ôn sau: ${next.label}` : `Scheduled next review in ${next.label}`);
         }
@@ -6699,11 +7150,12 @@
           const label = count > 1 ? `${ch} ×${count}` : ch;
           return shortG ? `${label}${sy}: ${shortG}` : `${label}${sy}`;
         }).join(" + ");
+        const viOrigin = VI_WORD_ORIGIN_STORIES[entry.simp];
         const radViNote = entry.radical && VI_RADICAL_DB[entry.radical] ? ` · Bộ chính: ${entry.radical} (${VI_RADICAL_DB[entry.radical]})` : "";
         return {
           structure: viBreakdown || entry.structure,
-          originalStory: entry.storyVi || `Từ gồm ${chars.length} chữ (${viBreakdown})${radViNote}.`,
-          whyItMeans: `Kết hợp ${uniqueChars.map((c) => {
+          originalStory: (viOrigin && viOrigin.story) || entry.storyVi || `Từ gồm ${chars.length} chữ (${viBreakdown})${radViNote}.`,
+          whyItMeans: (viOrigin && viOrigin.why) || `Kết hợp ${uniqueChars.map((c) => {
             const count = charCounts.get(c);
             const label = count > 1 ? `${c} ×${count}` : c;
             return VI_WORD_GLOSS[c] ? `"${VI_WORD_GLOSS[c].split("/")[0].trim()}" (${label})` : label;
@@ -6765,7 +7217,6 @@
             utter.voice = zhVoice;
             utter.lang = zhVoice.lang || "zh-CN";
             window.speechSynthesis.speak(utter);
-            showToast(state.lang === "vi" ? `Đang đọc (${state.speechRate}x): ${clean}` : `Speaking (${state.speechRate}x): ${clean}`);
           } else {
             if (!voicesEnumerated) {
               // Some platforms omit getVoices() entries until spoken or late-loaded; try zh-CN lang fallback while hinting
@@ -7129,13 +7580,116 @@
         return { cat: "xingsheng", badge: { label: "Sound + Meaning (形声)", cls: "badge-xingsheng" } };
       }
 
+      function searchPinyinCandidatesForAdd(rawQuery, limit = 14) {
+        const raw = String(rawQuery || "").trim().toLowerCase();
+        if (!raw) return [];
+        const hasDigits = /[1-5]/.test(raw);
+        const normWithTones = normalizePinyinAnswer(raw, 0);
+        const normNo5 = normWithTones.replace(/5/g, "");
+        const stripped = normalizeSearchText(raw);
+        const strippedCompact = stripped.replace(/[\s,/()'-]+/g, "");
+        const results = [];
+        const seen = new Set();
+
+        for (let i = 0; i < ENTRIES.length; i++) {
+          const e = ENTRIES[i];
+          if (!e || !e.simp || seen.has(e.simp)) continue;
+          let matched = false;
+          let score = 0;
+          if (hasDigits) {
+            const eNorm = normalizePinyinAnswer(e.pinyin, Array.from(e.simp).length);
+            if (eNorm && (eNorm === normWithTones || eNorm.replace(/5/g, "") === normNo5)) {
+              matched = true;
+              score = 1000 - (e.hsk || 8) * 10;
+            }
+          } else {
+            if (e.pyCompact === strippedCompact || e.pyNorm === stripped) {
+              matched = true;
+              score = 950 - (e.hsk || 8) * 10;
+            } else if (strippedCompact.length >= 2 && e.pyCompact && e.pyCompact.startsWith(strippedCompact)) {
+              matched = true;
+              score = 600 - (e.hsk || 8) * 10;
+            }
+          }
+          if (matched) {
+            seen.add(e.simp);
+            results.push({ simp: e.simp, trad: e.trad, pinyin: e.pinyin, meaning: getEntryMeaning(e), hsk: e.hsk, score });
+          }
+        }
+
+        if (results.length < limit && typeof window !== "undefined" && Array.isArray(window.CC_CEDICT_RAW)) {
+          const cache = ensureCedictSearchCache();
+          for (let i = 0; i < cache.rows.length && results.length < limit * 2; i++) {
+            const r = cache.rows[i];
+            if (!r || !r[0] || seen.has(r[0])) continue;
+            if (hasDigits) {
+              const rNorm = normalizePinyinAnswer(r[2], Array.from(r[0]).length);
+              if (rNorm && (rNorm === normWithTones || rNorm.replace(/5/g, "") === normNo5)) {
+                seen.add(r[0]);
+                results.push({ simp: r[0], trad: r[1] || r[0], pinyin: r[2], meaning: r[3], hsk: 0, score: 500 });
+              }
+            } else if (cache.pyCompArr[i] === strippedCompact || cache.pyNormArr[i] === stripped) {
+              seen.add(r[0]);
+              results.push({ simp: r[0], trad: r[1] || r[0], pinyin: r[2], meaning: r[3], hsk: 0, score: 450 });
+            }
+          }
+        }
+        results.sort((a, b) => b.score - a.score || a.simp.length - b.simp.length);
+        return results.slice(0, limit);
+      }
+
+      function renderAddWordCandidates(query, statusEl) {
+        const box = document.getElementById("addWordCandidates");
+        if (!box) return false;
+        const cands = searchPinyinCandidatesForAdd(query);
+        if (!cands.length) {
+          box.classList.add("hidden");
+          box.innerHTML = "";
+          if (statusEl) {
+            statusEl.textContent = state.lang === "vi"
+              ? `Không tìm thấy từ khớp pinyin "${query}". Hãy thử chữ Hán hoặc pinyin khác.`
+              : `No matches found for pinyin "${query}". Try Chinese characters or another pinyin.`;
+          }
+          return false;
+        }
+        const zLang = getZhLangAttr();
+        box.classList.remove("hidden");
+        box.innerHTML = `<span style="font-size:0.82rem;font-weight:700;color:var(--muted);">${escapeHtml(state.lang === "vi" ? "Có phải bạn muốn thêm:" : "Did you mean:")}</span>` +
+          cands.map((c) => {
+            const disp = state.scriptMode === "trad" ? c.trad : (state.scriptMode === "both" && c.trad !== c.simp ? `${c.simp}/${c.trad}` : c.simp);
+            const shortMean = String(c.meaning || "").split(/[;/]/)[0].trim();
+            return `<button type="button" class="cand-chip" data-add-candidate="${escapeHtml(c.simp)}">
+              <strong lang="${zLang}" style="font-family:var(--hanzi-font);font-size:1.05rem;">${escapeHtml(disp)}</strong>
+              <span>(${escapeHtml(c.pinyin)})</span>
+              <span style="color:var(--muted);max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(shortMean)}</span>
+            </button>`;
+          }).join("");
+        if (statusEl) {
+          statusEl.textContent = state.lang === "vi"
+            ? `Tìm thấy ${cands.length} gợi ý cho "${query}". Nhấn vào một từ để phân tích & lưu.`
+            : `Found ${cands.length} matches for "${query}". Click one to analyze & add.`;
+        }
+        return true;
+      }
+
       async function analyzeAndAddWord(rawInput, targetStatusId = "addWordStatus", addToVocab = true) {
         const statusEl = document.getElementById(targetStatusId);
-        const cleanWord = String(rawInput || "").replace(/[^\u4e00-\u9fff]/g, "").trim();
+        const candBox = document.getElementById("addWordCandidates");
+        const rawStr = String(rawInput || "").trim();
+        const cleanWord = rawStr.replace(/[^\u4e00-\u9fff]/g, "").trim();
 
         if (!cleanWord) {
-          showToast("Please enter a Chinese word or character.");
+          if (targetStatusId === "addWordStatus" && /[a-zA-ZāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜüÜ]/.test(rawStr)) {
+            renderAddWordCandidates(rawStr, statusEl);
+            return null;
+          }
+          if (candBox) { candBox.classList.add("hidden"); candBox.innerHTML = ""; }
+          showToast(state.lang === "vi" ? "Vui lòng nhập chữ Hán hoặc Pinyin." : "Please enter a Chinese word or Pinyin.");
           return null;
+        }
+        if (candBox && targetStatusId === "addWordStatus") {
+          candBox.classList.add("hidden");
+          candBox.innerHTML = "";
         }
         if (cleanWord.length > 6) {
           showToast("Please enter 1 to 6 Chinese characters.");
@@ -7499,7 +8053,7 @@
             <div class="deep-card-body">
               <div class="word-logic-box"><strong>${escapeHtml(t("wordLogic"))}</strong> ${sc.wordLogic}</div>
               ${renderCharGridHtml(e)}
-              ${buildEvolutionPanel(e.evoChars, e.id)}
+              ${(e.evoChars && e.evoChars.some((c) => SCRIPT_EVOLUTION[c])) ? `<div><button type="button" class="btn-secondary" data-jump-ancient="${escapeHtml(e.evoChars.find((c) => SCRIPT_EVOLUTION[c]))}">${escapeHtml(t("viewAncientInLab"))}</button></div>` : ""}
               <div class="story-box">
                 <h3>${escapeHtml(sc.storyTitle)}</h3>
                 ${sc.storyParagraphs.map((p) => `<p>${p}</p>`).join("")}
@@ -7507,7 +8061,7 @@
                 ${sc.companionNote ? `<div class="companion-note">${sc.companionNote}</div>` : ""}
               </div>
               ${renderTimelineHtml(e)}
-              <div class="source-meta-line">${escapeHtml(getEtymologyMeta(e))}</div>
+              ${renderEtymologyTrustCard(e)}
               ${e.exampleZh ? `<div class="example-chip">
                 <span><strong>${escapeHtml(t("example"))}</strong> <span lang="${zLang}">${escapeHtml(e.exampleZh)}</span>${e.examplePinyin ? ` (${formatPinyinHtml(e.examplePinyin)})` : ""}${sc.exampleEn ? ` — ${escapeHtml(sc.exampleEn)}` : ""}</span>
                 <button class="speak-mini" data-speak="${escapeHtml(e.exampleAudio || e.exampleZh)}">${escapeHtml(t("listen"))}</button>
@@ -7542,14 +8096,14 @@
         const zLang = getZhLangAttr();
 
         return `
-          <article class="vocab-card" id="entry-${escapeHtml(e.id)}">
+          <article class="vocab-card" id="entry-${escapeHtml(e.id)}" data-inspect-id="${escapeHtml(e.id)}">
             <div class="vocab-card-header">
               <div class="vocab-word-row">
-                <div class="vocab-char-lockup" data-len="${charLen}" data-inspect-id="${escapeHtml(e.id)}" title="${escapeHtml(t("inspectReadStory"))}">
+                <div class="vocab-char-lockup" data-len="${charLen}" data-inspect-id="${escapeHtml(e.id)}" title="${escapeHtml(getDisplayHanzi(e) + " (" + (e.pinyin || "") + ") — " + t("inspectReadStory"))}">
                   ${getRubyMarkup(e)}
                 </div>
                 <div class="vocab-meaning-wrap" data-inspect-id="${escapeHtml(e.id)}">
-                  <div class="vocab-meaning">${getEntryMeaningHtml(e)}</div>
+                  <div class="vocab-meaning" title="${escapeHtml(getEntryMeaning(e))}">${getEntryMeaningHtml(e)}</div>
                   ${hv ? `<div class="hanviet-line">${escapeHtml(getHanVietLabel(e))} ${escapeHtml(hv)}</div>` : ""}
                   ${state.scriptMode === "both" && e.trad !== e.simp ? `<span class="trad-pair" lang="zh-Hant">繁體: ${escapeHtml(e.trad)}</span>` : ""}
                   <div class="vocab-badges-row">
@@ -8092,9 +8646,9 @@
           </div>
 
           ${detailsHtml}
-          <div class="source-meta-line">${escapeHtml(getEtymologyMeta(entry))}</div>
+          ${renderEtymologyTrustCard(entry)}
           ${renderStrokeOrderShell(entry)}
-          ${buildEvolutionPanel(entry.evoChars, "modal-" + entry.id)}
+          ${(entry.evoChars && entry.evoChars.some((c) => SCRIPT_EVOLUTION[c])) ? `<div style="margin-top:12px;"><button type="button" class="btn-secondary" data-jump-ancient="${escapeHtml(entry.evoChars.find((c) => SCRIPT_EVOLUTION[c]))}">${escapeHtml(t("viewAncientInLab"))}</button></div>` : ""}
           ${exDisp ? (() => {
             const exTrans = entry.type === "deep-dive" ? (dispExampleEn || exDisp.trans) : exDisp.trans;
             return `<div class="example-chip" style="margin-top:16px;">
@@ -8106,6 +8660,11 @@
         `;
 
         modal.classList.remove("hidden");
+        if (typeof document !== "undefined" && document.body) {
+          document.body.classList.add("modal-open");
+        }
+        const dialog = modal.querySelector(".modal-dialog");
+        if (dialog) dialog.scrollTop = 0;
         const closeBtn = document.getElementById("modalCloseBtn");
         if (closeBtn && typeof closeBtn.focus === "function") closeBtn.focus();
         const firstStrokeChar = Array.from(String(state.scriptMode === "trad" ? entry.trad : entry.simp).replace(/[^\u4e00-\u9fff]/g, ""))[0];
@@ -8115,6 +8674,9 @@
       function closeInspector() {
         const modal = document.getElementById("inspectorModal");
         if (modal) modal.classList.add("hidden");
+        if (typeof document !== "undefined" && document.body) {
+          document.body.classList.remove("modal-open");
+        }
         if (lastInspectorOpener && typeof lastInspectorOpener.focus === "function") {
           lastInspectorOpener.focus();
           lastInspectorOpener = null;
@@ -8157,26 +8719,43 @@
         other: "Trừu Tượng & Nét Cơ Bản"
       };
 
+      const RADICAL_TRAD_MAP = {
+        "讠": "言", "钅": "金", "纟": "糹", "饣": "飠", "车": "車", "马": "馬",
+        "门": "門", "贝": "貝", "见": "見", "鱼": "魚", "鸟": "鳥", "页": "頁",
+        "⻊": "足", "风": "風", "韦": "韋", "长": "長", "东": "東", "龙": "龍",
+        "龟": "龜", "齐": "齊", "齿": "齒", "麦": "麥", "卤": "鹵", "黄": "黃",
+        "黾": "黽", "⺮": "竹", "艹": "艸", "辶": "辵", "氵": "水", "忄": "心",
+        "扌": "手", "犭": "犬", "礻": "示", "衤": "衣", "刂": "刀", "灬": "火",
+        "牜": "牛", "阝": "阜/邑", "攵": "攴", "饣": "飠"
+      };
+
+      function formatRadicalPair(rad) {
+        const trad = RADICAL_TRAD_MAP[rad];
+        return trad && trad !== rad ? `${rad}/${trad}` : rad;
+      }
+
       function renderLabView() {
         const rootWrap = document.getElementById("combRootBtns");
         const radWrap = document.getElementById("combRadBtns");
         const stage = document.getElementById("combStage");
         const zLang = getZhLangAttr();
 
-        rootWrap.innerHTML = COMBINATOR_ROOTS.map((r) => `
-          <button class="comb-btn ${state.combRoot === r.char ? "active" : ""}" data-comb-root="${escapeHtml(r.char)}"><span lang="${zLang}">${escapeHtml(r.char)}</span> (${escapeHtml(r.pinyin)})</button>
-        `).join("");
+        rootWrap.innerHTML = COMBINATOR_ROOTS.map((r) => {
+          const validWithRad = Boolean(COMBINATOR_MAP[`${r.char}+${state.combRad}`]);
+          return `<button class="comb-btn ${state.combRoot === r.char ? "active" : ""} ${validWithRad ? "valid-combo" : ""}" data-comb-root="${escapeHtml(r.char)}"><span lang="${zLang}">${escapeHtml(r.char)}</span> (${escapeHtml(r.pinyin)})</button>`;
+        }).join("");
 
         radWrap.innerHTML = COMBINATOR_RADICALS.map((rd) => {
           const valid = Boolean(COMBINATOR_MAP[`${state.combRoot}+${rd.rad}`]);
           const rName = state.lang === "vi" ? (VI_COMB_RAD_NAMES[rd.rad] || rd.name) : rd.name;
-          return `<button class="comb-btn ${state.combRad === rd.rad ? "active" : ""} ${valid ? "valid-rad" : ""}" data-comb-rad="${escapeHtml(rd.rad)}"><span lang="${zLang}">${escapeHtml(rd.rad)}</span> ${escapeHtml(rName)}</button>`;
+          return `<button class="comb-btn ${state.combRad === rd.rad ? "active" : ""} ${valid ? "valid-rad" : ""}" data-comb-rad="${escapeHtml(rd.rad)}"><span lang="${zLang}">${escapeHtml(formatRadicalPair(rd.rad))}</span> ${escapeHtml(rName)}</button>`;
         }).join("");
 
         const hit = COMBINATOR_MAP[`${state.combRoot}+${state.combRad}`];
         const rootObj = COMBINATOR_ROOTS.find((r) => r.char === state.combRoot);
         const radObj = COMBINATOR_RADICALS.find((r) => r.rad === state.combRad);
         const radDispName = state.lang === "vi" ? (VI_COMB_RAD_NAMES[radObj.rad] || radObj.name) : radObj.name;
+        const radPairDisp = formatRadicalPair(state.combRad);
 
         if (hit) {
           const showRes = state.scriptMode === "trad" ? hit.trad : hit.res;
@@ -8185,7 +8764,7 @@
           const hitMeaning = state.lang === "vi" ? (VI_WORD_GLOSS[hit.res] || hit.meaning) : hit.meaning;
           stage.innerHTML = `
             <div class="comb-equation">
-              <div class="comb-tile"><span class="glyph" lang="${zLang}">${escapeHtml(state.combRad)}</span><span class="cap">${escapeHtml(radDispName)}</span></div>
+              <div class="comb-tile"><span class="glyph" lang="${zLang}">${escapeHtml(radPairDisp)}</span><span class="cap">${escapeHtml(radDispName)}</span></div>
               <span style="font-size:1.5rem;font-weight:700;color:var(--muted);">+</span>
               <div class="comb-tile"><span class="glyph" lang="${zLang}">${escapeHtml(state.combRoot)}</span><span class="cap">${state.lang === "vi" ? "Âm:" : "Sound:"} ${escapeHtml(rootObj.pinyin)}</span></div>
               <span style="font-size:1.5rem;font-weight:700;color:var(--muted);">=</span>
@@ -8205,17 +8784,25 @@
             </div>
           `;
         } else {
-          const validCombos = Object.entries(COMBINATOR_MAP)
+          const validByRoot = Object.entries(COMBINATOR_MAP)
             .filter(([k]) => k.startsWith(state.combRoot + "+"))
             .map(([k, v]) => {
               const rad = k.split("+")[1];
-              return `<button class="comp-chip" data-comb-rad="${escapeHtml(rad)}"><span lang="${zLang}">${escapeHtml(rad)} + ${escapeHtml(state.combRoot)} = ${escapeHtml(v.res)}</span> (${escapeHtml(v.pinyin)})</button>`;
+              return `<button class="comp-chip" data-comb-rad="${escapeHtml(rad)}"><span lang="${zLang}">${escapeHtml(formatRadicalPair(rad))} + ${escapeHtml(state.combRoot)} = ${escapeHtml(v.res)}</span> (${escapeHtml(v.pinyin)})</button>`;
             }).join("");
+          const validByRad = Object.entries(COMBINATOR_MAP)
+            .filter(([k]) => k.endsWith("+" + state.combRad))
+            .map(([k, v]) => {
+              const rt = k.split("+")[0];
+              return `<button class="comp-chip" data-comb-root="${escapeHtml(rt)}"><span lang="${zLang}">${escapeHtml(radPairDisp)} + ${escapeHtml(rt)} = ${escapeHtml(v.res)}</span> (${escapeHtml(v.pinyin)})</button>`;
+            }).join("");
+          const showRadFirst = state.combAnchor === "rad";
           stage.innerHTML = `
             <div style="color:var(--muted);">
-              <p style="font-size:1.02rem;font-weight:700;margin:0 0 6px;color:var(--ink);"><span lang="${zLang}">${escapeHtml(state.combRad)} + ${escapeHtml(state.combRoot)}</span> ${state.lang === "vi" ? "không phải tổ hợp thông dụng" : "is not a common combination"}</p>
-              <p style="margin:0 0 12px;font-size:0.9rem;">${state.lang === "vi" ? `Âm gốc <strong lang="${zLang}">${escapeHtml(state.combRoot)} (${escapeHtml(rootObj.pinyin)})</strong> ghép chuẩn với các bộ thủ viền xanh &amp; dấu [+] sau:` : `Sound root <strong lang="${zLang}">${escapeHtml(state.combRoot)} (${escapeHtml(rootObj.pinyin)})</strong> pairs cleanly with these teal-bordered [+] topics:`}</p>
-              <div class="comp-chips" style="justify-content:center;">${validCombos}</div>
+              <p style="font-size:1.02rem;font-weight:700;margin:0 0 6px;color:var(--ink);"><span lang="${zLang}">${escapeHtml(radPairDisp)} + ${escapeHtml(state.combRoot)}</span> ${state.lang === "vi" ? "không phải tổ hợp thông dụng" : "is not a common combination"}</p>
+              ${showRadFirst && validByRad ? `<p style="margin:6px 0 8px;font-size:0.9rem;">${state.lang === "vi" ? `Bộ nghĩa <strong lang="${zLang}">${escapeHtml(radPairDisp)} (${escapeHtml(radDispName)})</strong> ghép chuẩn với các âm gốc sau:` : `Meaning radical <strong lang="${zLang}">${escapeHtml(radPairDisp)} (${escapeHtml(radDispName)})</strong> pairs cleanly with:`}</p><div class="comp-chips" style="justify-content:center;margin-bottom:10px;">${validByRad}</div>` : ""}
+              ${validByRoot ? `<p style="margin:6px 0 8px;font-size:0.9rem;">${state.lang === "vi" ? `Âm gốc <strong lang="${zLang}">${escapeHtml(state.combRoot)} (${escapeHtml(rootObj.pinyin)})</strong> ghép chuẩn với các bộ thủ viền xanh sau:` : `Sound root <strong lang="${zLang}">${escapeHtml(state.combRoot)} (${escapeHtml(rootObj.pinyin)})</strong> pairs cleanly with these teal-bordered topics:`}</p><div class="comp-chips" style="justify-content:center;margin-bottom:10px;">${validByRoot}</div>` : ""}
+              ${!showRadFirst && validByRad ? `<p style="margin:6px 0 8px;font-size:0.9rem;">${state.lang === "vi" ? `Hoặc theo bộ nghĩa <strong lang="${zLang}">${escapeHtml(radPairDisp)} (${escapeHtml(radDispName)})</strong>:` : `Or by meaning radical <strong lang="${zLang}">${escapeHtml(radPairDisp)} (${escapeHtml(radDispName)})</strong>:`}</p><div class="comp-chips" style="justify-content:center;">${validByRad}</div>` : ""}
             </div>
           `;
         }
@@ -8235,7 +8822,48 @@
         }).join("");
 
         renderSoundFamiliesSection();
+        renderAncientScriptLabSection();
         renderRadicalExplorerSection();
+      }
+
+      function renderAncientScriptLabSection() {
+        const stripEl = document.getElementById("ancientCharStrip");
+        const stageEl = document.getElementById("ancientLabStage");
+        const badgeEl = document.getElementById("ancientCountBadge");
+        if (!stripEl || !stageEl) return;
+
+        const allKeys = Object.keys(SCRIPT_EVOLUTION);
+        const aq = (state.ancientQuery || "").trim().toLowerCase();
+        const filteredKeys = allKeys.filter((ch) => {
+          if (!aq) return true;
+          const cap = (SCRIPT_EVOLUTION[ch] && SCRIPT_EVOLUTION[ch].caption || "").toLowerCase();
+          const cd = CHAR_DICT[ch];
+          const py = (cd && cd.pinyin || "").toLowerCase();
+          const vi = (VI_WORD_GLOSS[ch] || VI_RADICAL_DB[ch] || "").toLowerCase();
+          return ch.includes(aq) || cap.includes(aq) || py.includes(aq) || vi.includes(aq);
+        });
+
+        if (badgeEl) {
+          badgeEl.textContent = state.lang === "vi"
+            ? `${filteredKeys.length} / ${allKeys.length} chữ`
+            : `${filteredKeys.length} of ${allKeys.length} chars`;
+        }
+
+        if (!filteredKeys.includes(state.ancientChar) && filteredKeys.length) {
+          state.ancientChar = filteredKeys[0];
+        }
+
+        const zLang = getZhLangAttr();
+        stripEl.innerHTML = filteredKeys.map((ch) => `
+          <button type="button" class="comb-btn ${state.ancientChar === ch ? "active" : ""}" data-ancient-char="${escapeHtml(ch)}" lang="${zLang}">${escapeHtml(ch)}</button>
+        `).join("");
+
+        if (!filteredKeys.length) {
+          stageEl.innerHTML = `<div class="empty-state">${state.lang === "vi" ? "Không tìm thấy chữ cổ khớp từ khóa." : "No ancient script characters match your filter."}</div>`;
+          return;
+        }
+        stageEl.innerHTML = buildEvolutionPanel([state.ancientChar], "lab-ancient") +
+          `<div style="margin-top:10px;"><button type="button" class="btn-secondary" data-inspect-word="${escapeHtml(state.ancientChar)}">${escapeHtml(t("inspectReadStory"))} (${escapeHtml(state.ancientChar)})</button></div>`;
       }
 
       function renderSoundFamiliesSection() {
@@ -8329,7 +8957,7 @@
               : enGrp.split(" ")[0];
             return `
               <div class="radical-card" data-inspect-word="${escapeHtml(rad)}">
-                <div class="radical-glyph" lang="${zLang}">${escapeHtml(rad)}</div>
+                <div class="radical-glyph" lang="${zLang}">${escapeHtml(formatRadicalPair(rad))}</div>
                 <div class="radical-meta">
                   <div class="radical-meaning">${escapeHtml(getRadicalMeaning(rad))}</div>
                   <div class="radical-subrow">
@@ -8384,6 +9012,14 @@
         return ENTRIES;
       }
 
+      let flashSessionRatedIds = new Set();
+      let flashSessionCompleted = false;
+      let flashPracticeState = { hearts: 3, checked: false, ok: false, input: "", meaningInput: "", revealed: false, hintVisible: false };
+
+      function resetFlashPracticeState() {
+        flashPracticeState = { hearts: 3, checked: false, ok: false, input: "", meaningInput: "", revealed: false, hintVisible: false };
+      }
+
       function rebuildFlashOrder(shuffle = false) {
         const ids = getFlashDeckEntries().map((e) => e.id);
         if (shuffle) {
@@ -8395,9 +9031,10 @@
         state.flashOrder = ids;
         state.flashIndex = 0;
         state.flashFlipped = false;
+        flashSessionRatedIds = new Set();
+        flashSessionCompleted = false;
+        resetFlashPracticeState();
       }
-
-      let flashPracticeState = { checked: false, ok: false, input: "", revealed: false, hintVisible: false };
 
       function normalizePinyinAnswer(str, charCountHint = 0) {
         const toneNumToMark = (s) => s.replace(/([a-zA-ZüÜvV:]+)([1-5])?/g, (_, syl, t) => {
@@ -8434,24 +9071,81 @@
         }).join("");
       }
 
-      function checkFlashPracticeAnswer(entry, userInput) {
+      function checkPinyinOrHanziAnswer(entry, userInput) {
         const val = String(userInput || "").trim();
         if (!val || !entry) return false;
-        if (state.flashMode === "dictation") {
-          const clean = val.replace(/[\s.,!?，。！？]/g, "");
-          return clean === entry.simp || clean === entry.trad;
+        const cleanHanzi = val.replace(/[\s.,!?，。！？]/g, "");
+        if (cleanHanzi && (cleanHanzi === entry.simp || cleanHanzi === entry.trad)) {
+          return true;
         }
+        const hasToneMarks = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/i.test(val);
+        const hasToneDigits = /[1-5]/.test(val);
         const charCount = Array.from(String(entry.simp || "").replace(/[^\u4e00-\u9fff]/g, "")).length;
         const userWithTones = normalizePinyinAnswer(val, charCount);
         const userNo5 = userWithTones.replace(/5/g, "");
+        const userToneless = userWithTones.replace(/[1-5]/g, "");
         const alts = String(entry.pinyin || "").split(/[\/,;]+/).map((s) => s.trim()).filter(Boolean);
         for (const alt of (alts.length ? alts : [entry.pinyin])) {
           const expectedWithTones = normalizePinyinAnswer(alt, charCount);
           if (userWithTones && userWithTones === expectedWithTones) return true;
           const expectedNo5 = expectedWithTones.replace(/5/g, "");
           if (userNo5 && userNo5 === expectedNo5) return true;
+          if (!hasToneMarks && !hasToneDigits && userToneless) {
+            const expectedToneless = expectedWithTones.replace(/[1-5]/g, "");
+            if (userToneless === expectedToneless) return true;
+          }
         }
         return false;
+      }
+
+      function checkMeaningAnswer(entry, userInput) {
+        const raw = normalizeSearchText(userInput);
+        if (!raw || !entry) return false;
+        const glosses = [entry.meaning || "", getEntryViGloss(entry) || ""].filter(Boolean).join(";");
+        const segs = glosses
+          .replace(/\([^)]*\)/g, " ")
+          .split(/[;|/,]+/)
+          .map((s) => normalizeSearchText(s).replace(/^to\s+/, "").trim())
+          .filter(Boolean);
+        const cleanUser = raw.replace(/^to\s+/, "").trim();
+        if (!cleanUser) return false;
+        return segs.some((seg) => seg === cleanUser || (cleanUser.length >= 3 && (seg.includes(cleanUser) || cleanUser.includes(seg))));
+      }
+
+      function checkFlashPracticeAnswer(entry, userInput, meaningInput = "") {
+        const val = String(userInput || "").trim();
+        if (!val || !entry) return false;
+        if (state.flashMode === "dictation" || state.flashMode === "definition") {
+          const clean = val.replace(/[\s.,!?，。！？]/g, "");
+          return clean === entry.simp || clean === entry.trad;
+        }
+        if (state.flashMode === "type-pinyin") {
+          const pyOk = checkPinyinOrHanziAnswer(entry, val);
+          const meanOk = checkMeaningAnswer(entry, meaningInput);
+          return pyOk && meanOk;
+        }
+        return checkPinyinOrHanziAnswer(entry, val);
+      }
+
+      function buildFlashHintHtml(entry, maskTarget = false) {
+        const zLang = getZhLangAttr();
+        const exDisp = getExampleDisplay(entry);
+        if (exDisp) {
+          let zhText = exDisp.zh;
+          if (maskTarget) {
+            [entry.simp, entry.trad].filter(Boolean).forEach((w) => {
+              zhText = zhText.split(w).join("____");
+            });
+          }
+          const pyPart = (!maskTarget && exDisp.py) ? ` (${formatPinyinHtml(exDisp.py)})` : "";
+          const transPart = exDisp.trans ? ` — ${escapeHtml(exDisp.trans)}` : "";
+          return `<div class="flash-hint-box"><strong>${escapeHtml(t("example"))}</strong> <span lang="${zLang}">${escapeHtml(zhText)}</span>${pyPart}${transPart}</div>`;
+        }
+        const chars = Array.from(String(entry.simp || "").replace(/[^\u4e00-\u9fff]/g, ""));
+        const clue = state.lang === "vi"
+          ? `Từ gồm ${chars.length} chữ${entry.hsk ? ` · HSK ${entry.hsk >= 7 ? "7-9" : entry.hsk}` : ""}`
+          : `${chars.length}-character word${entry.hsk ? ` · HSK ${entry.hsk >= 7 ? "7-9" : entry.hsk}` : ""}`;
+        return `<div class="flash-hint-box">${escapeHtml(clue)}</div>`;
       }
 
       function updateSrsStatsPills() {
@@ -8482,8 +9176,13 @@
         const cardEl = document.getElementById("flashcardEl");
         const counter = document.getElementById("flashCounter");
         const ratingRow = document.getElementById("srsRatingRow");
+        const flipBtn = document.getElementById("flashFlipBtn");
         const deckSel = document.getElementById("flashDeckSelect");
         if (deckSel && deckSel.value !== state.flashDeck) deckSel.value = state.flashDeck;
+
+        const isFlipMode = state.flashMode === "flip";
+        if (!isFlipMode) state.flashFlipped = false;
+        if (flipBtn) flipBtn.classList.toggle("hidden", !isFlipMode);
 
         updateSrsStatsPills();
 
@@ -8507,7 +9206,19 @@
           return;
         }
 
-        if (state.flashIndex >= list.length) state.flashIndex = 0;
+        if (flashSessionCompleted || state.flashIndex >= list.length) {
+          flashSessionCompleted = true;
+          counter.textContent = `${list.length} / ${list.length}`;
+          const doneHtml = state.lang === "vi"
+            ? `<div class="flash-front-center flash-complete-box"><h3>Hoàn thành phiên ôn tập!</h3><p style="color:var(--muted);margin:0;">Bạn đã đánh giá toàn bộ ${list.length} thẻ trong phiên này. Không thể cộng thêm điểm sau khi kết thúc phiên.</p><button type="button" class="btn-primary" id="flashRestartBtn">Học Lại Phiên Mới</button></div>`
+            : `<div class="flash-front-center flash-complete-box"><h3>Session Complete!</h3><p style="color:var(--muted);margin:0;">You have reviewed all ${list.length} cards in this session.</p><button type="button" class="btn-primary" id="flashRestartBtn">Restart Session</button></div>`;
+          front.innerHTML = doneHtml;
+          back.innerHTML = doneHtml;
+          cardEl.classList.remove("flipped");
+          if (ratingRow) ratingRow.classList.add("hidden");
+          return;
+        }
+
         if (state.flashIndex < 0) state.flashIndex = list.length - 1;
 
         const entry = list[state.flashIndex];
@@ -8517,7 +9228,7 @@
         const lvLabel = stdLv >= 7 ? "HSK 7-9" : `HSK ${stdLv}`;
 
         counter.textContent = `${state.flashIndex + 1} / ${list.length}`;
-        cardEl.classList.toggle("flipped", state.flashFlipped);
+        cardEl.classList.toggle("flipped", isFlipMode && state.flashFlipped);
         if (ratingRow) {
           ratingRow.classList.remove("hidden");
           for (let q = 1; q <= 4; q++) {
@@ -8531,60 +9242,80 @@
         document.getElementById("flashListBtn").textContent = inList ? t("inList") : t("addList");
         document.getElementById("flashMasterBtn").textContent = isMas ? t("mastered") : t("markMastered");
 
-        const hintText = entry.type === "deep-dive"
-          ? entry.chars.map((c) => `${c.char} (${c.method})`).join(" + ")
-          : entry.structure;
+        const hearts = Math.max(0, Math.min(3, flashPracticeState.hearts != null ? flashPracticeState.hearts : 3));
+        const outOfHearts = hearts <= 0;
+        const heartsHtml = `<div class="flash-hearts" aria-label="${hearts} of 3 hearts remaining">${[0, 1, 2].map((i) => `<span class="flash-heart ${i >= hearts ? "lost" : ""}">${i < hearts ? "♥" : "♡"}</span>`).join("")}<span style="font-size:0.78rem;color:var(--muted);margin-left:4px;">(${hearts}/3)</span></div>`;
+        const optionBarHtml = `
+          <div class="flash-option-bar">
+            <button type="button" class="btn-primary" id="flashCheckBtn" ${outOfHearts || flashPracticeState.revealed ? "disabled" : ""}>${escapeHtml(t("checkAnswerBtn"))}</button>
+            <button type="button" class="btn-secondary" id="flashHintToggleBtn" ${outOfHearts ? "disabled" : ""}>${escapeHtml(t("hintBtn"))}</button>
+            <button type="button" class="btn-secondary" id="flashRevealBtn">${escapeHtml(t("revealAnswerBtn"))}</button>
+          </div>
+          ${outOfHearts && !flashPracticeState.revealed ? `<div class="flash-feedback err">${state.lang === "vi" ? "Hết tim rồi! Hãy nhấn 不知道 để xem đáp án." : "Out of hearts! Click 不知道 to reveal the answer."}</div>` : ""}
+        `;
 
         let practiceFrontBody = "";
         if (state.flashMode === "type-pinyin") {
-          const ph = t("typePinyinPlaceholder");
           const expectedDisp = entry.pinyin;
           practiceFrontBody = `
             <div class="flash-big-hanzi" lang="${zLang}">${escapeHtml(getDisplayHanzi(entry))}</div>
-            <div style="font-size:1.1rem;font-weight:700;margin-bottom:8px;">${getEntryMeaningHtml(entry)}</div>
+            ${heartsHtml}
             <div class="flash-practice-box">
-              <div class="flash-type-row">
-                <input id="flashTypeInput" class="flash-type-input" type="text" value="${escapeHtml(flashPracticeState.input)}" placeholder="${escapeHtml(ph)}" autocomplete="off" autocapitalize="off" spellcheck="false" />
-                <button type="button" class="btn-primary" id="flashCheckBtn">${escapeHtml(t("checkAnswerBtn"))}</button>
-                <button type="button" class="btn-secondary" id="flashRevealBtn">${escapeHtml(t("revealAnswerBtn"))}</button>
+              <div class="flash-dual-inputs">
+                <input id="flashMeaningInput" class="flash-type-input" type="text" value="${escapeHtml(flashPracticeState.meaningInput)}" placeholder="${escapeHtml(t("typeMeaningPlaceholder"))}" autocomplete="off" ${outOfHearts || flashPracticeState.revealed ? "disabled" : ""} />
+                <input id="flashTypeInput" class="flash-type-input" type="text" value="${escapeHtml(flashPracticeState.input)}" placeholder="${escapeHtml(t("typePinyinPlaceholder"))}" autocomplete="off" autocapitalize="off" spellcheck="false" ${outOfHearts || flashPracticeState.revealed ? "disabled" : ""} />
               </div>
-              ${flashPracticeState.checked ? `<div class="flash-feedback ${flashPracticeState.ok ? "ok" : "err"}">${flashPracticeState.ok ? (state.lang === "vi" ? "Chính xác!" : "Correct!") : (state.lang === "vi" ? "Chưa đúng." : "Not quite.")} <span lang="${zLang}">${escapeHtml(getDisplayHanzi(entry))}</span> (${formatPinyinHtml(expectedDisp)})</div>` : ""}
-              ${flashPracticeState.revealed && !flashPracticeState.checked ? `<div class="flash-feedback">${escapeHtml(getDisplayHanzi(entry))} · ${formatPinyinHtml(expectedDisp)}</div>` : ""}
+              ${optionBarHtml}
+              ${flashPracticeState.hintVisible ? buildFlashHintHtml(entry, false) : ""}
+              ${flashPracticeState.checked ? `<div class="flash-feedback ${flashPracticeState.ok ? "ok" : "err"}">${flashPracticeState.ok ? (state.lang === "vi" ? "Chính xác!" : "Correct!") : (state.lang === "vi" ? "Chưa đúng." : "Not quite.")} ${flashPracticeState.ok ? `<span lang="${zLang}">${escapeHtml(getDisplayHanzi(entry))}</span> (${formatPinyinHtml(expectedDisp)}) — ${getEntryMeaningHtml(entry)}` : ""}</div>` : ""}
+              ${flashPracticeState.revealed ? `<div class="flash-feedback"><span lang="${zLang}">${escapeHtml(getDisplayHanzi(entry))}</span> · ${formatPinyinHtml(expectedDisp)} — ${getEntryMeaningHtml(entry)}</div>` : ""}
+            </div>
+          `;
+        } else if (state.flashMode === "definition") {
+          practiceFrontBody = `
+            <div style="font-size:1.35rem;font-weight:700;margin-bottom:10px;">${getEntryMeaningHtml(entry)}</div>
+            ${heartsHtml}
+            <div class="flash-practice-box">
+              <div class="flash-type-row" style="margin-bottom:8px;">
+                <input id="flashTypeInput" class="flash-type-input" type="text" value="${escapeHtml(flashPracticeState.input)}" placeholder="${escapeHtml(t("typeHanziPlaceholder"))}" autocomplete="off" ${outOfHearts || flashPracticeState.revealed ? "disabled" : ""} />
+              </div>
+              ${optionBarHtml}
+              ${flashPracticeState.hintVisible ? buildFlashHintHtml(entry, true) : ""}
+              ${flashPracticeState.checked ? `<div class="flash-feedback ${flashPracticeState.ok ? "ok" : "err"}">${flashPracticeState.ok ? (state.lang === "vi" ? `Chính xác! <span lang="${zLang}">${escapeHtml(getDisplayHanzi(entry))}</span> (${formatPinyinHtml(entry.pinyin)})` : `Correct! <span lang="${zLang}">${escapeHtml(getDisplayHanzi(entry))}</span> (${formatPinyinHtml(entry.pinyin)})`) : (state.lang === "vi" ? "Chưa đúng." : "Not quite.")}</div>` : ""}
+              ${flashPracticeState.revealed ? `<div class="flash-feedback"><span lang="${zLang}">${escapeHtml(getDisplayHanzi(entry))}</span> (${formatPinyinHtml(entry.pinyin)}) — ${getEntryMeaningHtml(entry)}</div>` : ""}
             </div>
           `;
         } else if (state.flashMode === "dictation") {
-          const ph = t("typeHanziPlaceholder");
           practiceFrontBody = `
             <div style="margin-bottom:10px;">
               <button type="button" class="btn-primary" data-speak="${escapeHtml(entry.simp)}">🔊 ${escapeHtml(t("listen"))} (${escapeHtml(lvLabel)})</button>
-              <button type="button" class="btn-secondary" id="flashHintToggleBtn" style="margin-left:6px;">${escapeHtml(state.lang === "vi" ? "Gợi ý nghĩa" : "Hint")}</button>
             </div>
-            ${flashPracticeState.hintVisible ? `<div class="flash-hint-box">${getEntryMeaningHtml(entry)} · ${formatPinyinHtml(entry.pinyin)}</div>` : ""}
+            ${heartsHtml}
             <div class="flash-practice-box">
-              <div class="flash-type-row">
-                <input id="flashTypeInput" class="flash-type-input" type="text" value="${escapeHtml(flashPracticeState.input)}" placeholder="${escapeHtml(ph)}" autocomplete="off" />
-                <button type="button" class="btn-primary" id="flashCheckBtn">${escapeHtml(t("checkAnswerBtn"))}</button>
-                <button type="button" class="btn-secondary" id="flashRevealBtn">${escapeHtml(t("revealAnswerBtn"))}</button>
+              <div class="flash-type-row" style="margin-bottom:8px;">
+                <input id="flashTypeInput" class="flash-type-input" type="text" value="${escapeHtml(flashPracticeState.input)}" placeholder="${escapeHtml(t("typeHanziPlaceholder"))}" autocomplete="off" ${outOfHearts || flashPracticeState.revealed ? "disabled" : ""} />
               </div>
-              ${flashPracticeState.checked ? `<div class="flash-feedback ${flashPracticeState.ok ? "ok" : "err"}">${flashPracticeState.ok ? (state.lang === "vi" ? "Chính xác!" : "Correct!") : (state.lang === "vi" ? "Chưa đúng." : "Expected:")} <span lang="${zLang}">${escapeHtml(getDisplayHanzi(entry))}</span> (${formatPinyinHtml(entry.pinyin)})</div>` : ""}
-              ${flashPracticeState.revealed && !flashPracticeState.checked ? `<div class="flash-feedback"><span lang="${zLang}">${escapeHtml(getDisplayHanzi(entry))}</span> (${formatPinyinHtml(entry.pinyin)}) — ${getEntryMeaningHtml(entry)}</div>` : ""}
+              ${optionBarHtml}
+              ${flashPracticeState.hintVisible ? buildFlashHintHtml(entry, true) : ""}
+              ${flashPracticeState.checked ? `<div class="flash-feedback ${flashPracticeState.ok ? "ok" : "err"}">${flashPracticeState.ok ? (state.lang === "vi" ? `Chính xác! <span lang="${zLang}">${escapeHtml(getDisplayHanzi(entry))}</span> (${formatPinyinHtml(entry.pinyin)})` : `Correct! <span lang="${zLang}">${escapeHtml(getDisplayHanzi(entry))}</span> (${formatPinyinHtml(entry.pinyin)})`) : (state.lang === "vi" ? "Chưa đúng." : "Not quite.")}</div>` : ""}
+              ${flashPracticeState.revealed ? `<div class="flash-feedback"><span lang="${zLang}">${escapeHtml(getDisplayHanzi(entry))}</span> (${formatPinyinHtml(entry.pinyin)}) — ${getEntryMeaningHtml(entry)}</div>` : ""}
             </div>
           `;
         } else {
           practiceFrontBody = `
             <div class="flash-big-hanzi" lang="${zLang}">${escapeHtml(getDisplayHanzi(entry))}</div>
             <div style="font-size:0.94rem;color:var(--muted);">${state.lang === "vi" ? "Nhấn hoặc bấm <strong>Space</strong> để lật xem câu chuyện &amp; nghĩa" : "Click or press <strong>Space</strong> to reveal story &amp; meaning"}</div>
-            <div class="flash-hint-box"><strong>${state.lang === "vi" ? "Gợi ý bộ thủ:" : "Component Clue:"}</strong> ${escapeHtml(hintText)}</div>
           `;
         }
 
+        const showTopSpeak = state.flashMode === "flip" || state.flashMode === "type-pinyin" || state.flashMode === "dictation";
         front.innerHTML = `
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <div style="display:flex;gap:6px;flex-wrap:wrap;">
               <span class="badge badge-hsk">${escapeHtml(lvLabel)}</span>
               ${(entry.badges || []).map((b) => `<span class="badge ${escapeHtml(b.cls)}">${escapeHtml(getBadgeText(b.label))}</span>`).join(" ")}
             </div>
-            <button class="icon-btn" data-speak="${escapeHtml(entry.simp)}">${escapeHtml(t("speak"))}</button>
+            ${showTopSpeak ? `<button class="icon-btn" data-speak="${escapeHtml(entry.simp)}">${escapeHtml(t("speak"))}</button>` : `<span></span>`}
           </div>
           <div class="flash-front-center">
             ${practiceFrontBody}
@@ -8597,7 +9328,7 @@
         let backSummary = "";
         if (entry.type === "deep-dive") {
           const sc = getDeepStoryLocalized(entry);
-          backSummary = `<div class="word-logic-box" style="margin:10px 0;">${escapeHtml(sc.wordLogic)}</div><p style="font-size:0.9rem;margin:6px 0;"><strong>${t("story")}</strong> ${escapeHtml(sc.storyTitle)}</p>`;
+          backSummary = `<div class="word-logic-box" style="margin:10px 0;">${formatSafeInlineStrongHtml(sc.wordLogic)}</div><p style="font-size:0.9rem;margin:6px 0;"><strong>${t("story")}</strong> ${escapeHtml(sc.storyTitle)}</p>`;
         } else {
           const loc = getLocalizedVocabDetails(entry);
           backSummary = `<div class="kv" style="margin:10px 0;"><div><strong>${t("breakdown")}</strong> ${escapeHtml(loc.structure)}</div><div><strong>${t("story")}</strong> ${escapeHtml(loc.originalStory)}</div><div><strong>${t("why")}</strong> ${escapeHtml(loc.whyItMeans)}</div></div>`;
@@ -8675,9 +9406,6 @@
           tbLayoutSplitBtn: "tbLayoutSplit",
           tbLayoutGuideBtn: "tbLayoutGuide",
           tbLayoutPdfBtn: "tbLayoutPdf",
-          tbLangBiBtn: "tbLangBi",
-          tbLangEnBtn: "tbLangEn",
-          tbLangViBtn: "tbLangVi",
           dictClearBtn: "clear",
           dictSearchOnlineBtn: "dictOnlineBtn",
           dictPromptTitle: "dictPromptTitle",
@@ -8691,7 +9419,8 @@
           exportJsonBtn: "exportJsonBtn",
           exportCsvBtn: "exportCsvBtn",
           importBackupBtn: "importBackupBtn",
-          printVocabBtn: "printVocabBtn",
+          exportExcelBtn: "exportExcelBtn",
+          importFormatSummary: "importFormatSummary",
           hskClearBtn: "clear",
           hskStdLabel: "hskStdLabel",
           hskLevelLabel: "hskLevelLabel",
@@ -8703,6 +9432,8 @@
           labCombLead: "labCombLead",
           labCombRootLabel: "labCombRootLabel",
           labCombRadLabel: "labCombRadLabel",
+          labAncientTitle: "labAncientTitle",
+          labAncientLead: "labAncientLead",
           labLiushuTitle: "labLiushuTitle",
           labLiushuLead: "labLiushuLead",
           labFamilyTitle: "labFamilyTitle",
@@ -8733,6 +9464,7 @@
           addWordInput: "addWordPlaceholder",
           hskSearchInput: "hskPlaceholder",
           familySearchInput: "familyPlaceholder",
+          ancientSearchInput: "ancientPlaceholder",
           radicalSearchInput: "radPlaceholder"
         };
         Object.entries(phMap).forEach(([elId, key]) => {
@@ -8745,6 +9477,7 @@
           addWordInput: "addWordAriaLabel",
           hskSearchInput: "hskAriaLabel",
           familySearchInput: "familyAriaLabel",
+          ancientSearchInput: "ancientAriaLabel",
           radicalSearchInput: "radAriaLabel"
         };
         Object.entries(ariaMap).forEach(([elId, key]) => {
@@ -8792,11 +9525,19 @@
           flashDeck.value = state.flashDeck;
         }
 
+        const importBody = document.getElementById("importFormatBody");
+        if (importBody) {
+          importBody.innerHTML = state.lang === "vi"
+            ? "<strong>JSON:</strong> Tệp sao lưu do ứng dụng xuất ra (chứa <code>vocabListIds</code>, <code>customEntries</code>, <code>srs</code>, <code>studyStats</code>).<br/><strong>CSV / TSV:</strong> Các cột <code>Simplified, Traditional, Pinyin, English, Vietnamese, HanViet, HSK, Breakdown, Example</code> (hoặc danh sách 1 cột chữ Hán, dòng tiêu đề <code>Simplified</code> tùy chọn)."
+            : "<strong>JSON:</strong> Exported app backup file (<code>vocabListIds</code>, <code>customEntries</code>, <code>srs</code>, <code>studyStats</code>).<br/><strong>CSV / TSV:</strong> Columns <code>Simplified, Traditional, Pinyin, English, Vietnamese, HanViet, HSK, Breakdown, Example</code> (or a simple 1-column Chinese word list with optional header <code>Simplified</code>).";
+        }
+
         const modeSel = $("flashModeSelect");
-        if (modeSel && modeSel.options && modeSel.options.length >= 3) {
+        if (modeSel && modeSel.options && modeSel.options.length >= 4) {
           modeSel.options[0].textContent = t("flashModeFlip");
           modeSel.options[1].textContent = t("flashModeTypePinyin");
-          modeSel.options[2].textContent = t("flashModeDictation");
+          modeSel.options[2].textContent = t("flashModeDefinition");
+          modeSel.options[3].textContent = t("flashModeDictation");
           modeSel.value = state.flashMode || "flip";
         }
         const srsSetBtn = $("srsSettingsToggleBtn");
@@ -9009,12 +9750,8 @@
             reader.readAsText(file, "utf-8");
           });
         }
-        const printBtn = document.getElementById("printVocabBtn");
-        if (printBtn) {
-          printBtn.addEventListener("click", () => {
-            if (typeof window !== "undefined" && typeof window.print === "function") window.print();
-          });
-        }
+        const exportExcelBtn = document.getElementById("exportExcelBtn");
+        if (exportExcelBtn) exportExcelBtn.addEventListener("click", exportVocabExcel);
 
         // HSK Complete View controls
         const hskStdSel = document.getElementById("hskStdSelect");
@@ -9060,6 +9797,13 @@
             renderSoundFamiliesSection();
           });
         }
+        const ancientInput = document.getElementById("ancientSearchInput");
+        if (ancientInput) {
+          ancientInput.addEventListener("input", () => {
+            state.ancientQuery = ancientInput.value;
+            renderAncientScriptLabSection();
+          });
+        }
         const radicalInput = document.getElementById("radicalSearchInput");
         if (radicalInput) {
           radicalInput.addEventListener("input", () => {
@@ -9085,7 +9829,7 @@
           flashModeSel.addEventListener("change", (ev) => {
             state.flashMode = VALID_FLASH_MODES.includes(ev.target.value) ? ev.target.value : "flip";
             state.flashFlipped = false;
-            flashPracticeState = { checked: false, ok: false, input: "", revealed: false, hintVisible: false };
+            resetFlashPracticeState();
             saveState();
             renderFlashcard();
           });
@@ -9141,30 +9885,46 @@
         const flashCardEl = document.getElementById("flashcardEl");
         flashCardEl.addEventListener("click", (ev) => {
           if (ev.target.closest("button, input, .flash-practice-box, [data-speak]")) return;
+          if (flashSessionCompleted || state.flashMode !== "flip") return;
           state.flashFlipped = !state.flashFlipped;
           renderFlashcard();
         });
         flashCardEl.addEventListener("input", (ev) => {
           if (ev.target && ev.target.id === "flashTypeInput") {
             flashPracticeState.input = ev.target.value;
+          } else if (ev.target && ev.target.id === "flashMeaningInput") {
+            flashPracticeState.meaningInput = ev.target.value;
           }
         });
         flashCardEl.addEventListener("keydown", (ev) => {
-          if (ev.target && ev.target.id === "flashTypeInput" && ev.key === "Enter") {
+          if (ev.target && (ev.target.id === "flashTypeInput" || ev.target.id === "flashMeaningInput") && ev.key === "Enter") {
             ev.preventDefault();
             const checkBtn = $("flashCheckBtn");
-            if (checkBtn) checkBtn.click();
+            if (checkBtn && !checkBtn.disabled) checkBtn.click();
           }
         });
         flashCardEl.addEventListener("click", (ev) => {
+          if (ev.target.closest("#flashRestartBtn")) {
+            rebuildFlashOrder(false);
+            renderFlashcard();
+            return;
+          }
           const list = state.flashOrder.map((id) => ENTRIES_BY_ID.get(id)).filter(Boolean);
           const curEntry = list[state.flashIndex];
           if (ev.target.closest("#flashCheckBtn") && curEntry) {
+            if ((flashPracticeState.hearts != null ? flashPracticeState.hearts : 3) <= 0 || flashPracticeState.revealed) return;
             const inp = $("flashTypeInput");
+            const minp = $("flashMeaningInput");
             const val = inp ? inp.value : flashPracticeState.input;
+            const mval = minp ? minp.value : flashPracticeState.meaningInput;
             flashPracticeState.input = val;
+            flashPracticeState.meaningInput = mval;
             flashPracticeState.checked = true;
-            flashPracticeState.ok = checkFlashPracticeAnswer(curEntry, val);
+            const ok = checkFlashPracticeAnswer(curEntry, val, mval);
+            flashPracticeState.ok = ok;
+            if (!ok) {
+              flashPracticeState.hearts = Math.max(0, (flashPracticeState.hearts != null ? flashPracticeState.hearts : 3) - 1);
+            }
             renderFlashcard();
             return;
           }
@@ -9174,25 +9934,34 @@
             return;
           }
           if (ev.target.closest("#flashHintToggleBtn")) {
+            if ((flashPracticeState.hearts != null ? flashPracticeState.hearts : 3) <= 0) return;
             flashPracticeState.hintVisible = !flashPracticeState.hintVisible;
             renderFlashcard();
             return;
           }
         });
         document.getElementById("flashFlipBtn").addEventListener("click", () => {
+          if (flashSessionCompleted || state.flashMode !== "flip") return;
           state.flashFlipped = !state.flashFlipped;
           renderFlashcard();
         });
         document.getElementById("flashPrevBtn").addEventListener("click", () => {
-          state.flashIndex--;
+          if (flashSessionCompleted) {
+            flashSessionCompleted = false;
+            state.flashIndex = Math.max(0, state.flashOrder.length - 1);
+          } else {
+            state.flashIndex--;
+          }
           state.flashFlipped = false;
-          flashPracticeState = { checked: false, ok: false, input: "", revealed: false, hintVisible: false };
+          resetFlashPracticeState();
           renderFlashcard();
         });
         document.getElementById("flashNextBtn").addEventListener("click", () => {
+          if (flashSessionCompleted) return;
           state.flashIndex++;
+          if (state.flashIndex >= state.flashOrder.length) state.flashIndex = 0;
           state.flashFlipped = false;
-          flashPracticeState = { checked: false, ok: false, input: "", revealed: false, hintVisible: false };
+          resetFlashPracticeState();
           renderFlashcard();
         });
         document.getElementById("flashListBtn").addEventListener("click", () => {
@@ -9272,29 +10041,45 @@
           if (!modalOpen && state.view === "flashcards" && !["INPUT", "SELECT", "TEXTAREA"].includes(activeTag)) {
             if (ev.code === "Space") {
               ev.preventDefault();
-              state.flashFlipped = !state.flashFlipped;
-              renderFlashcard();
+              if (!flashSessionCompleted && state.flashMode === "flip") {
+                state.flashFlipped = !state.flashFlipped;
+                renderFlashcard();
+              }
             } else if (ev.key === "ArrowRight") {
-              state.flashIndex++;
-              state.flashFlipped = false;
-              flashPracticeState = { checked: false, ok: false, input: "", revealed: false, hintVisible: false };
-              renderFlashcard();
+              if (!flashSessionCompleted) {
+                state.flashIndex++;
+                if (state.flashIndex >= state.flashOrder.length) state.flashIndex = 0;
+                state.flashFlipped = false;
+                resetFlashPracticeState();
+                renderFlashcard();
+              }
             } else if (ev.key === "ArrowLeft") {
-              state.flashIndex--;
+              if (flashSessionCompleted) {
+                flashSessionCompleted = false;
+                state.flashIndex = Math.max(0, state.flashOrder.length - 1);
+              } else {
+                state.flashIndex--;
+              }
               state.flashFlipped = false;
-              flashPracticeState = { checked: false, ok: false, input: "", revealed: false, hintVisible: false };
+              resetFlashPracticeState();
               renderFlashcard();
             } else if (["1", "2", "3", "4"].includes(ev.key)) {
               ev.preventDefault();
-              const id = state.flashOrder[state.flashIndex];
-              if (id) rateSrsCard(id, Number(ev.key));
+              if (!flashSessionCompleted) {
+                const id = state.flashOrder[state.flashIndex];
+                if (id) rateSrsCard(id, Number(ev.key));
+              }
             } else if (ev.key.toLowerCase() === "s") {
-              const id = state.flashOrder[state.flashIndex];
-              const entry = findAnyEntryById(id);
-              if (entry) speakChinese(entry.simp);
+              if (!flashSessionCompleted) {
+                const id = state.flashOrder[state.flashIndex];
+                const entry = findAnyEntryById(id);
+                if (entry) speakChinese(entry.simp);
+              }
             } else if (ev.key.toLowerCase() === "m") {
-              const id = state.flashOrder[state.flashIndex];
-              if (id) toggleMastered(id);
+              if (!flashSessionCompleted) {
+                const id = state.flashOrder[state.flashIndex];
+                if (id) toggleMastered(id);
+              }
             }
           }
         });
@@ -9485,6 +10270,45 @@
             return;
           }
 
+          const addCandBtn = ev.target.closest("[data-add-candidate]");
+          if (addCandBtn) {
+            const word = addCandBtn.getAttribute("data-add-candidate");
+            if (word) {
+              analyzeAndAddWord(word, "addWordStatus", true).then((entry) => {
+                if (entry) addInput.value = "";
+              });
+            }
+            return;
+          }
+
+          const jumpAncientBtn = ev.target.closest("[data-jump-ancient]");
+          if (jumpAncientBtn) {
+            const ch = jumpAncientBtn.getAttribute("data-jump-ancient");
+            closeInspector();
+            if (ch && SCRIPT_EVOLUTION[ch]) {
+              state.ancientChar = ch;
+              state.ancientQuery = "";
+              const aIn = document.getElementById("ancientSearchInput");
+              if (aIn) aIn.value = "";
+            }
+            switchView("lab");
+            const sec = document.getElementById("ancientScriptLabPanel");
+            if (sec && typeof sec.scrollIntoView === "function") {
+              sec.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+            return;
+          }
+
+          const ancientCharBtn = ev.target.closest("[data-ancient-char]");
+          if (ancientCharBtn) {
+            const ch = ancientCharBtn.getAttribute("data-ancient-char");
+            if (ch && SCRIPT_EVOLUTION[ch]) {
+              state.ancientChar = ch;
+              renderAncientScriptLabSection();
+            }
+            return;
+          }
+
           const inspectBtn = ev.target.closest("[data-inspect-id]");
           if (inspectBtn) {
             openInspector(inspectBtn.getAttribute("data-inspect-id"));
@@ -9552,12 +10376,14 @@
           const combRoot = ev.target.closest("[data-comb-root]");
           if (combRoot) {
             state.combRoot = combRoot.getAttribute("data-comb-root");
+            state.combAnchor = "root";
             renderLabView();
             return;
           }
           const combRad = ev.target.closest("[data-comb-rad]");
           if (combRad) {
             state.combRad = combRad.getAttribute("data-comb-rad");
+            state.combAnchor = "rad";
             renderLabView();
             return;
           }

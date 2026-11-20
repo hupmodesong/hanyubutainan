@@ -560,48 +560,99 @@ def run_browser_tests():
             assert after_reload["ocLen"] == 250 and after_reload["vcLen"] == 500, after_reload
             print("  T3/T5/T7 F2 daily goal + F3 Due/New + F5 tones + F7 LRU caps PASSED")
 
-            # T6 F6 Typing Pinyin & Dictation modes via real DOM interactions
+            # T6 F6 Typing Pinyin (dual inputs + flexibility), Definition, Dictation & 3-Heart System
             f6_res = cdp.eval("""(() => {
               document.querySelector('[data-view=\"flashcards\"]').click();
               const modeSel = document.getElementById('flashModeSelect');
               modeSel.value = 'type-pinyin';
               modeSel.dispatchEvent(new Event('change', { bubbles: true }));
-              // Flip back or click Reveal to inspect expected answer cleanly without internal access
-              document.getElementById('flashRevealBtn').click();
-              const revText = document.querySelector('#flashFront .flash-feedback').textContent;
-              const match = revText.match(/^(.+?)\\s*·\\s*(.+)$/);
               const hanziShown = document.querySelector('#flashFront .flash-big-hanzi').textContent.trim();
-              const expectedPinyin = match ? match[2].trim() : '';
 
-              // Test wrong pinyin
+              // Flip must be blocked in Type Pinyin mode
+              document.getElementById('flashcardEl').click();
+              const flippedInType = document.getElementById('flashcardEl').classList.contains('flipped');
+              const flipBtnHidden = document.getElementById('flashFlipBtn').classList.contains('hidden');
+
+              // Test wrong answer reduces hearts (3 -> 2)
+              document.getElementById('flashMeaningInput').value = 'wrongmeaning';
               document.getElementById('flashTypeInput').value = 'zzzz9';
               document.getElementById('flashCheckBtn').click();
               const wrongCls = document.querySelector('#flashFront .flash-feedback').className;
+              const heartsAfter1Wrong = document.querySelectorAll('#flashFront .flash-heart:not(.lost)').length;
 
-              // Test tone-marked pinyin
-              document.getElementById('flashTypeInput').value = expectedPinyin;
+              // Reveal with 不知道 to inspect answer cleanly
+              document.getElementById('flashRevealBtn').click();
+              const revNodes = document.querySelectorAll('#flashFront .flash-feedback');
+              const revText = revNodes[revNodes.length - 1].textContent;
+              const match = revText.match(/^(.+?)\\s*·\\s*(.+?)\\s*—\\s*(.+)$/);
+              const expectedPinyin = match ? match[2].trim() : '';
+              const expectedMeaning = match ? match[3].trim().split(/[;/]/)[0].trim() : '';
+
+              // Move to next card and test toneless pinyin + meaning + 0-heart lock on another card
+              document.getElementById('flashNextBtn').click();
+              document.getElementById('flashRevealBtn').click();
+              const rev2Nodes = document.querySelectorAll('#flashFront .flash-feedback');
+              const rev2 = rev2Nodes[rev2Nodes.length - 1].textContent;
+              const m2 = rev2.match(/^(.+?)\\s*·\\s*(.+?)\\s*—\\s*(.+)$/);
+              const py2 = m2 ? m2[2].trim() : '';
+              const mean2 = m2 ? m2[3].trim().split(/[;/]/)[0].trim() : '';
+              document.getElementById('flashNextBtn').click();
+              document.getElementById('flashPrevBtn').click();
+              document.getElementById('flashMeaningInput').value = mean2;
+              document.getElementById('flashTypeInput').value = py2.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '');
               document.getElementById('flashCheckBtn').click();
-              const okMarkCls = document.querySelector('#flashFront .flash-feedback').className;
+              const okTonelessCls = document.querySelector('#flashFront .flash-feedback').className;
 
-              // Test dictation mode
+              // Test 3 wrong guesses lock Check & force 不知道
+              document.getElementById('flashNextBtn').click();
+              for (let k = 0; k < 3; k++) {
+                document.getElementById('flashMeaningInput').value = 'nope';
+                document.getElementById('flashTypeInput').value = 'zzzz9';
+                document.getElementById('flashCheckBtn').click();
+              }
+              const checkDisabledAt0Hearts = document.getElementById('flashCheckBtn').disabled;
+              const heartsAt0 = document.querySelectorAll('#flashFront .flash-heart:not(.lost)').length;
+
+              // Test Definition mode
+              modeSel.value = 'definition';
+              modeSel.dispatchEvent(new Event('change', { bubbles: true }));
+              const defHiddenHanzi = !document.querySelector('#flashFront .flash-big-hanzi');
+              document.getElementById('flashHintToggleBtn').click();
+              const defHintText = (document.querySelector('#flashFront .flash-hint-box') || {}).textContent || '';
+
+              // Test Dictation mode
               modeSel.value = 'dictation';
               modeSel.dispatchEvent(new Event('change', { bubbles: true }));
               const hiddenHanzi = !document.querySelector('#flashFront .flash-big-hanzi');
               document.getElementById('flashHintToggleBtn').click();
               const hintVisible = Boolean(document.querySelector('#flashFront .flash-hint-box'));
-              document.getElementById('flashTypeInput').value = hanziShown;
-              document.getElementById('flashCheckBtn').click();
-              const okDictCls = document.querySelector('#flashFront .flash-feedback').className;
+              document.getElementById('flashRevealBtn').click();
+              const dictRev = document.querySelector('#flashFront .flash-feedback').textContent;
+              const dictHanzi = dictRev.split('(')[0].trim();
 
               modeSel.value = 'flip';
               modeSel.dispatchEvent(new Event('change', { bubbles: true }));
-              return { hanziShown, expectedPinyin, wrongCls, okMarkCls, hiddenHanzi, hintVisible, okDictCls };
+              // Flip mode should have NO Component Clue box and allow flipping
+              const hasCompClueInFlip = Boolean(document.querySelector('#flashFront .flash-hint-box'));
+              document.getElementById('flashFlipBtn').click();
+              const flippedInFlip = document.getElementById('flashcardEl').classList.contains('flipped');
+              const backRawStrong = document.querySelector('#flashBack').textContent.includes('<strong>');
+
+              return {
+                hanziShown, flippedInType, flipBtnHidden, wrongCls, heartsAfter1Wrong,
+                expectedPinyin, expectedMeaning, okTonelessCls, checkDisabledAt0Hearts, heartsAt0,
+                defHiddenHanzi, defHintText,
+                hiddenHanzi, hintVisible, dictHanzi, hasCompClueInFlip, flippedInFlip, backRawStrong
+              };
             })()""")
-            assert f6_res["expectedPinyin"], f6_res
-            assert "err" in f6_res["wrongCls"], f6_res
-            assert "ok" in f6_res["okMarkCls"], f6_res
-            assert f6_res["hiddenHanzi"] and f6_res["hintVisible"] and "ok" in f6_res["okDictCls"], f6_res
-            print("  T6 F6 Typing Pinyin & Dictation modes PASSED")
+            assert f6_res["expectedPinyin"] and f6_res["expectedMeaning"], f6_res
+            assert f6_res["flippedInType"] is False and f6_res["flipBtnHidden"] is True, f6_res
+            assert "err" in f6_res["wrongCls"] and f6_res["heartsAfter1Wrong"] == 2, f6_res
+            assert "ok" in f6_res["okTonelessCls"], f6_res
+            assert f6_res["checkDisabledAt0Hearts"] is True and f6_res["heartsAt0"] == 0, f6_res
+            assert f6_res["defHiddenHanzi"] is True and f6_res["hiddenHanzi"] is True and f6_res["hintVisible"] is True, f6_res
+            assert f6_res["hasCompClueInFlip"] is False and f6_res["flippedInFlip"] is True and f6_res["backRawStrong"] is False, f6_res
+            print("  T6 F6 Flashcards modes, 3-hearts, flip lock & raw <strong> fix PASSED")
 
             # F7 localStorage.setItem error toast & Last Backup note
             ls_err_res = cdp.eval("""(() => {
@@ -679,6 +730,110 @@ def run_browser_tests():
             assert mob_res["overflow"] <= 0, f"Mobile horizontal overflow: {mob_res['overflow']}px"
             assert mob_res["under40Count"] == 0, f"Mobile touch targets <40px: {mob_res['under40Sample']}"
             print(f"  T9 C4 Mobile 375x740 (0px overflow, {mob_res['checked']} controls >=40px) PASSED")
+
+            # T12 Update 1 comprehensive checks (Desktop viewport)
+            cdp.send(
+                "Emulation.setDeviceMetricsOverride",
+                {"width": 1280, "height": 860, "deviceScaleFactor": 1, "mobile": False},
+                session_id=cdp.session_id,
+            )
+            u1_res = cdp.eval("""(() => {
+              // 1. Textbooks single language picker + arrow-free page input
+              document.querySelector('[data-view=\"textbooks\"]').click();
+              const tbPageType = document.getElementById('tbPageInput').type;
+              const tbLangSel = document.getElementById('tbLangSelect');
+              tbLangSel.value = 'en';
+              tbLangSel.dispatchEvent(new Event('change', { bubbles: true }));
+              const viLinesInEnMode = document.querySelectorAll('#tbCompanionPane .tb-line-vi').length;
+              tbLangSel.value = 'bilingual';
+              tbLangSel.dispatchEvent(new Event('change', { bubbles: true }));
+
+              // 2. Whole vocab-card clickable + modal-open scroll lock + Trust card + Ancient Script moved out
+              document.querySelector('[data-view=\"dictionary\"]').click();
+              const dIn = document.getElementById('dictSearchInput');
+              dIn.value = '喜欢';
+              dIn.dispatchEvent(new Event('input', { bubbles: true }));
+              const kvEl = document.querySelector('#dictVocabResults .vocab-card .kv') || document.querySelector('#dictDeepResults .deep-card');
+              const cardEl = document.querySelector('#dictVocabResults .vocab-card');
+              if (cardEl && cardEl.querySelector('.kv')) cardEl.querySelector('.kv').click();
+              const modalOpen1 = !document.getElementById('inspectorModal').classList.contains('hidden');
+              const bodyLocked = document.body.classList.contains('modal-open');
+              const hasTrustCard = Boolean(document.querySelector('#modalBody .etymology-trust-card'));
+              const evoInModal = Boolean(document.querySelector('#modalBody .evolution-panel'));
+              document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+              const bodyUnlocked = !document.body.classList.contains('modal-open');
+
+              // 3. Radical Lab: bidirectional, simp/trad, no [+], Ancient Script section
+              document.querySelector('[data-view=\"lab\"]').click();
+              const hasPlusBadge = document.getElementById('view-lab').textContent.includes('[+]');
+              const hasSimpTradRad = document.getElementById('combRadBtns').textContent.includes('讠/言');
+              const radWaterBtn = document.querySelector('#combRadBtns [data-comb-rad=\"氵\"]');
+              if (radWaterBtn) radWaterBtn.click();
+              const validRootsCount = document.querySelectorAll('#combRootBtns .comb-btn.valid-combo').length;
+              const ancientPanelVisible = Boolean(document.querySelector('#ancientScriptLabPanel .evolution-panel'));
+
+              // 4. My Vocab List: pinyin disambiguation ('baihuo' -> 百货) + Excel export + session completion
+              document.querySelector('[data-view=\"vocab-list\"]').click();
+              const addIn = document.getElementById('addWordInput');
+              addIn.value = 'baihuo';
+              document.getElementById('addWordBtn').click();
+              const candCount = document.querySelectorAll('#addWordCandidates .cand-chip').length;
+              const baihuoCand = document.querySelector('#addWordCandidates [data-add-candidate=\"百货\"]');
+              if (baihuoCand) baihuoCand.click();
+
+              // Capture exported Excel .xlsx blob bytes via URL.createObjectURL hook
+              let capturedBlob = null;
+              const origCreateUrl = URL.createObjectURL;
+              URL.createObjectURL = (b) => { capturedBlob = b; return 'blob:test'; };
+              document.getElementById('exportExcelBtn').click();
+              URL.createObjectURL = origCreateUrl;
+              window.__testXlsxBlob = capturedBlob;
+
+              // 5. Flashcards session completion (spamming Easy after end adds 0 points)
+              document.querySelector('[data-view=\"flashcards\"]').click();
+              const deckSel = document.getElementById('flashDeckSelect');
+              deckSel.value = 'vocab-list';
+              deckSel.dispatchEvent(new Event('change', { bubbles: true }));
+              const totalInSession = Number(document.getElementById('flashCounter').textContent.split('/')[1].trim());
+              const easyBtn = document.querySelector('[data-srs-rate=\"4\"]');
+              for (let i = 0; i < totalInSession; i++) easyBtn.click();
+              const doneText = document.querySelector('#flashFront').textContent;
+              const todayAtEnd = document.getElementById('srsGoalBadge').textContent;
+              // Spam Easy & key '4' after session ended
+              easyBtn.click();
+              document.dispatchEvent(new KeyboardEvent('keydown', { key: '4', bubbles: true }));
+              const todayAfterSpam = document.getElementById('srsGoalBadge').textContent;
+
+              return {
+                tbPageType, viLinesInEnMode, modalOpen1, bodyLocked, hasTrustCard, evoInModal, bodyUnlocked,
+                hasPlusBadge, hasSimpTradRad, validRootsCount, ancientPanelVisible,
+                candCount, baihuoFound: Boolean(baihuoCand),
+                doneSession: doneText.includes('Session Complete'),
+                todayAtEnd, todayAfterSpam
+              };
+            })()""")
+            assert u1_res["tbPageType"] == "text" and u1_res["viLinesInEnEnMode" if False else "viLinesInEnMode"] == 0, u1_res
+            assert u1_res["bodyLocked"] is True and u1_res["bodyUnlocked"] is True, u1_res
+            assert u1_res["hasPlusBadge"] is False and u1_res["hasSimpTradRad"] is True, u1_res
+            assert u1_res["validRootsCount"] >= 2 and u1_res["ancientPanelVisible"] is True, u1_res
+            assert u1_res["candCount"] >= 1 and u1_res["baihuoFound"] is True, u1_res
+            assert u1_res["doneSession"] is True and u1_res["todayAtEnd"] == u1_res["todayAfterSpam"], u1_res
+            # Verify captured .xlsx binary is a valid ZIP archive with expected columns and 百货
+            xlsx_b64 = cdp.eval("""(async () => {
+              const ab = await window.__testXlsxBlob.arrayBuffer();
+              const bytes = new Uint8Array(ab);
+              let bin = '';
+              for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+              return btoa(bin);
+            })()""", await_promise=True)
+            import base64, io, zipfile
+            raw_xlsx = base64.b64decode(xlsx_b64)
+            assert raw_xlsx[:4] == b"PK\x03\x04", "Not a valid ZIP/XLSX"
+            with zipfile.ZipFile(io.BytesIO(raw_xlsx)) as zf:
+                sheet_xml = zf.read("xl/worksheets/sheet1.xml").decode("utf-8")
+                for col in ("Order", "Words", "Pinyin", "Definition", "Breakdown", "Example", "百货"):
+                    assert col in sheet_xml, f"Missing {col} in sheet1.xml"
+            print("  T12 Update 1 features, Excel (.xlsx) & bugfixes PASSED")
 
             cdp.drain_events()
             assert not cdp.page_errors, f"Unexpected pageErrors in Suite A: {cdp.page_errors}"

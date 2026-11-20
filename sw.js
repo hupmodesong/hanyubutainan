@@ -1,4 +1,4 @@
-const CACHE_NAME = "hanyubutainan-v4";
+const CACHE_NAME = "hanyubutainan-v5";
 const CORE_ASSETS = [
   "./hanyubutainan.html",
   "./manifest.json",

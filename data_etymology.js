@@ -392,21 +392,21 @@ window.RADICAL_DB = {
 window.CHAR_DICT = {
         "喜": { trad: "喜", pinyin: "xǐ", meaning: "happy / joy / like", cat: "huiyi", breakdown: "壴 (celebratory drum) + 口 (smiling mouth)", story: "Depicts beating a festive drum (壴) while laughing and singing with an open mouth (口).", why: "Festive drum + smiling mouth = joy, happiness, fondness." },
         "欢": { trad: "歡", pinyin: "huān", meaning: "joyous / welcome / glad", cat: "xingsheng", breakdown: "Traditional 歡: 雚 (guàn, crested bird calling, sound) + 欠 (open-mouthed cheer); Simplified 又 + 欠", story: "Originally depicted cheering with an open-mouthed joyful breath (欠) like calling birds (雚).", why: "Joyous cheering breath + guan/huan sound = glad, eager, welcome." },
-        "东": { trad: "東", pinyin: "dōng", meaning: "east", cat: "huiyi", breakdown: "日 (sun) rising behind 木 (trees)", story: "Traditional 東 shows the morning sun (日) rising through the branches of eastern trees (木) — or a sack tied at both ends loaned for 'east'.", why: "Sunrise direction -> East." },
-        "西": { trad: "西", pinyin: "xī", meaning: "west", cat: "pictograph", breakdown: "Pictograph of a bird's nest at sunset", story: "Ancient drawing of a bird settling into its nest as the evening sun sets in the west.", why: "Birds roosting at sunset -> West." },
-        "朋": { trad: "朋", pinyin: "péng", meaning: "friend / peer", cat: "pictograph", breakdown: "Two matching strands of jade or cowrie shells", story: "Twin strings of prized shells worn together by equal companions.", why: "Matched pair -> companion, friend." },
-        "友": { trad: "友", pinyin: "yǒu", meaning: "friend / friendly", cat: "huiyi", breakdown: "又 (right hand) + 又 (right hand)", story: "Two right hands reaching out to help one another.", why: "Helping hands -> friendship." },
-        "息": { trad: "息", pinyin: "xī", meaning: "breath / rest / news", cat: "huiyi", breakdown: "自 (nose) + 心 (heart)", story: "Air flowing gently between the nose (自) and heart (心).", why: "Quiet breathing -> rest, calm, breath." },
-        "问": { trad: "問", pinyin: "wèn", meaning: "to ask / inquire", cat: "xingsheng", breakdown: "门 (door, sound mén->wèn) + 口 (mouth)", story: "A mouth (口) speaking politely at someone's door (门) to ask.", why: "Mouth at gate -> ask, question." },
-        "题": { trad: "題", pinyin: "tí", meaning: "topic / question / title", cat: "xingsheng", breakdown: "是 (shì, sound) + 页 (head / scroll top)", story: "Originally meant the forehead ('head of a text'), becoming the title or problem heading.", why: "Head/front -> topic, title, question." },
-        "马": { trad: "馬", pinyin: "mǎ", meaning: "horse", cat: "pictograph", breakdown: "Pictograph of a horse with flowing mane and four legs", story: "Oracle Bone drawing of a galloping horse seen from the side.", why: "Direct picture -> horse." },
+        "东": { trad: "東", pinyin: "dōng", meaning: "east", cat: "pictograph", breakdown: "Oracle Bone: sack/bundle tied at both ends (borrowed for 'east'); Seal/Shuowen mnemonic: 日 (sun) behind 木 (tree)", story: "In Oracle Bone script, 東 drew a bag/bundle tied at both ends and was loaned phonetically for 'east'. Later Seal script led Shuowen Jiezi to describe it as the sun (日) rising behind trees (木).", why: "Phonetic loan from tied-bundle pictograph -> East." },
+        "西": { trad: "西", pinyin: "xī", meaning: "west", cat: "pictograph", breakdown: "Oracle Bone: woven basket / bird's nest (Shuowen: bird roosting at sunset)", story: "Ancient drawing of a woven basket or bird's nest; Shuowen Jiezi explains it as birds settling into their nests in the west at sunset.", why: "Basket/roost pictograph loaned for -> West." },
+        "朋": { trad: "朋", pinyin: "péng", meaning: "friend / peer", cat: "pictograph", breakdown: "Two matching strands of jade or cowrie shells", story: "Oracle Bone pictograph of twin strings of cowrie shells or jade beads worn together (unrelated to 月 moon).", why: "Matched pair -> companion, friend." },
+        "友": { trad: "友", pinyin: "yǒu", meaning: "friend / friendly", cat: "huiyi", breakdown: "又 (right hand) + 又 (right hand)", story: "Two right hands reaching out side by side to help one another (Shuowen: 同志為友).", why: "Helping hands -> friendship." },
+        "息": { trad: "息", pinyin: "xī", meaning: "breath / rest / news", cat: "huiyi", breakdown: "自 (nose) + 心 (heart)", story: "Shuowen Jiezi defines it as breathing (喘也): air flowing between the nose (自) and heart (心).", why: "Quiet breathing -> rest, calm, breath." },
+        "问": { trad: "問", pinyin: "wèn", meaning: "to ask / inquire", cat: "xingsheng", breakdown: "门 (door, sound mén->wèn) + 口 (mouth)", story: "Phono-semantic (Shuowen): 口 (mouth) with 門 (gate) as phonetic clue -> calling at a gate to ask.", why: "Mouth + gate phonetic -> ask, question." },
+        "题": { trad: "題", pinyin: "tí", meaning: "topic / question / title", cat: "xingsheng", breakdown: "是 (shì, phonetic) + 页 (head)", story: "Originally meant 'forehead' (Shuowen: 額也, using 页 head + 是 phonetic), extended to book headings and topics.", why: "Forehead/front -> topic, title, question." },
+        "马": { trad: "馬", pinyin: "mǎ", meaning: "horse", cat: "pictograph", breakdown: "Pictograph of a horse with flowing mane and four legs", story: "Oracle Bone drawing of a standing/galloping horse seen from the side.", why: "Direct picture -> horse." },
         "上": { trad: "上", pinyin: "shàng", meaning: "up / above / on", cat: "indicator", breakdown: "Short indicator mark above a horizontal ground line", story: "Pointer stroke positioned above the baseline.", why: "Above baseline -> up, on, top." },
-        "知": { trad: "知", pinyin: "zhī", meaning: "to know / realize", cat: "huiyi", breakdown: "矢 (arrow) + 口 (mouth)", story: "Speaking words (口) as swiftly and accurately as an arrow (矢) hitting the bullseye.", why: "Arrow-sharp words -> true knowledge." },
-        "道": { trad: "道", pinyin: "dào", meaning: "way / road / principle", cat: "huiyi", breakdown: "辶 (walking road) + 首 (head / lead)", story: "A head (首) moving forward along a path (辶) — finding the right road or life way.", why: "Head walking a path -> road, way, method, truth." },
-        "茶": { trad: "茶", pinyin: "chá", meaning: "tea", cat: "xingsheng", breakdown: "艹 (plant) + 人 (person) + 木 (tree)", story: "Leafy plant (艹) gathered by people (人) from mountain trees (木), adapted from ancient 荼 (bitter herb).", why: "Tea plant leaves -> tea." },
-        "家": { trad: "家", pinyin: "jiā", meaning: "home / family", cat: "huiyi", breakdown: "宀 (roof) + 豕 (pig / livestock)", story: "Keeping prized livestock sheltered beneath one roof marked a permanent family homestead.", why: "Sheltered household -> home, family." },
-        "听": { trad: "聽", pinyin: "tīng", meaning: "to listen / hear", cat: "huiyi", breakdown: "Traditional 聽: 耳 (ear) + 王/壬 + 十目 (ten eyes) + 心 (heart); Simplified 口 + 斤", story: "Traditional 聽 teaches that real listening uses your ear (耳), watchful eyes (目), and an attentive heart (心).", why: "Ear + focus + heart -> listen attentively." },
-        "爱": { trad: "愛", pinyin: "ài", meaning: "to love / affection", cat: "huiyi", breakdown: "Traditional 愛: 爫 (hand) + 冖 (cover) + 心 (heart) + 夂 (walk)", story: "Traditional 愛 places a warm heart (心) cradled inside gentle hands; simplified 爱 swaps 心 for 友 (friend).", why: "Holding in the heart -> love." },
+        "知": { trad: "知", pinyin: "zhī", meaning: "to know / realize", cat: "huiyi", breakdown: "矢 (arrow) + 口 (mouth)", story: "Shuowen Jiezi parses 知 from 口 (mouth/speech) and 矢 (arrow — swift/straight speech, also phonetic clue in early forms).", why: "Direct, swift words -> know, knowledge." },
+        "道": { trad: "道", pinyin: "dào", meaning: "way / road / principle", cat: "huiyi", breakdown: "辶 (walking road) + 首 (head / lead)", story: "A head (首) moving along a path (辶) — Shuowen: 所行道也 (a walked road), extended to method and Dao.", why: "Head walking a path -> road, way, method, truth." },
+        "茶": { trad: "茶", pinyin: "chá", meaning: "tea", cat: "xingsheng", breakdown: "Derived in Tang dynasty from 荼 (tú: 艹 plant + 余 phonetic) by dropping one stroke", story: "Originally written 荼 (bitter herb, from 艹 + 余 phonetic). Tang-era scribes omitted one horizontal stroke to create 茶 specifically for tea.", why: "Split from 荼 (艹 + 余 phonetic) -> tea." },
+        "家": { trad: "家", pinyin: "jiā", meaning: "home / family", cat: "huiyi", breakdown: "宀 (roof) + 豕 (pig; Shuowen parses as abbreviated 豭 phonetic)", story: "Oracle Bone shows a pig (豕) under a roof (宀) — either settled domestic livestock/shrine offering or 豭 phonetic as Shuowen notes.", why: "Sheltered household -> home, family." },
+        "听": { trad: "聽", pinyin: "tīng", meaning: "to listen / hear", cat: "xingsheng", breakdown: "Traditional 聽: 耳 (ear) + 壬 (tǐng phonetic) + 悳 (attentive heart); Simplified 听 was an old char (口 + 斤 phonetic) meaning 'smile'", story: "Traditional 聽 combines 耳 (ear) + 壬 phonetic + 悳 (upright mind). Simplified 听 borrowed an ancient 口+斤 character ('laughing mouth'). (Note: '10 eyes + 1 heart' is a modern memory aid, not historical.)", why: "Ear + attentive mind -> listen carefully." },
+        "爱": { trad: "愛", pinyin: "ài", meaning: "to love / affection", cat: "xingsheng", breakdown: "Traditional 愛: 㤅 (ài phonetic, person + 心 heart) + 夂 (foot); Simplified 爱 replaces 心 with 友", story: "Phono-semantic in Shuowen Jiezi: 㤅 (phonetic + 心 heart, 'affection') + 夂 (walking slowly). Simplified 爱 arose from cursive shorthand.", why: "Affection of the heart -> love." },
         "学": { trad: "學", pinyin: "xué", meaning: "to study / learn", cat: "huiyi", breakdown: "Two hands passing knowledge + 冖 (school roof) + 子 (child)", story: "A child (子) under a school roof receiving hands-on instruction.", why: "Child learning under a roof -> study." },
         "习": { trad: "習", pinyin: "xí", meaning: "to practice / habit", cat: "huiyi", breakdown: "Traditional 習: 羽 (wings) + 白/日 (sun)", story: "Young birds flapping their wings again and again beneath the sky until they master flight.", why: "Repeated wing practice -> practice, review." },
         "吃": { trad: "吃", pinyin: "chī", meaning: "to eat", cat: "xingsheng", breakdown: "口 (mouth) + 乞 (qǐ, breath/sound)", story: "Mouth radical paired with 乞 sound clue.", why: "Mouth action -> to eat." },
@@ -415,7 +415,7 @@ window.CHAR_DICT = {
         "读": { trad: "讀", pinyin: "dú", meaning: "to read / study", cat: "xingsheng", breakdown: "讠 (speech) + 卖/賣 (sound)", story: "Ancient reading meant reciting texts aloud with one's voice (讠).", why: "Vocal speech + text -> read aloud." },
         "写": { trad: "寫", pinyin: "xiě", meaning: "to write", cat: "xingsheng", breakdown: "Traditional 寫: 宀 (roof) + 舄 (sound); Simplified 冖 + 与", story: "Setting down or copying thoughts inside a quiet room.", why: "Setting words down -> write." },
         "书": { trad: "書", pinyin: "shū", meaning: "book / writing", cat: "huiyi", breakdown: "Traditional 書: 聿 (hand holding brush) + 曰 (words); Simplified 书 cursive brush", story: "A brush in hand recording spoken words onto bamboo slips.", why: "Brush + words -> writing, book." },
-        "电": { trad: "電", pinyin: "diàn", meaning: "electricity / lightning", cat: "pictograph", breakdown: "Zigzag lightning bolt (from 雨 rain + 申 lightning)", story: "Jagged flash of lightning splitting the storm sky.", why: "Lightning -> electricity." },
+        "电": { trad: "電", pinyin: "diàn", meaning: "electricity / lightning", cat: "xingsheng", breakdown: "Traditional 電: 雨 (rain) + 申 (pictograph of lightning, also phonetic); Simplified 电 omits 雨", story: "申 originally pictured a branching lightning bolt; 雨 (rain) was added to form 電 ('lightning'), later adapted for electricity.", why: "Lightning bolt -> electricity." },
         "话": { trad: "話", pinyin: "huà", meaning: "speech / words / talk", cat: "xingsheng", breakdown: "讠 (speech) + 舌 (tongue)", story: "Words (讠) formed cleanly by the tongue (舌).", why: "Speech + tongue -> spoken words, talk." },
         "脑": { trad: "腦", pinyin: "nǎo", meaning: "brain / mind", cat: "xingsheng", breakdown: "月 (肉 flesh) + 恼/𡿺 (brain matter, sound)", story: "Flesh radical 月 marking an organ inside the head.", why: "Body organ -> brain." },
         "视": { trad: "視", pinyin: "shì", meaning: "to view / vision", cat: "xingsheng", breakdown: "礻 (sign/look) + 见 (see)", story: "Looking carefully to inspect a sign or sight.", why: "Seeing clearly -> look at, vision." },
@@ -428,37 +428,37 @@ window.CHAR_DICT = {
         "林": { trad: "林", pinyin: "lín", meaning: "woods / grove", cat: "huiyi", breakdown: "木 (tree) + 木 (tree)", story: "Two trees standing side by side depict a woodland grove.", why: "Twin trees -> woods." },
         "海": { trad: "海", pinyin: "hǎi", meaning: "sea / ocean", cat: "xingsheng", breakdown: "氵 (water) + 每 (měi, sound & vast mother-water)", story: "Vast waters (氵) where every river (每) gathers.", why: "Vast water -> sea, ocean." },
         "花": { trad: "花", pinyin: "huā", meaning: "flower / spend", cat: "xingsheng", breakdown: "艹 (plant) + 化 (huà, sound & transform)", story: "Plants transforming into blooming petals.", why: "Blooming plant -> flower." },
-        "雪": { trad: "雪", pinyin: "xuě", meaning: "snow", cat: "huiyi", breakdown: "雨 (rain) + 彐 (hand sweeping)", story: "Frozen sky rain (雨) you can brush or sweep by hand (彐).", why: "Sweepable rain -> snow." },
-        "猫": { trad: "貓", pinyin: "māo", meaning: "cat", cat: "xingsheng", breakdown: "犭 (animal) + 苗 (miáo, sounds like 'meow')", story: "Pairs the animal radical with a phonetic root imitating a cat's 'meow'.", why: "Animal + meow sound -> cat." },
-        "狗": { trad: "狗", pinyin: "gǒu", meaning: "dog", cat: "xingsheng", breakdown: "犭 (animal) + 句 (jù/gōu, sound)", story: "Animal radical combined with 句 sound direction.", why: "Animal + gou sound -> dog." },
+        "雪": { trad: "雪", pinyin: "xuě", meaning: "snow", cat: "xingsheng", breakdown: "雨 (rain) + 彗 (huì broom, phonetic/semantic, abbreviated to 彐)", story: "Shuowen Jiezi explains 雪 from 雨 (rain) and 彗 (broom, phonetic) — congealed winter precipitation light enough to sweep.", why: "Rain + broom phonetic -> snow." },
+        "猫": { trad: "貓", pinyin: "māo", meaning: "cat", cat: "xingsheng", breakdown: "犭 (animal) + 苗 (miáo, phonetic)", story: "Phono-semantic: animal radical 犭 paired with 苗 phonetic (which also echoes a cat's cry).", why: "Animal + miao phonetic -> cat." },
+        "狗": { trad: "狗", pinyin: "gǒu", meaning: "dog", cat: "xingsheng", breakdown: "犭 (animal) + 句 (jù/gōu, sound)", story: "Animal radical combined with 句 phonetic clue.", why: "Animal + gou sound -> dog." },
         "鱼": { trad: "魚", pinyin: "yú", meaning: "fish", cat: "pictograph", breakdown: "Head + scaly body + forked tail", story: "Oracle Bone sketch of a swimming fish.", why: "Direct fish drawing -> fish." },
         "雨": { trad: "雨", pinyin: "yǔ", meaning: "rain", cat: "pictograph", breakdown: "Sky + cloud canopy + falling drops", story: "Raindrops falling from clouds below the sky.", why: "Direct weather picture -> rain." },
-        "风": { trad: "風", pinyin: "fēng", meaning: "wind / style", cat: "xingsheng", breakdown: "Canopy 几 + 虫 (seasonal creatures stirring in wind)", story: "Ancient scribes linked spring winds to creatures stirring in warm breezes.", why: "Moving seasonal air -> wind." },
-        "热": { trad: "熱", pinyin: "rè", meaning: "hot / heat", cat: "xingsheng", breakdown: "执 (hold/tend) + 灬 (fire)", story: "Heating something over blazing embers (灬).", why: "Fire heat -> hot." },
-        "冷": { trad: "冷", pinyin: "lěng", meaning: "cold", cat: "xingsheng", breakdown: "冫 (ice) + 令 (lìng, sound)", story: "Ice crystals (冫) paired with 令 sound family.", why: "Ice + leng sound -> cold." },
+        "风": { trad: "風", pinyin: "fēng", meaning: "wind / style", cat: "xingsheng", breakdown: "凡 (fán, sail/phonetic) + 虫 (creatures)", story: "Phono-semantic in Shuowen Jiezi: 凡 phonetic + 虫 (reflecting the ancient observation that spring winds stir insects and life).", why: "Fan phonetic + stirring life -> wind." },
+        "热": { trad: "熱", pinyin: "rè", meaning: "hot / heat", cat: "xingsheng", breakdown: "埶 (yì, planting/tending, phonetic; simplified to 执) + 灬 (fire)", story: "Phono-semantic: 灬 (fire) beneath 埶 (phonetic, simplified to 执).", why: "Fire + phonetic -> hot." },
+        "冷": { trad: "冷", pinyin: "lěng", meaning: "cold", cat: "xingsheng", breakdown: "冫 (ice) + 令 (lìng, sound)", story: "Ice crystals (冫) paired with 令 phonetic.", why: "Ice + leng sound -> cold." },
         "大": { trad: "大", pinyin: "dà", meaning: "big / great", cat: "pictograph", breakdown: "Adult stretching arms & legs wide", story: "Person stretching out arms to show great size.", why: "Stretched human frame -> big." },
         "小": { trad: "小", pinyin: "xiǎo", meaning: "small / little", cat: "pictograph", breakdown: "Three tiny flecks or grains", story: "Three tiny dots representing minuscule size.", why: "Tiny specks -> small." },
-        "中": { trad: "中", pinyin: "zhōng", meaning: "center / China", cat: "pictograph", breakdown: "Target/courtyard pierced right down the middle", story: "Flagpole planted dead-center in a courtyard.", why: "Dead-center line -> middle, center." },
-        "国": { trad: "國", pinyin: "guó", meaning: "country / nation", cat: "huiyi", breakdown: "囗 (city wall) + 玉 (jade seal); Traditional 國 adds weapon 戈", story: "Protected border wall surrounding land, treasure, and people.", why: "Walled realm -> country." },
-        "体": { trad: "體", pinyin: "tǐ", meaning: "body / form", cat: "huiyi", breakdown: "亻 (person) + 本 (root)", story: "Simplified 体 links a person (亻) to their physical foundation (本).", why: "Person's foundation -> body." },
+        "中": { trad: "中", pinyin: "zhōng", meaning: "center / China", cat: "pictograph", breakdown: "Banner/flagpole planted in the middle", story: "Oracle Bone drawing of a flagpole/standard standing dead-center.", why: "Dead-center line -> middle, center." },
+        "国": { trad: "國", pinyin: "guó", meaning: "country / nation", cat: "xingsheng", breakdown: "Traditional 國: 囗 (border) + 或 (huò phonetic: 戈 halberd guarding settlement 口); Simplified 国: ancient variant 囗 + 玉", story: "Traditional 國 adds outer border walls (囗) around 或 (armed defense of a settlement). Simplified 国 revives an ancient variant with 玉 (jade seal) inside.", why: "Walled territory -> country." },
+        "体": { trad: "體", pinyin: "tǐ", meaning: "body / form", cat: "xingsheng", breakdown: "Traditional 體: 骨 (bone) + 豊 (lǐ phonetic); Simplified 体: adopted old variant (亻+ 本)", story: "Traditional 體 combines 骨 (bone) and 豊 phonetic. Simplified 体 adopted an existing variant character (originally meaning 'coarse' or cursive shorthand).", why: "Bone structure -> body." },
         "心": { trad: "心", pinyin: "xīn", meaning: "heart / mind", cat: "pictograph", breakdown: "Heart chamber + vessels", story: "Anatomical drawing of a beating human heart.", why: "Heart -> seat of thought & feeling." },
         "手": { trad: "手", pinyin: "shǒu", meaning: "hand", cat: "pictograph", breakdown: "Five outstretched fingers and wrist", story: "Drawing of an open hand with fingers.", why: "Direct picture -> hand." },
         "口": { trad: "口", pinyin: "kǒu", meaning: "mouth / opening", cat: "pictograph", breakdown: "Open mouth outline", story: "Simple drawing of a human mouth.", why: "Mouth -> speech, opening, count." },
         "门": { trad: "門", pinyin: "mén", meaning: "door / gate", cat: "pictograph", breakdown: "Twin swinging courtyard doors", story: "Drawing of a double-leaf wooden gate.", why: "Double gate -> door, entrance." },
-        "笑": { trad: "笑", pinyin: "xiào", meaning: "laugh / smile", cat: "huiyi", breakdown: "⺮ (bamboo) + 夭 (swaying)", story: "Swaying lightly like bamboo in a breeze (or eyes crinkling like bamboo leaves).", why: "Light swaying joy -> smile, laugh." },
-        "哭": { trad: "哭", pinyin: "kū", meaning: "cry / weep", cat: "huiyi", breakdown: "口 + 口 (wailing mouths) + 犬 (dog howling)", story: "Two wide-open mouths howling like a hound in sorrow.", why: "Loud wailing -> cry." },
-        "忙": { trad: "忙", pinyin: "máng", meaning: "busy", cat: "xingsheng", breakdown: "忄 (heart) + 亡 (wáng, lost/sound)", story: "A heart (忄) feeling hurried and losing calm (亡).", why: "Harried heart -> busy." },
-        "忘": { trad: "忘", pinyin: "wàng", meaning: "forget", cat: "xingsheng", breakdown: "亡 (vanished, sound) + 心 (mind)", story: "Vanished (亡) straight out of one's mind (心).", why: "Gone from mind -> forget." },
-        "男": { trad: "男", pinyin: "nán", meaning: "man / male", cat: "huiyi", breakdown: "田 (field) + 力 (strength)", story: "Strength (力) working the farm fields (田).", why: "Field labor -> man." },
-        "鲜": { trad: "鮮", pinyin: "xiān", meaning: "fresh / delicious", cat: "huiyi", breakdown: "鱼 (fish) + 羊 (lamb)", story: "Fresh fish and tender lamb — two prized delicacies.", why: "Fish + lamb -> fresh." },
-        "泪": { trad: "淚", pinyin: "lèi", meaning: "tears", cat: "huiyi", breakdown: "氵 (water) + 目 (eye)", story: "Water (氵) streaming from an eye (目).", why: "Eye water -> tears." },
-        "尖": { trad: "尖", pinyin: "jiān", meaning: "sharp / pointed", cat: "huiyi", breakdown: "小 (small top) + 大 (wide base)", story: "Small on top and wide at the bottom — a tapered tip!", why: "Small over big -> sharp point." },
-        "尘": { trad: "塵", pinyin: "chén", meaning: "dust", cat: "huiyi", breakdown: "小 (tiny) + 土 (earth)", story: "Tiny specks of earth floating in air.", why: "Tiny earth -> dust." },
-        "歪": { trad: "歪", pinyin: "wāi", meaning: "crooked / tilted", cat: "huiyi", breakdown: "不 (not) + 正 (straight)", story: "Stacks 'not' (不) above 'straight' (正).", why: "Not straight -> crooked." },
-        "聪": { trad: "聰", pinyin: "cōng", meaning: "clever / sharp-eared", cat: "xingsheng", breakdown: "耳 (ear) + 总/總 (unobstructed mind, sound)", story: "Sharp ears (耳) feeding an alert, unobstructed mind.", why: "Sharp hearing -> clever." },
-        "众": { trad: "眾", pinyin: "zhòng", meaning: "crowd / public", cat: "huiyi", breakdown: "人 + 人 + 人 (three people)", story: "Three people stacked together represent a multitude.", why: "Many people -> crowd." },
-        "春": { trad: "春", pinyin: "chūn", meaning: "spring", cat: "huiyi", breakdown: "Sprouting seed + grass + 日 (sun)", story: "Warm sun shining on tender spring sprouts.", why: "Warmth + sprouts -> spring." },
-        "秋": { trad: "秋", pinyin: "qiū", meaning: "autumn", cat: "huiyi", breakdown: "禾 (ripe grain) + 火 (harvest fire)", story: "Golden grain crops ripening under autumn heat.", why: "Ripe grain -> autumn." },
+        "笑": { trad: "笑", pinyin: "xiào", meaning: "laugh / smile", cat: "xingsheng", breakdown: "⺮ (bamboo) + 夭 (yāo, bent/phonetic; early forms varied)", story: "Early origin debated; Tang scholar Li Yangbing compared bamboo bending in wind, while paleographers note 夭 (or 犬) shifted as phonetic/semantic.", why: "Bending/joyous sound -> laugh, smile." },
+        "哭": { trad: "哭", pinyin: "kū", meaning: "cry / weep", cat: "huiyi", breakdown: "吅 (two mouths wailing) + 犬 (dog; Shuowen notes 獄省聲)", story: "Shuowen notes 吅 (loud cries) with 犬 (as phonetic or howling hound).", why: "Loud wailing -> cry." },
+        "忙": { trad: "忙", pinyin: "máng", meaning: "busy", cat: "xingsheng", breakdown: "忄 (heart) + 亡 (wáng, phonetic)", story: "Phono-semantic: heart radical 忄 + 亡 phonetic -> hurried, busy.", why: "Heart + wang phonetic -> busy." },
+        "忘": { trad: "忘", pinyin: "wàng", meaning: "forget", cat: "xingsheng", breakdown: "亡 (wáng, lost/phonetic) + 心 (mind)", story: "Phono-semantic: 心 (mind) + 亡 (phonetic, 'lost/gone') -> slipped out of mind.", why: "Lost from mind -> forget." },
+        "男": { trad: "男", pinyin: "nán", meaning: "man / male", cat: "huiyi", breakdown: "田 (field) + 力 (plow/strength)", story: "Shuowen: using plow/strength (力) in the fields (田) -> man, male.", why: "Field labor -> man." },
+        "鲜": { trad: "鮮", pinyin: "xiān", meaning: "fresh / delicious", cat: "xingsheng", breakdown: "鱼 (fish) + 羊 (yáng, phonetic)", story: "Shuowen Jiezi defines 鮮 as a species of fish (鱼 + 羊 phonetic), later extended by semantic association ('fish + lamb') to mean fresh and savory.", why: "Fish + sheep phonetic -> fresh, delicious." },
+        "泪": { trad: "淚", pinyin: "lèi", meaning: "tears", cat: "huiyi", breakdown: "氵 (water) + 目 (eye); Traditional 淚 uses 戾 (lì, phonetic)", story: "Traditional 淚 pairs 氵 (water) + 戾 phonetic; simplified 泪 adopted a historic compound variant (eye water).", why: "Eye water -> tears." },
+        "尖": { trad: "尖", pinyin: "jiān", meaning: "sharp / pointed", cat: "huiyi", breakdown: "小 (small top) + 大 (wide base)", story: "Post-classical compound (attested in Song/Ming lexicons): narrow on top (小) and wide at the base (大).", why: "Small over big -> sharp point." },
+        "尘": { trad: "塵", pinyin: "chén", meaning: "dust", cat: "huiyi", breakdown: "Traditional 塵: 鹿 (deer) + 土 (earth kicked up); Simplified 尘: 小 (tiny) + 土 (earth)", story: "Traditional 塵 shows dust (土) kicked up by running deer (鹿). Simplified 尘 is a later huiyi variant ('tiny specks of earth').", why: "Kicked-up/tiny earth -> dust." },
+        "歪": { trad: "歪", pinyin: "wāi", meaning: "crooked / tilted", cat: "huiyi", breakdown: "不 (not) + 正 (straight)", story: "Vernacular huiyi character attested from Yuan/Ming texts: 'not' (不) stacked over 'straight' (正).", why: "Not straight -> crooked." },
+        "聪": { trad: "聰", pinyin: "cōng", meaning: "clever / sharp-eared", cat: "xingsheng", breakdown: "耳 (ear) + 總/总 (cōng/zǒng, phonetic)", story: "Phono-semantic (Shuowen): 耳 (acute hearing) + 總 phonetic -> perceptive, clever.", why: "Sharp hearing -> clever." },
+        "众": { trad: "眾", pinyin: "zhòng", meaning: "crowd / public", cat: "huiyi", breakdown: "Traditional 眾: 目/血 (watchful eye) + 人人 (people); Simplified 众: ancient variant 三人", story: "Three people stacked together (众, an ancient variant revived in 1956); Traditional 眾 depicts people gathered under an overseer's eye (目).", why: "Many people -> crowd." },
+        "春": { trad: "春", pinyin: "chūn", meaning: "spring", cat: "xingsheng", breakdown: "屯 (tún/chūn phonetic sprout) + 艸 (grass) + 日 (sun)", story: "Bronze/Seal script shows plants (艸) sprouting (屯 phonetic) under the warm sun (日).", why: "Warmth + sprouts -> spring." },
+        "秋": { trad: "秋", pinyin: "qiū", meaning: "autumn", cat: "xingsheng", breakdown: "Oracle Bone: cricket/locust; Seal/Modern: 禾 (grain) + 火 (fire/sun-drying)", story: "Oracle Bone script originally drew an autumn cricket/locust; later Seal script settled as 禾 (ripening grain) + 火 (harvest warmth/burning stubble).", why: "Ripening grain / autumn cricket -> autumn." },
         "拿": { trad: "拿", pinyin: "ná", meaning: "hold / take", cat: "huiyi", breakdown: "合 (close together) + 手 (hand)", story: "Hand (手) closing around an object (合) to grasp it.", why: "Hand closing -> hold, take." },
         "快": { trad: "快", pinyin: "kuài", meaning: "fast / happy", cat: "xingsheng", breakdown: "忄 (heart) + 夬 (break through, sound)", story: "Originally meant 'relieved and joyful in heart', later extended to brisk speed.", why: "Light heart -> joyful, fast." },
         "乐": { trad: "樂", pinyin: "lè / yuè", meaning: "happy / music", cat: "pictograph", breakdown: "Silk strings over a wooden zither frame", story: "Ancient stringed musical instrument; music naturally brings joy (lè).", why: "Musical instrument -> music & joy." },
@@ -467,7 +467,7 @@ window.CHAR_DICT = {
         "老": { trad: "老", pinyin: "lǎo", meaning: "old / venerable", cat: "huiyi", breakdown: "Long hair + leaning person + cane (匕)", story: "Elder with long hair leaning on a walking cane.", why: "Aged elder -> old, experienced." },
         "师": { trad: "師", pinyin: "shī", meaning: "teacher / master", cat: "huiyi", breakdown: "Traditional 師: military banner + mound -> leader/expert", story: "Originally a commanding military leader, later any respected master or teacher.", why: "Expert leader -> teacher." },
         "生": { trad: "生", pinyin: "shēng", meaning: "grow / life / student", cat: "pictograph", breakdown: "Plant shoot sprouting out of earth", story: "Fresh sprout pushing upward from the soil line.", why: "Sprouting plant -> life, birth, grow." },
-        "医": { trad: "醫", pinyin: "yī", meaning: "medicine / doctor", cat: "huiyi", breakdown: "Arrow 矢 inside quiver 匚 (Simplified); Traditional adds wine jar 酉 (medicinal elixir)", story: "Extracting arrows from wounds and brewing healing elixirs.", why: "Treating wounds -> doctor, medicine." },
+        "医": { trad: "醫", pinyin: "yī", meaning: "medicine / doctor", cat: "xingsheng", breakdown: "Traditional 醫: 殹 (yī phonetic) + 酉 (fermented medicinal wine); Simplified 医: ancient 'arrow quiver' (匚 + 矢) adopted as shorthand", story: "Traditional 醫 combines 酉 (medicinal elixir/wine) with 殹 phonetic. Simplified 医 was originally a separate Shuowen character meaning 'arrow quiver', adopted for its sound yī.", why: "Medicinal elixir + phonetic -> doctor, medicine." },
         "米": { trad: "米", pinyin: "mǐ", meaning: "rice / grain", cat: "pictograph", breakdown: "Tiny rice grains separated on a threshing cross", story: "Drawing of scattered polished rice kernels.", why: "Direct picture -> rice." },
         "饭": { trad: "飯", pinyin: "fàn", meaning: "cooked rice / meal", cat: "xingsheng", breakdown: "饣 (food) + 反 (fǎn, sound)", story: "Food radical combined with 反 sound clue.", why: "Food -> cooked rice, meal." },
         "车": { trad: "車", pinyin: "chē", meaning: "vehicle / cart", cat: "pictograph", breakdown: "Top-down view of a chariot with wheels and axle", story: "Bird's-eye drawing of two wheels, axle, and carriage box.", why: "Chariot -> car, vehicle." },
@@ -476,12 +476,12 @@ window.CHAR_DICT = {
         "衣": { trad: "衣", pinyin: "yī", meaning: "clothing / robe", cat: "pictograph", breakdown: "Collar, sleeves, and overlapping robe skirts", story: "Drawing of a traditional crossed-collar robe.", why: "Direct robe drawing -> clothing." },
         "服": { trad: "服", pinyin: "fú", meaning: "clothes / serve / obey", cat: "huiyi", breakdown: "舟/月 (boat) + 卩 (kneeling) + 又 (hand)", story: "Hands steering/serving aboard a boat -> serve, wear clothes.", why: "Fit / serve -> clothes." },
         "红": { trad: "紅", pinyin: "hóng", meaning: "red", cat: "xingsheng", breakdown: "纟 (silk thread) + 工 (gōng, sound)", story: "Dyed silk threads (纟) producing bright crimson/red cloth.", why: "Silk dye + gong/hong sound -> red." },
-        "白": { trad: "白", pinyin: "bái", meaning: "white / clear", cat: "pictograph", breakdown: "Rising flame / acorn / thumb nail — bright white", story: "Ancient bright solar glow or pure unbleached silk.", why: "Pure bright color -> white, clear." },
+        "白": { trad: "白", pinyin: "bái", meaning: "white / clear", cat: "pictograph", breakdown: "Oracle Bone: acorn/seed or flame/thumb tip (loaned for 'white')", story: "Paleographers link Oracle Bone 白 to a pale acorn, candle flame, or thumbnail, borrowed early for the color white.", why: "Bright/pale pictograph -> white, clear." },
         "黑": { trad: "黑", pinyin: "hēi", meaning: "black / dark", cat: "huiyi", breakdown: "Chimney window blackened by rising 灬 fire soot", story: "Soot rising from a hearth fire (灬) and darkening the chimney.", why: "Fire soot -> black, dark." },
-        "阴": { trad: "陰", pinyin: "yīn", meaning: "cloudy / shade / yin", cat: "xingsheng", breakdown: "阝 (hill) + 月 (moon, shady side)", story: "Shady, moonlit northern slope of a hill away from the sun.", why: "Shaded hill -> overcast, shade." },
-        "阳": { trad: "陽", pinyin: "yáng", meaning: "sunlight / yang", cat: "xingsheng", breakdown: "阝 (hill) + 日 (sun, sunny side)", story: "Warm, sunlit southern slope of a hill.", why: "Sunlit hill -> sun, bright, yang." },
+        "阴": { trad: "陰", pinyin: "yīn", meaning: "cloudy / shade / yin", cat: "xingsheng", breakdown: "Traditional 陰: 阝 (hill) + 侌 (yīn phonetic: clouds); Simplified 阴 uses 月 (moon)", story: "Traditional 陰 pairs 阝 (hill) + 侌 (shaded clouds, phonetic) for the dark northern slope; simplified 阴 adopts a cursive/popular form with 月.", why: "Shaded hill -> overcast, shade." },
+        "阳": { trad: "陽", pinyin: "yáng", meaning: "sunlight / yang", cat: "xingsheng", breakdown: "Traditional 陽: 阝 (hill) + 昜 (yáng phonetic: rising sunlight); Simplified 阳 uses 日 (sun)", story: "Traditional 陽 pairs 阝 (hill) + 昜 (sun shining above altar, phonetic) for the sunlit southern slope.", why: "Sunlit hill -> sun, bright, yang." },
         "慢": { trad: "慢", pinyin: "màn", meaning: "slow", cat: "xingsheng", breakdown: "忄 (heart) + 曼 (màn, drawn-out/sound)", story: "A calm, unhurried heart taking its time.", why: "Unhurried heart -> slow." },
-        "新": { trad: "新", pinyin: "xīn", meaning: "new / fresh", cat: "xingsheng", breakdown: "亲 (hazel/wood, sound) + 斤 (axe)", story: "Using an axe (斤) to chop fresh green wood.", why: "Fresh-cut wood -> new, fresh." },
+        "新": { trad: "新", pinyin: "xīn", meaning: "new / fresh", cat: "xingsheng", breakdown: "亲 (xīn/qīn phonetic: 辛 + 木 tree) + 斤 (axe)", story: "Shuowen Jiezi: 'taking wood' (取木也) — felling fresh timber with an axe (斤) paired with 亲/辛 phonetic.", why: "Fresh-cut wood -> new, fresh." },
         "旧": { trad: "舊", pinyin: "jiù", meaning: "old / used", cat: "xingsheng", breakdown: "Simplified 丨 + 日; Traditional 舊: owl perched in grass", story: "Traditional 舊 pictured an owl; loaned for 'long ago / old'.", why: "Loaned for old, former." },
         "长": { trad: "長", pinyin: "cháng / zhǎng", meaning: "long / grow", cat: "pictograph", breakdown: "Elder with long flowing hair", story: "Flowing hair symbolizing long length and growing older.", why: "Long hair -> long, elder, grow." },
         "远": { trad: "遠", pinyin: "yuǎn", meaning: "far / distant", cat: "xingsheng", breakdown: "辶 (walking road) + 元 (yuán, sound)", story: "A long road (辶) stretching far ahead.", why: "Road + yuan sound -> far." },
@@ -568,7 +568,7 @@ window.CHAR_DICT = {
         "可": ["可", "kě", "can / may / permit", "pictograph", "Resonant curved breath (丂) coming through mouth (口)", "Open joyful singing -> approve, permit, possible."],
         "史": ["史", "shǐ", "history / annals", "huiyi", "Hand (又) gripping bamboo tally box (中)", "Court recorder holding bamboo records -> history."],
         "合": ["合", "hé", "join / shut / fit", "pictograph", "Round vessel lid resting snugly over mouth (口)", "Matched cover sealing a jar -> fit together, unite, close."],
-        "名": ["名", "míng", "name / fame", "huiyi", "夕 (evening twilight) + 口 (mouth)", "Calling out your name in twilight darkness so friends know you -> name."],
+        "名": ["名", "míng", "name / fame", "huiyi", "夕 (evening twilight / or meat offering) + 口 (mouth)", "Shuowen Jiezi: calling out one's name at dusk (夕) with mouth (口) when faces cannot be seen."],
         "后": ["後 / 后", "hòu", "after / behind / queen", "huiyi", "Sovereign crown (后) merged with footsteps lagging behind (後)", "Trailing footsteps behind the leader -> later, behind."],
         "含": ["含", "hán", "hold in mouth / contain", "xingsheng", "今 (jīn, clasp, sound) + 口 (mouth)", "Holding food or gems inside closed lips -> contain, imply."],
         "启": ["啟", "qǐ", "open / enlighten / start", "huiyi", "户 (door) + 口 (mouth) (+ 攵 tap)", "Pushing a door open while greeting -> begin, enlighten."],
@@ -711,7 +711,7 @@ window.CHAR_DICT = {
         "比": ["比", "bǐ", "compare / match", "huiyi", "Two people standing shoulder-to-shoulder (人+人)", "Putting two figures side by side -> compare, ratio."],
         "求": ["求", "qiú", "seek / beg / request", "pictograph", "Thick tufted fur cloak", "Warm animal-fur robe ('qiu') loaned early for 'seek, entreat'."],
         "沟": ["溝", "gōu", "ditch / channel / communicate", "xingsheng", "氵 (water) + 勾 (link, sound)", "Irrigated trench connecting fields -> channel, communicate."],
-        "法": ["法", "fǎ", "law / method / way", "huiyi", "氵 (water) + 去 (drive out wrong)", "Even like calm water, clearing away injustice -> law, rule, method."],
+        "法": ["法 / 灋", "fǎ", "law / method / way", "huiyi", "Traditional 灋: 氵 (level water) + 廌 (mythical xiezhi beast) + 去 (remove wrongdoer)", "Impartial like flat water (氵), removing what is crooked (去); ancient 灋 included the justice beast 廌."],
         "泡": ["泡", "pào", "bubble / steep / soak", "xingsheng", "氵 (water) + 包 (bāo, round wrap, sound)", "Air pocket wrapped inside water -> bubble, brew tea."],
         "注": ["注", "zhù", "pour / focus / note", "xingsheng", "氵 (water) + 主 (lamp flame/host, sound)", "Steady stream pouring onto one spot -> pour, pay attention, note."],
         "泳": ["泳", "yǒng", "swim", "xingsheng", "氵 (water) + 永 (gliding river swimmer, sound)", "Swimming smoothly through water."],
@@ -731,7 +731,7 @@ window.CHAR_DICT = {
         "潜": ["潛", "qián", "hidden / dive / latent", "xingsheng", "氵 (water) + 替 (tì, sound)", "Gliding silently underneath deep water -> dive, hidden."],
         "火": ["火", "huǒ", "fire / flame", "pictograph", "Leaping flame tongue flanked by glowing embers", "Direct sketch of burning fire."],
         "点": ["點", "diǎn", "dot / point / ignite / order", "xingsheng", "灬 (fire/soot) + 占 (zhān, sound); Traditional 黑 (ink spot)", "Tiny spot of black soot or flame -> dot, point, hour, light."],
-        "然": ["然", "rán", "so / natural / burn", "huiyi", "月 (meat) + 犬 (dog) + 灬 (fire)", "Roasting meat over open fire; loaned early as 'yes, natural, -ly'."],
+        "然": ["然", "rán", "so / natural / burn", "huiyi", "月/肉 (meat) + 犬 (dog meat) + 灬 (fire)", "Original character for roasting meat over fire (later replaced by 燃; 然 was loaned early as 'so / thus / -ly')."],
         "煌": ["煌", "huáng", "brilliant / splendid", "xingsheng", "火 (fire) + 皇 (royal radiance, sound)", "Dazzling golden torchlight -> brilliant, splendid."],
         "牛": ["牛", "niú", "ox / cow", "pictograph", "Front-view horned ox face", "Curved horns atop central ox nose bridge."],
         "特": ["特", "tè", "special / unique", "xingsheng", "牛 (ox) + 寺 (sì, sound)", "Single prized bull chosen apart from herd -> special, unique."],
@@ -1052,7 +1052,8 @@ window.CHAR_DICT = {
         "郑": ["鄭", "zhèng", "State of Zheng / solemn", "xingsheng", "奠 (ritual wine, sound) + 阝 (walled city)", "Ancient capital city along the Yellow River -> surname Zheng, formal."],
         "釜": ["釜", "fǔ", "iron cauldron / cooking pot", "xingsheng", "父 (fǔ, handle, sound) + 金 (bronze/iron)", "Rounded bronze cooking cauldron hung over army campfires -> kettle, cauldron."],
         "铃": ["鈴", "líng", "small metal bell", "xingsheng", "钅 (metal) + 令 (lìng/líng, ringing decree, sound)", "Chiming little bronze bell rung by hand or wind -> handbell, chime."],
-        "鹿": ["鹿", "lù", "deer / stag", "pictograph", "Branching antlers + alert eyes + nimble hooves", "Graceful antlered stag in Seal Script -> deer."]
+        "鹿": ["鹿", "lù", "deer / stag", "pictograph", "Branching antlers + alert eyes + nimble hooves", "Graceful antlered stag in Seal Script -> deer."],
+        "货": ["貨", "huò", "goods / commodity / money", "xingsheng", "化 (huà, exchange/transform, phonetic) + 贝 (cowrie shell money)", "Shuowen Jiezi: 'wealth / property' (財也) — goods exchanged with cowrie currency (贝) paired with 化 phonetic."]
       };
       Object.entries(window.EXTRA_CHAR_DATA).forEach(([ch, arr]) => {
         if (!window.CHAR_DICT[ch]) {
@@ -1137,9 +1138,9 @@ window.STORY_ENTRIES = [
           chars: [
             {
               char: "东", tradChar: "東", pinyin: "dōng",
-              method: "Combined Meaning (会意)",
-              summary: "Traditional 東 shows the sun (日) rising behind trees (木).",
-              components: ["<strong>木 (mù):</strong> Tree", "<strong>日 (rì):</strong> Rising morning sun"],
+              method: "Pictograph / Loan (假借)",
+              summary: "Oracle Bone: tied bundle/sack (loaned for 'east'); Seal/Shuowen mnemonic: sun (日) behind trees (木).",
+              components: ["<strong>Oracle Bone:</strong> Bag tied at both ends (loaned for 'east')", "<strong>Seal Mnemonic:</strong> 木 (tree) + 日 (morning sun)"],
               compTags: ["木", "日"]
             },
             {
@@ -1157,7 +1158,7 @@ window.STORY_ENTRIES = [
             "<strong>2. The Five Elements Theory:</strong> In traditional cosmology, East = Wood (木), West = Metal (金), South = Fire (火), North = Water (水). You can carry wood and metal in a bamboo basket—never fire or water! Thus everything solid you carry home in a basket is 'East-West' (东西)."
           ],
           timeline: [
-            { stage: "Stage 1", title: "Sunrise & Sunset", desc: "东 (sun in trees) and 西 (bird in nest) named East and West." },
+            { stage: "Stage 1", title: "Oracle Loan & Seal Shape", desc: "东 (tied bundle loaned for 'east'; later sun-in-trees shape) and 西 (roosting basket/nest) named East and West." },
             { stage: "Stage 2", title: "Imperial Bazaars", desc: "Residents shopped across Chang'an's East and West Markets." },
             { stage: "Stage 3", title: "Anything Tangible", desc: "东西 became the everyday HSK 1 noun for any object or thing." }
           ],
@@ -2626,4 +2627,212 @@ window.IDIOM_STORIES = {
           exampleZh: "这本装帧精美的汉字词典让他拿到手里就爱不释手。 — He loved this finely crafted Hanzi guide so much he could hardly put it down."
         }
       };
+
+window.WORD_ORIGIN_STORIES = {
+        "百货": {
+          source: "Shiji · Biographies of Moneymakers (《史记·货殖列传》) & Book of Han (《汉书·食货志》); modern store usage early 20th c.",
+          confidence: "Verified Historical & Lexical Origin",
+          story: "Literally 'a hundred kinds of goods' (百 'hundred / all kinds' + 货 'merchandise / commodities', with 贝 cowrie currency). Classical histories such as Shiji and Book of Han already used 百货 to mean 'all varieties of trade goods.' In early 20th-century China (influenced by Japanese hyakkaten 百貨店 and early Shanghai/Hong Kong department stores), 百货 / 百货商店 came to mean a multi-department store.",
+          why: "Myriad goods (百) + trade commodities (货) -> general merchandise / department store."
+        },
+        "火车": {
+          source: "Late Qing / 19th-century lexical coinage (《海国图志》 / early railway chronicles)",
+          confidence: "Verified Modern Lexical Origin",
+          story: "Literally 'fire vehicle' (火 + 车): coined in 19th-century China when steam locomotives burned coal and emitted glowing fire and smoke from their boilers, contrasting with horse-drawn carts (马车).",
+          why: "Coal-fire powered (火) + wheeled vehicle (车) -> steam locomotive / train."
+        },
+        "电脑": {
+          source: "Mid-20th-century Chinese coinage (translation of 'electronic brain')",
+          confidence: "Verified Modern Lexical Origin",
+          story: "Literally 'electric brain' (电 + 脑): coined in the mid-20th century from early English descriptions of computers as 'electronic brains' (电子脑, shortened to 电脑).",
+          why: "Electricity (电) + thinking brain (脑) -> computer."
+        },
+        "手机": {
+          source: "Late 20th-century Chinese abbreviation of 手提电话 / 移动电话机",
+          confidence: "Verified Modern Lexical Origin",
+          story: "Literally 'hand machine' (手 + 机): shortened from 手提式无线电话机 ('hand-carried wireless telephone'), replacing earlier brick-phone slang 大哥大.",
+          why: "Handheld (手) + device (机) -> mobile phone."
+        },
+        "电影": {
+          source: "Early 20th-century Shanghai & Beijing cinema terminology",
+          confidence: "Verified Modern Lexical Origin",
+          story: "Literally 'electric shadows' (电 + 影): adapted from traditional Chinese shadow-puppet theater (皮影戏) when electric arc projectors cast moving light-and-shadow images onto screens in the 1890s–1900s.",
+          why: "Electrically projected (电) + moving shadows (影) -> cinema / movie."
+        },
+        "电话": {
+          source: "Late 19th / early 20th-century Sino-Japanese lexical exchange (電話)",
+          confidence: "Verified Modern Lexical Origin",
+          story: "Literally 'electric speech' (电 + 话): coined using classical roots (电 lightning/electricity + 话 spoken words) via Meiji-era 電話 to name Alexander Graham Bell's voice-transmitting invention.",
+          why: "Electric (电) + spoken words (话) -> telephone."
+        },
+        "电视": {
+          source: "20th-century Chinese calque of 'tele-vision'",
+          confidence: "Verified Modern Lexical Origin",
+          story: "Literally 'electric viewing' (电 + 视): mirrors Greek/Latin 'tele-vision' by pairing 电 (electronic transmission) with 视 (seeing/vision).",
+          why: "Electronic (电) + viewing (视) -> television."
+        },
+        "飞机": {
+          source: "Early 20th-century aviation coinage",
+          confidence: "Verified Modern Lexical Origin",
+          story: "Literally 'flying machine' (飞 + 机): formed from 飞 (soaring wings) + 机 (mechanical device) when powered heavier-than-air aircraft first appeared.",
+          why: "Flight (飞) + machine (机) -> airplane."
+        },
+        "银行": {
+          source: "19th-century Qing financial terminology (银号 / 钱庄 + 行)",
+          confidence: "Verified Modern Lexical Origin",
+          story: "Literally 'silver trade firm' (银 + 行 háng): combined 银 ('silver', China's standard monetary metal) with 行 ('guild / commercial firm') to translate modern Western banks, replacing older local terms like 银号 and 钱庄.",
+          why: "Silver currency (银) + commercial house (行) -> bank."
+        },
+        "大学": {
+          source: "Book of Rites · The Great Learning (《礼记·大学》)",
+          confidence: "Verified Classical & Modern Origin",
+          story: "In the Confucian classic 《大学》 ('The Great Learning'), 大学 meant 'learning for adults / cultivating broad virtue and governance' (contrasted with 小学 elementary training). In the late 19th century it was adopted across East Asia as the translation for 'university.'",
+          why: "Higher/adult learning (大 + 学) -> university."
+        },
+        "医院": {
+          source: "Song/Yuan imperial medical bureaus (太医院) -> modern clinics",
+          confidence: "Verified Historical & Lexical Origin",
+          story: "Combines 医 (medicine/healing) with 院 (walled courtyard / official institution). Imperial Song and Ming governments ran the 太医院 (Imperial Academy of Medicine), and the compound became the standard modern word for hospital.",
+          why: "Medical (医) + walled institution (院) -> hospital."
+        },
+        "老师": {
+          source: "Song/Yuan-Ming vernacular & classical teacher titles (《水浒传》 / 《儒林外史》)",
+          confidence: "Verified Historical & Lexical Origin",
+          story: "老 ('venerable / experienced') functions as an honorific prefix before 师 (originally 'commander / master artisan'). Already used respectfully for respected scholars and masters by the Song–Ming dynasties.",
+          why: "Venerable (老) + master/instructor (师) -> teacher."
+        },
+        "学生": {
+          source: "Book of the Later Han (《后汉书》) & classical academy records",
+          confidence: "Verified Classical Origin",
+          story: "Attested since the Han dynasty for enrolled academy pupils: 学 ('study') + 生 ('scholar / young learner', shortened from 儒生 / 书生).",
+          why: "Studying (学) + scholar-youth (生) -> student."
+        },
+        "先生": {
+          source: "Analects (《论语·为政》) & Mencius (《孟子》)",
+          confidence: "Verified Classical Origin",
+          story: "Literally 'born earlier' (先 + 生): in the Analects and Mencius, 先生 was a polite title for elders, fathers, and respected teachers whose greater years brought wisdom; later generalized to 'Mr. / sir / teacher.'",
+          why: "Born earlier (先 + 生) -> respected elder / teacher / Mister."
+        },
+        "经济": {
+          source: "Book of Jin (《晋书》) & Baopuzi (《抱朴子》) — 经世济民",
+          confidence: "Verified Classical & Modern Origin",
+          story: "Shortened from the classical four-character ideal 经世济民 ('managing the affairs of the world and aiding the people'). In Meiji Japan it was adopted as keizai (経済) to translate Western 'economy' and re-entered modern Chinese.",
+          why: "Abbreviated from 经世济民 (statecraft & relief) -> economy."
+        },
+        "科学": {
+          source: "Song dynasty 科举之学 -> Meiji coinage (kagaku) -> modern Chinese",
+          confidence: "Verified Historical & Lexical Origin",
+          story: "In Song-dynasty texts, 科学 meant 'studies for the classified imperial examinations' (科举之学). In the late 19th century it was re-purposed to translate Western 'science' as knowledge organized by specialized branches (分科之学).",
+          why: "Classified branches (科) + systematic study (学) -> science."
+        },
+        "文化": {
+          source: "Liu Xiang · Garden of Stories (汉·刘向《说苑·指武》)",
+          confidence: "Verified Classical & Modern Origin",
+          story: "In Han scholar Liu Xiang's 《说苑》, 文化 is short for 以文教化 — transforming and civilizing society through letters, ritual, and moral education rather than military force (武). In modern Chinese it also translates 'culture.'",
+          why: "Literary/moral cultivation (文) + transformation (化) -> culture."
+        },
+        "世界": {
+          source: "Eastern Han–Tang Chinese Buddhist translations (Sanskrit lokadhātu)",
+          confidence: "Verified Historical & Lexical Origin",
+          story: "Originally a Buddhist translation of Sanskrit lokadhātu: 世 denotes time (past, present, and future generations), while 界 denotes spatial boundaries (the ten directions). Together they encompass all space and time: 'the world.'",
+          why: "Time/generations (世) + spatial bounds (界) -> the world."
+        },
+        "现在": {
+          source: "Chinese Buddhist translations (Sanskrit pratyutpanna)",
+          confidence: "Verified Historical & Lexical Origin",
+          story: "Entered Chinese widely through Buddhist texts distinguishing the 'three times': 过去 (past), 现在 ('currently appearing/present', translating pratyutpanna), and 未来 (future).",
+          why: "Appearing (现) + existing right here (在) -> now / the present."
+        },
+        "方便": {
+          source: "Chinese Buddhist texts (Sanskrit upāya 'skillful means') & classical prose",
+          confidence: "Verified Historical & Lexical Origin",
+          story: "In Buddhist translations, 方便 rendered Sanskrit upāya ('expedient/skillful means' — adapting teaching methods flexibly to help listeners). In everyday Chinese it broadened to 'convenient, handy.'",
+          why: "Fitting method (方) + ease (便) -> skillful means / convenient."
+        },
+        "小心": {
+          source: "Book of Poetry · Major Odes (《诗经·大雅·大明》)",
+          confidence: "Verified Classical Origin",
+          story: "Attested in the ancient 《诗经》 phrase 小心翼翼 ('humble, attentive, and watchful in heart'). Rather than meaning timid, 'making one's heart small/focused' meant paying careful heed -> 'be careful.'",
+          why: "Focused/humble (小) + heart-mind (心) -> careful, cautious."
+        },
+        "放心": {
+          source: "Mencius · Gaozi I (《孟子·告子上》)",
+          confidence: "Verified Classical Origin",
+          story: "While Mencius spoke of recovering one's 'straying heart' (求其放心), later vernacular Chinese flipped the imagery to 'setting one's anxious heart down calmly' -> to rest assured, stop worrying.",
+          why: "Set down / release worry (放) + heart (心) -> feel at ease."
+        },
+        "环境": {
+          source: "New Book of Tang (《新唐书》) & Yuan/Ming administrative usage",
+          confidence: "Verified Historical & Lexical Origin",
+          story: "Literally 'surrounding territory' (环 ring/encircle + 境 border/region). Classical histories used 环境 for the districts bordering a city or territory; modern usage extended it to natural and social 'environment.'",
+          why: "Surrounding (环) + territory/bounds (境) -> environment."
+        },
+        "新闻": {
+          source: "Tang-Song prose & poetry (e.g., Li Xian / Su Shi)",
+          confidence: "Verified Historical & Lexical Origin",
+          story: "Combines 新 ('fresh/new') with 闻 ('heard at the gate', 耳 ear inside 门 gate). Used since the Tang dynasty for fresh tidings or anecdotes, then adopted in modern Chinese for journalism and news.",
+          why: "Fresh (新) + tidings heard (闻) -> news."
+        },
+        "打算": {
+          source: "Song/Yuan vernacular (abacus & counting-rod reckoning)",
+          confidence: "Verified Historical & Lexical Origin",
+          story: "Combines 打 ('carry out / work') with 算 ('count / calculate with bamboo rods or abacus'). Calculating one's options before acting naturally came to mean 'to plan / intend.'",
+          why: "Work out (打) + calculation (算) -> to plan / intend."
+        },
+        "准备": {
+          source: "Song/Ming military and administrative texts",
+          confidence: "Verified Historical & Lexical Origin",
+          story: "Pairs 准 ('standard / accurate') with 备 ('equip / pack full', traditionally a full quiver of arrows). Making things accurate and equipped beforehand -> to prepare.",
+          why: "Align accurately (准) + equip fully (备) -> prepare."
+        },
+        "帮助": {
+          source: "Ming/Qing vernacular (《水浒传》 / 《红楼梦》)",
+          confidence: "Verified Historical & Lexical Origin",
+          story: "Combines 帮 (originally reinforcing strips wrapping a shoe side) with 助 (lending strength beside another) -> reinforcing and assisting someone.",
+          why: "Reinforce (帮) + lend strength (助) -> help, assist."
+        },
+        "照顾": {
+          source: "Han–Tang prose (e.g., Book of Han / Tang memorials)",
+          confidence: "Verified Classical Origin",
+          story: "Combines 照 ('shine light upon / watch over') with 顾 ('turn one's head back to check on'). Watching warmly and checking back -> look after, take care of.",
+          why: "Watch over (照) + look back on (顾) -> care for, look after."
+        },
+        "图书馆": {
+          source: "Late 19th-century East Asian modern institutional coinage",
+          confidence: "Verified Modern Lexical Origin",
+          story: "Combines 图书 ('maps, charts, and books', an ancient Han-dynasty pairing for imperial archives) with 馆 ('public hall / building') to name public lending libraries.",
+          why: "Charts & books (图书) + public hall (馆) -> library."
+        },
+        "咖啡": {
+          source: "Late Qing phonetic transliteration",
+          confidence: "Verified Modern Lexical Origin",
+          story: "Pure phonetic loanword for 'coffee': scribes added the mouth radical 口 to 加 (jiā -> kā) and 非 (fēi) to mark the foreign spoken syllables.",
+          why: "Mouth radical (口) + phonetic syllables (加 + 非) -> transliteration of 'coffee'."
+        },
+        "公园": {
+          source: "Late 19th-century urban terminology",
+          confidence: "Verified Modern Lexical Origin",
+          story: "Contrasted directly with imperial gardens (御园) and private estates (私园): 公 ('public / shared by all') + 园 ('walled garden') = a park open to the public.",
+          why: "Public (公) + walled garden (园) -> public park."
+        },
+        "丰富": {
+          source: "Shiji (《史记》) & Book of Han (《汉书》)",
+          confidence: "Verified Classical Origin",
+          story: "Pairs 丰 (traditional 豐, a sacrificial vessel heaped high with offerings) with 富 (a house storing full jars of grain and wine) -> abundant, rich.",
+          why: "Heaped abundance (丰) + full storehouse (富) -> rich, plentiful."
+        },
+        "保护": {
+          source: "Zhan Guo Ce (《战国策》) & Shiji (《史记》)",
+          confidence: "Verified Classical Origin",
+          story: "Pairs 保 (parent cradling a child safely) with 护 (hand shielding a doorway) — attested since Warring States and Han histories for guarding people or territory.",
+          why: "Cradle safely (保) + shield/guard (护) -> protect."
+        },
+        "加油": {
+          source: "20th-century vernacular mechanical/fueling metaphor",
+          confidence: "Verified Modern Lexical Origin",
+          story: "Literally 'add oil/fuel' (加 + 油): adding oil to keep a lamp flame or engine running at full power — adopted in modern Chinese sports and everyday speech as 'Keep going! / You've got this!'",
+          why: "Add (加) + fuel/oil (油) -> power up / cheer someone on."
+        }
+      };
+
 
