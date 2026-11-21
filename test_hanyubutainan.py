@@ -580,24 +580,24 @@ def run_browser_tests():
               const wrongCls = document.querySelector('#flashFront .flash-feedback').className;
               const heartsAfter1Wrong = document.querySelectorAll('#flashFront .flash-heart:not(.lost)').length;
 
-              // Reveal with 不知道 to inspect answer cleanly
+              // Reveal with 不知道 to inspect answer cleanly (single consolidated banner)
               document.getElementById('flashRevealBtn').click();
               const revNodes = document.querySelectorAll('#flashFront .flash-feedback');
-              const revText = revNodes[revNodes.length - 1].textContent;
+              const revClone = revNodes[0].cloneNode(true);
+              revClone.querySelectorAll('.flash-feedback-sub').forEach(el => el.remove());
+              const revText = revClone.textContent.trim();
               const match = revText.match(/^(.+?)\\s*·\\s*(.+?)\\s*—\\s*(.+)$/);
               const expectedPinyin = match ? match[2].trim() : '';
               const expectedMeaning = match ? match[3].trim().split(/[;/]/)[0].trim() : '';
 
-              // Move to next card and test toneless pinyin + meaning + 0-heart lock on another card
+              // Move to next card: Previous must stay disabled (forward-only for completed cards), then test toneless pinyin + meaning
               document.getElementById('flashNextBtn').click();
-              document.getElementById('flashRevealBtn').click();
-              const rev2Nodes = document.querySelectorAll('#flashFront .flash-feedback');
-              const rev2 = rev2Nodes[rev2Nodes.length - 1].textContent;
-              const m2 = rev2.match(/^(.+?)\\s*·\\s*(.+?)\\s*—\\s*(.+)$/);
-              const py2 = m2 ? m2[2].trim() : '';
-              const mean2 = m2 ? m2[3].trim().split(/[;/]/)[0].trim() : '';
-              document.getElementById('flashNextBtn').click();
-              document.getElementById('flashPrevBtn').click();
+              const prevDisabledAfterReveal = document.getElementById('flashPrevBtn').disabled;
+              const hz2 = document.querySelector('#flashFront .flash-big-hanzi').textContent.trim();
+              const storyHit = (window.STORY_ENTRIES || []).find(s => s.simp === hz2 || s.trad === hz2);
+              const hskHit = (window.HSK_COMPLETE_RAW || []).find(r => r[0] === hz2 || r[1] === hz2);
+              const py2 = storyHit ? storyHit.pinyin : (hskHit ? hskHit[2] : '');
+              const mean2 = (storyHit ? storyHit.meaning : (hskHit ? hskHit[3] : '')).split(/[;/]/)[0].replace(/\\([^)]*\\)/g, '').trim();
               document.getElementById('flashMeaningInput').value = mean2;
               document.getElementById('flashTypeInput').value = py2.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '');
               document.getElementById('flashCheckBtn').click();
@@ -612,6 +612,7 @@ def run_browser_tests():
               }
               const checkDisabledAt0Hearts = document.getElementById('flashCheckBtn').disabled;
               const heartsAt0 = document.querySelectorAll('#flashFront .flash-heart:not(.lost)').length;
+              const feedbacksAt0Hearts = document.querySelectorAll('#flashFront .flash-feedback').length;
 
               // Test Definition mode
               modeSel.value = 'definition';
@@ -628,7 +629,7 @@ def run_browser_tests():
               const hintVisible = Boolean(document.querySelector('#flashFront .flash-hint-box'));
               document.getElementById('flashRevealBtn').click();
               const dictRev = document.querySelector('#flashFront .flash-feedback').textContent;
-              const dictHanzi = dictRev.split('(')[0].trim();
+              const dictHanzi = dictRev.split('·')[0].trim();
 
               modeSel.value = 'flip';
               modeSel.dispatchEvent(new Event('change', { bubbles: true }));
@@ -640,16 +641,19 @@ def run_browser_tests():
 
               return {
                 hanziShown, flippedInType, flipBtnHidden, wrongCls, heartsAfter1Wrong,
-                expectedPinyin, expectedMeaning, okTonelessCls, checkDisabledAt0Hearts, heartsAt0,
+                revFeedbackCount: revNodes.length, prevDisabledAfterReveal,
+                expectedPinyin, expectedMeaning, okTonelessCls,
+                checkDisabledAt0Hearts, heartsAt0, feedbacksAt0Hearts,
                 defHiddenHanzi, defHintText,
                 hiddenHanzi, hintVisible, dictHanzi, hasCompClueInFlip, flippedInFlip, backRawStrong
               };
             })()""")
             assert f6_res["expectedPinyin"] and f6_res["expectedMeaning"], f6_res
+            assert f6_res["revFeedbackCount"] == 1 and f6_res["prevDisabledAfterReveal"] is True, f6_res
             assert f6_res["flippedInType"] is False and f6_res["flipBtnHidden"] is True, f6_res
             assert "err" in f6_res["wrongCls"] and f6_res["heartsAfter1Wrong"] == 2, f6_res
             assert "ok" in f6_res["okTonelessCls"], f6_res
-            assert f6_res["checkDisabledAt0Hearts"] is True and f6_res["heartsAt0"] == 0, f6_res
+            assert f6_res["checkDisabledAt0Hearts"] is True and f6_res["heartsAt0"] == 0 and f6_res["feedbacksAt0Hearts"] == 1, f6_res
             assert f6_res["defHiddenHanzi"] is True and f6_res["hiddenHanzi"] is True and f6_res["hintVisible"] is True, f6_res
             assert f6_res["hasCompClueInFlip"] is False and f6_res["flippedInFlip"] is True and f6_res["backRawStrong"] is False, f6_res
             print("  T6 F6 Flashcards modes, 3-hearts, flip lock & raw <strong> fix PASSED")
@@ -834,6 +838,457 @@ def run_browser_tests():
                 for col in ("Order", "Words", "Pinyin", "Definition", "Breakdown", "Example", "百货"):
                     assert col in sheet_xml, f"Missing {col} in sheet1.xml"
             print("  T12 Update 1 features, Excel (.xlsx) & bugfixes PASSED")
+
+            # T13 Update 2: Tone-agnostic flashcard pinyin checking & Half-screen (700-960px) HSK Level box responsive truncation
+            cdp.send(
+                "Emulation.setDeviceMetricsOverride",
+                {"width": 820, "height": 900, "deviceScaleFactor": 1, "mobile": False},
+                session_id=cdp.session_id,
+            )
+            u2_res = cdp.eval("""(() => {
+              // 1. Ensure 你好 is in My Vocab List and test Flashcards Type Pinyin with all tone formats
+              document.querySelector('[data-view=\"vocab-list\"]').click();
+              const addIn = document.getElementById('addWordInput');
+              addIn.value = '你好';
+              document.getElementById('addWordBtn').click();
+
+              // Check half-screen (820px) responsive HSK Level box in My Vocab List & Holistic HSK
+              const myHskTrigger = document.querySelector('#myHskPicker .picker-trigger');
+              const myHskLabelSpan = myHskTrigger ? myHskTrigger.querySelector('span:first-child') : null;
+              const myHskStyle = myHskLabelSpan ? getComputedStyle(myHskLabelSpan) : null;
+              const myHskGroupStyle = getComputedStyle(document.getElementById('myHskPicker').closest('.select-group'));
+
+              document.querySelector('[data-view=\"hsk\"]').click();
+              const hskTrigger = document.querySelector('#hskLevelPicker .picker-trigger');
+              const hskLabelSpan = hskTrigger ? hskTrigger.querySelector('span:first-child') : null;
+              const hskStyle = hskLabelSpan ? getComputedStyle(hskLabelSpan) : null;
+              const hskPickerStyle = getComputedStyle(document.getElementById('hskLevelPicker'));
+              const hskGroupStyle = getComputedStyle(document.getElementById('hskLevelPicker').closest('.select-group'));
+              const hskHeadingH3 = document.querySelector('.hsk-level-heading h3');
+              const hskHeadingStyle = hskHeadingH3 ? getComputedStyle(hskHeadingH3) : null;
+              const lockupEl = document.querySelector('#view-hsk .vocab-char-lockup');
+              const lockupStyle = lockupEl ? getComputedStyle(lockupEl) : null;
+              const halfScreenPageOverflow = document.documentElement.scrollWidth - window.innerWidth;
+              const triggerFitsBox = hskTrigger ? (hskTrigger.scrollWidth <= hskTrigger.clientWidth + 1) : false;
+
+              // 2. Switch to Flashcards -> My Vocab List deck -> find 你好 card -> test ni hao, ni3 hao3, nǐ hǎo, ni2 hao3, 你好
+              document.querySelector('[data-view=\"flashcards\"]').click();
+              const deckSel = document.getElementById('flashDeckSelect');
+              deckSel.value = 'vocab-list';
+              deckSel.dispatchEvent(new Event('change', { bubbles: true }));
+              const modeSel = document.getElementById('flashModeSelect');
+              modeSel.value = 'type-pinyin';
+              modeSel.dispatchEvent(new Event('change', { bubbles: true }));
+
+              // Navigate to 你好 if not already first
+              for (let step = 0; step < 10; step++) {
+                const curHz = (document.querySelector('#flashFront .flash-big-hanzi') || {}).textContent || '';
+                if (curHz.includes('你好')) break;
+                document.getElementById('flashNextBtn').click();
+              }
+              const targetHz = (document.querySelector('#flashFront .flash-big-hanzi') || {}).textContent || '';
+              const variants = ['ni hao', 'ni3 hao3', 'nǐ hǎo', 'nihao', 'ni2 hao3', '你好'];
+              const variantResults = {};
+              for (const v of variants) {
+                document.getElementById('flashMeaningInput').value = 'hello';
+                document.getElementById('flashTypeInput').value = v;
+                document.getElementById('flashCheckBtn').click();
+                const fb = document.querySelector('#flashFront .flash-feedback');
+                variantResults[v] = Boolean(fb && fb.classList.contains('ok'));
+              }
+
+              return {
+                halfScreenPageOverflow,
+                triggerFitsBox,
+                myHskEllipsis: Boolean(myHskStyle && myHskStyle.overflow === 'hidden' && myHskStyle.textOverflow === 'ellipsis' && myHskStyle.whiteSpace === 'nowrap'),
+                hskEllipsis: Boolean(hskStyle && hskStyle.overflow === 'hidden' && hskStyle.textOverflow === 'ellipsis' && hskStyle.whiteSpace === 'nowrap'),
+                hskMinWidth0: hskPickerStyle.minWidth === '0px' && hskGroupStyle.minWidth === '0px' && myHskGroupStyle.minWidth === '0px',
+                headingEllipsis: Boolean(hskHeadingStyle && hskHeadingStyle.overflow === 'hidden' && hskHeadingStyle.textOverflow === 'ellipsis' && hskHeadingStyle.whiteSpace === 'nowrap'),
+                lockupEllipsis: Boolean(lockupStyle && lockupStyle.overflow === 'hidden' && lockupStyle.textOverflow === 'ellipsis' && lockupStyle.whiteSpace === 'nowrap'),
+                targetHz: targetHz.trim(),
+                variantResults
+              };
+            })()""")
+            assert u2_res["halfScreenPageOverflow"] <= 0, f"Half-screen overflow: {u2_res}"
+            assert u2_res["triggerFitsBox"] and u2_res["myHskEllipsis"] and u2_res["hskEllipsis"], f"HSK Level picker ellipsis failed: {u2_res}"
+            assert u2_res["hskMinWidth0"] and u2_res["headingEllipsis"] and u2_res["lockupEllipsis"], f"HSK Level min-width/truncation failed: {u2_res}"
+            assert "你好" in u2_res["targetHz"], f"Expected 你好 flashcard, got: {u2_res}"
+            assert all(u2_res["variantResults"].values()), f"Flashcard pinyin tone variants failed: {u2_res['variantResults']}"
+            print("  T13 Update 2 tone-agnostic pinyin checking & half-screen (820px) HSK Level box PASSED")
+
+            # T14 Update 3: 因地制宜 origin + feedback, search-only Sound Families, Radical glyph fit,
+            # Flashcard auto-next/Return, post-correct lock, no Sound+Meaning in Pinyin mode,
+            # Dictation pinyin/tones/Hanzi, Vocab/Mastered locked until answered, no shortcuts banner,
+            # 3-wrong/不知道 -> Again, and Mastered 1-in-50 + 2-correct retirement
+            u3_res = cdp.eval("""(() => {
+              // 1. Inspect 因地制宜 -> verified classical origin + user origin feedback + lookup links
+              document.querySelector('[data-view=\"dictionary\"]').click();
+              const dIn = document.getElementById('dictSearchInput');
+              dIn.value = '因地制宜';
+              dIn.dispatchEvent(new Event('input', { bubbles: true }));
+              const card = document.querySelector('#dictVocabResults .vocab-card');
+              if (card) card.click();
+              const trustTextBefore = (document.querySelector('#modalBody .etymology-trust-card') || {}).textContent || '';
+              const hasLookupLinks = Boolean(document.querySelector('#modalBody .origin-lookup-bar a[href*=\"zdic.net\"]'));
+              const toggleFbBtn = document.getElementById('toggleOriginFeedbackBtn');
+              if (toggleFbBtn) toggleFbBtn.click();
+              const srcIn = document.getElementById('originSourceInput');
+              const stIn = document.getElementById('originStoryInput');
+              if (srcIn && stIn) {
+                srcIn.value = 'Custom Annals of Wu and Yue Note';
+                stIn.value = 'Custom user feedback origin story for 因地制宜.';
+                document.getElementById('saveOriginFeedbackBtn').click();
+              }
+              const trustTextAfter = (document.querySelector('#modalBody .etymology-trust-card') || {}).textContent || '';
+              document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+
+              // 2. Radical Lab: Sound Families empty by default ("No related family"), shows family when searched; Radical glyph full simp/trad fit
+              document.querySelector('[data-view=\"lab\"]').click();
+              const famSearch = document.getElementById('familySearchInput');
+              famSearch.value = '';
+              famSearch.dispatchEvent(new Event('input', { bubbles: true }));
+              const famEmptyDefault = document.getElementById('familyMatrix').textContent;
+              famSearch.value = '青';
+              famSearch.dispatchEvent(new Event('input', { bubbles: true }));
+              const famFoundCount = document.querySelectorAll('#familyMatrix .family-box').length;
+              famSearch.value = 'zzzznotaword';
+              famSearch.dispatchEvent(new Event('input', { bubbles: true }));
+              const famNoMatchText = document.getElementById('familyMatrix').textContent;
+              famSearch.value = '';
+              famSearch.dispatchEvent(new Event('input', { bubbles: true }));
+
+              const radGlyphs = Array.from(document.querySelectorAll('#radicalGrid .radical-glyph'));
+              const pairGlyph = radGlyphs.find(el => el.textContent.includes('/'));
+              const pairText = pairGlyph ? pairGlyph.textContent.trim() : '';
+              const pairClips = pairGlyph ? (pairGlyph.scrollWidth > pairGlyph.clientWidth + 1) : true;
+
+              // 3. Flashcards: no #flashKbdTip, Pinyin mode hides Sound + Meaning badge, locks until answered, locks after correct, Return advances
+              document.querySelector('[data-view=\"flashcards\"]').click();
+              const noKbdTip = !document.getElementById('flashKbdTip');
+              const deckSel = document.getElementById('flashDeckSelect');
+              deckSel.value = 'vocab-list';
+              deckSel.dispatchEvent(new Event('change', { bubbles: true }));
+              const modeSel = document.getElementById('flashModeSelect');
+              modeSel.value = 'type-pinyin';
+              modeSel.dispatchEvent(new Event('change', { bubbles: true }));
+
+              // Navigate to 你好
+              for (let step = 0; step < 10; step++) {
+                const curHz = (document.querySelector('#flashFront .flash-big-hanzi') || {}).textContent || '';
+                if (curHz.includes('你好')) break;
+                document.getElementById('flashNextBtn').click();
+              }
+              const listDisabledBefore = document.getElementById('flashListBtn').disabled;
+              const masterDisabledBefore = document.getElementById('flashMasterBtn').disabled;
+              const frontBadgesPinyin = Array.from(document.querySelectorAll('#flashFront .badge')).map(b => b.textContent).join(' ');
+              const hasSoundMeaningInPinyin = frontBadgesPinyin.includes('Sound + Meaning');
+
+              document.getElementById('flashMeaningInput').value = 'hello';
+              document.getElementById('flashTypeInput').value = 'ni hao';
+              document.getElementById('flashCheckBtn').click();
+              const lockedAfterCorrect = (
+                document.getElementById('flashTypeInput').disabled &&
+                document.getElementById('flashMeaningInput').disabled &&
+                document.getElementById('flashCheckBtn').disabled &&
+                document.getElementById('flashHintToggleBtn').disabled &&
+                document.getElementById('flashRevealBtn').disabled
+              );
+              const unlockedMetaAfterAnswer = (
+                !document.getElementById('flashListBtn').disabled &&
+                !document.getElementById('flashMasterBtn').disabled
+              );
+              const autoNextCountdownShown = document.getElementById('flashNextBtn').textContent.includes('5s');
+
+              // Press Return (Enter) to advance immediately
+              const counterBeforeEnter = document.getElementById('flashCounter').textContent;
+              document.getElementById('flashcardEl').dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+              const counterAfterEnter = document.getElementById('flashCounter').textContent;
+
+              // 4. Dictation mode: rejects wrong pinyin, accepts tone-agnostic pinyin (even different tone marks) and Hanzi
+              modeSel.value = 'dictation';
+              modeSel.dispatchEvent(new Event('change', { bubbles: true }));
+              for (let step = 0; step < 30; step++) {
+                const spk = document.querySelector('#flashFront [data-speak]');
+                if (spk && spk.getAttribute('data-speak') === '你好') break;
+                document.getElementById('flashNextBtn').click();
+              }
+              // Test wrong pinyin first -> rejected
+              document.getElementById('flashTypeInput').value = 'zzzz';
+              document.getElementById('flashCheckBtn').click();
+              const dictWrongRejected = document.querySelector('#flashFront .flash-feedback').classList.contains('err');
+              // Test tone-agnostic pinyin ('nī hǎo' for 你好) -> accepted
+              document.getElementById('flashTypeInput').value = 'nī hǎo';
+              document.getElementById('flashCheckBtn').click();
+              const dictToneAgnosticAccepted = document.querySelector('#flashFront .flash-feedback').classList.contains('ok');
+
+              // 5. Mark 你好 as mastered after answering -> verify 2 correct answers retire it permanently
+              document.getElementById('flashMasterBtn').click();
+              // Move to next card and trigger 3 wrong answers -> auto marked as Again
+              document.getElementById('flashNextBtn').click();
+              for (let w = 0; w < 3; w++) {
+                document.getElementById('flashTypeInput').value = 'wrong_answer_xyz';
+                document.getElementById('flashCheckBtn').click();
+              }
+              const againFeedbackText = (document.querySelector('#flashFront .flash-feedback.err') || {}).textContent || '';
+
+              return {
+                trustTextBefore,
+                trustTextAfter,
+                hasLookupLinks,
+                famEmptyDefault,
+                famFoundCount,
+                famNoMatchText,
+                pairText,
+                pairClips,
+                noKbdTip,
+                listDisabledBefore,
+                masterDisabledBefore,
+                hasSoundMeaningInPinyin,
+                lockedAfterCorrect,
+                unlockedMetaAfterAnswer,
+                autoNextCountdownShown,
+                counterBeforeEnter,
+                counterAfterEnter,
+                dictWrongRejected,
+                dictToneAgnosticAccepted,
+                againFeedbackText
+              };
+            })()""")
+            assert "吴越春秋" in u3_res["trustTextBefore"] and "Confidence: High" in u3_res["trustTextBefore"], u3_res
+            assert "Custom Annals of Wu and Yue Note" in u3_res["trustTextAfter"] and u3_res["hasLookupLinks"], u3_res
+            assert "No related family" in u3_res["famEmptyDefault"] and u3_res["famFoundCount"] >= 1 and "No related family" in u3_res["famNoMatchText"], u3_res
+            assert "/" in u3_res["pairText"] and len(u3_res["pairText"].split("/")[1]) >= 1 and not u3_res["pairClips"], u3_res
+            assert u3_res["noKbdTip"] is True, u3_res
+            assert u3_res["listDisabledBefore"] is True and u3_res["masterDisabledBefore"] is True, u3_res
+            assert u3_res["hasSoundMeaningInPinyin"] is False, u3_res
+            assert u3_res["lockedAfterCorrect"] is True and u3_res["unlockedMetaAfterAnswer"] is True, u3_res
+            assert u3_res["autoNextCountdownShown"] is True, u3_res
+            assert u3_res["dictWrongRejected"] is True and u3_res["dictToneAgnosticAccepted"] is True, u3_res
+            assert "Again" in u3_res["againFeedbackText"], u3_res
+            print("  T14 Update 3 origin feedback, Lab UI, Dictation, locking & Auto-Next PASSED")
+
+            # T15: Mastered sub-tab in My Vocab List, Flashcard box containment (no overflow),
+            #      flexible answer checking (Bai/bai/bái/bai2/白 & lv/lu/lǜ/绿), and forward-only navigation + requeue
+            t15_mastered = cdp.eval("""(() => {
+              // 1. Master 白 directly from Dictionary without saving it to My Vocab List
+              document.querySelector('[data-view=\"dictionary\"]').click();
+              const dIn = document.getElementById('dictSearchInput');
+              dIn.value = '白';
+              dIn.dispatchEvent(new Event('input', { bubbles: true }));
+              const baiCard = Array.from(document.querySelectorAll('#dictVocabResults .vocab-card'))
+                .find(c => c.querySelector('[data-master]') && c.querySelector('.vocab-char-lockup').textContent.includes('白'));
+              const masBtn = baiCard ? baiCard.querySelector('[data-master]') : null;
+              if (masBtn && !masBtn.classList.contains('active-master')) masBtn.click();
+
+              // Click top-bar Mastered chip -> jumps straight to My Vocab List -> Mastered Words sub-tab
+              document.getElementById('statMasteredChip').click();
+              const inVocabView = !document.getElementById('view-vocab-list').classList.contains('hidden');
+              const masteredTabActive = document.getElementById('myTabMasteredBtn').classList.contains('active');
+              const addHidden = document.getElementById('myVocabAddSection').classList.contains('hidden');
+              const ioHidden = document.getElementById('myVocabIoSection').classList.contains('hidden');
+              const hasBaiInMastered = Array.from(document.querySelectorAll('#myVocabContainer .vocab-char-lockup'))
+                .some(el => el.textContent.includes('白'));
+              const countBeforeUnmaster = Number(document.getElementById('myTabMasteredCount').textContent);
+
+              // Unmark 白 right from the Mastered tab -> removes it and decrements count
+              const mBaiCard = Array.from(document.querySelectorAll('#myVocabContainer .vocab-card'))
+                .find(c => c.querySelector('.vocab-char-lockup').textContent.includes('白'));
+              if (mBaiCard) mBaiCard.querySelector('[data-master]').click();
+              const countAfterUnmaster = Number(document.getElementById('myTabMasteredCount').textContent);
+              const stillHasBai = Array.from(document.querySelectorAll('#myVocabContainer .vocab-char-lockup'))
+                .some(el => el.textContent.includes('白'));
+
+              // Switch back to Saved Words tab and add 白 + 绿 + 好 for Flashcard testing
+              document.getElementById('myTabSavedBtn').click();
+              const savedTabActive = document.getElementById('myTabSavedBtn').classList.contains('active');
+              const addVisibleOnSaved = !document.getElementById('myVocabAddSection').classList.contains('hidden');
+              for (const w of ['白', '绿', '好']) {
+                document.getElementById('addWordInput').value = w;
+                document.getElementById('addWordBtn').click();
+              }
+              return {
+                inVocabView, masteredTabActive, addHidden, ioHidden, hasBaiInMastered,
+                countBeforeUnmaster, countAfterUnmaster, stillHasBai, savedTabActive, addVisibleOnSaved
+              };
+            })()""")
+            assert t15_mastered["inVocabView"] and t15_mastered["masteredTabActive"], t15_mastered
+            assert t15_mastered["addHidden"] and t15_mastered["ioHidden"] and t15_mastered["hasBaiInMastered"], t15_mastered
+            assert t15_mastered["countAfterUnmaster"] == t15_mastered["countBeforeUnmaster"] - 1 and not t15_mastered["stillHasBai"], t15_mastered
+            assert t15_mastered["savedTabActive"] and t15_mastered["addVisibleOnSaved"], t15_mastered
+
+            # Test flexible answers across Definition, Dictation, and Type Pinyin for 白 and 绿
+            t15_answers = cdp.eval("""(() => {
+              document.querySelector('[data-view=\"flashcards\"]').click();
+              const deckSel = document.getElementById('flashDeckSelect');
+              deckSel.value = 'vocab-list';
+              deckSel.dispatchEvent(new Event('change', { bubbles: true }));
+              const modeSel = document.getElementById('flashModeSelect');
+
+              const goToWord = (target) => {
+                for (let s = 0; s < 15; s++) {
+                  const frontText = document.getElementById('flashFront').textContent;
+                  const spk = document.querySelector('#flashFront [data-speak]');
+                  const cur = spk ? spk.getAttribute('data-speak') : '';
+                  if (cur === target || frontText.includes(target)) return true;
+                  document.getElementById('flashNextBtn').click();
+                }
+                return false;
+              };
+
+              const testInputs = (mode, targetWord, candidates, meaningVal) => {
+                const res = {};
+                for (const cand of candidates) {
+                  modeSel.value = 'flip';
+                  modeSel.dispatchEvent(new Event('change', { bubbles: true }));
+                  modeSel.value = mode;
+                  modeSel.dispatchEvent(new Event('change', { bubbles: true }));
+                  if (mode === 'definition') {
+                    // Meaning shown on front
+                    for (let s = 0; s < 15; s++) {
+                      const frontTxt = document.getElementById('flashFront').textContent.toLowerCase();
+                      if ((targetWord === '白' && frontTxt.includes('white')) || (targetWord === '绿' && frontTxt.includes('green'))) break;
+                      document.getElementById('flashNextBtn').click();
+                    }
+                  } else {
+                    goToWord(targetWord);
+                  }
+                  if (mode === 'type-pinyin') document.getElementById('flashMeaningInput').value = meaningVal;
+                  document.getElementById('flashTypeInput').value = cand;
+                  document.getElementById('flashCheckBtn').click();
+                  const fb = document.querySelector('#flashFront .flash-feedback');
+                  res[cand] = Boolean(fb && fb.classList.contains('ok'));
+                }
+                return res;
+              };
+
+              const baiDef = testInputs('definition', '白', ['Bai', 'bai', 'bái', 'Bái', 'bai2', 'bāi', '白', 'mai'], '');
+              const baiDict = testInputs('dictation', '白', ['Bai', 'bai', 'bái', 'bai2', '白', 'mai'], '');
+              const baiPinyin = testInputs('type-pinyin', '白', ['Bai', 'bai', 'bái', 'bai2', '白', 'mai'], 'white');
+              const lvDef = testInputs('definition', '绿', ['lv', 'lu', 'lǜ', 'lv4', 'lu4', '绿'], '');
+
+              // Per-field feedback check in type-pinyin
+              modeSel.value = 'flip'; modeSel.dispatchEvent(new Event('change', { bubbles: true }));
+              modeSel.value = 'type-pinyin'; modeSel.dispatchEvent(new Event('change', { bubbles: true }));
+              goToWord('白');
+              document.getElementById('flashMeaningInput').value = 'white';
+              document.getElementById('flashTypeInput').value = 'wrongpy';
+              document.getElementById('flashCheckBtn').click();
+              const wrongPyFb = document.querySelector('#flashFront .flash-feedback').textContent;
+              document.getElementById('flashMeaningInput').value = 'wrongmean';
+              document.getElementById('flashTypeInput').value = 'bai';
+              document.getElementById('flashCheckBtn').click();
+              const wrongMeanFb = document.querySelector('#flashFront .flash-feedback').textContent;
+
+              return { baiDef, baiDict, baiPinyin, lvDef, wrongPyFb, wrongMeanFb };
+            })()""")
+            for bucket in ("baiDef", "baiDict", "baiPinyin"):
+                for good_in in ("Bai", "bai", "bái", "bai2", "白"):
+                    assert t15_answers[bucket][good_in] is True, (bucket, good_in, t15_answers)
+                assert t15_answers[bucket]["mai"] is False, (bucket, t15_answers)
+            assert t15_answers["baiDef"]["Bái"] is True and t15_answers["baiDef"]["bāi"] is True, t15_answers
+            assert all(t15_answers["lvDef"].values()), t15_answers
+            assert "pinyin" in t15_answers["wrongPyFb"].lower() and "meaning" in t15_answers["wrongMeanFb"].lower(), t15_answers
+
+            # Test UI containment (zero overflow across desktop 1280, half-screen 820, mobile 375) + forward-only nav + requeue
+            for vp_name, vp_w, vp_h, is_mob in [("desktop", 1280, 900, False), ("half", 820, 900, False), ("mobile", 375, 740, True)]:
+                cdp.send(
+                    "Emulation.setDeviceMetricsOverride",
+                    {"width": vp_w, "height": vp_h, "deviceScaleFactor": 2 if is_mob else 1, "mobile": is_mob},
+                    session_id=cdp.session_id,
+                )
+                box_res = cdp.eval("""(() => {
+                  const modeSel = document.getElementById('flashModeSelect');
+                  modeSel.value = 'type-pinyin';
+                  modeSel.dispatchEvent(new Event('change', { bubbles: true }));
+                  document.getElementById('flashHintToggleBtn').click();
+                  document.getElementById('flashMeaningInput').value = 'wrong';
+                  document.getElementById('flashTypeInput').value = 'wrong';
+                  document.getElementById('flashCheckBtn').click();
+                  document.getElementById('flashRevealBtn').click();
+                  const cardRect = document.getElementById('flashcardEl').getBoundingClientRect();
+                  const navRect = document.querySelector('.flash-nav-row').getBoundingClientRect();
+                  const items = Array.from(document.querySelectorAll('#flashFront .flash-hint-box, #flashFront .flash-feedback, #flashFront .flash-option-bar'));
+                  const outOfBox = items.filter(el => {
+                    const r = el.getBoundingClientRect();
+                    return r.bottom > cardRect.bottom + 1 || r.right > cardRect.right + 1 || r.left < cardRect.left - 1;
+                  }).map(el => el.className);
+                  return {
+                    feedbackCount: document.querySelectorAll('#flashFront .flash-feedback').length,
+                    outOfBox,
+                    overlapsNav: cardRect.bottom > navRect.top + 1,
+                    horizOverflow: document.documentElement.scrollWidth - window.innerWidth
+                  };
+                })()""")
+                assert box_res["feedbackCount"] == 1, (vp_name, box_res)
+                assert box_res["outOfBox"] == [], (vp_name, box_res)
+                assert box_res["overlapsNav"] is False, (vp_name, box_res)
+                assert box_res["horizOverflow"] <= 0, (vp_name, box_res)
+
+            cdp.send(
+                "Emulation.setDeviceMetricsOverride",
+                {"width": 1280, "height": 900, "deviceScaleFactor": 1, "mobile": False},
+                session_id=cdp.session_id,
+            )
+            nav_res = cdp.eval("""(() => {
+              const modeSel = document.getElementById('flashModeSelect');
+              modeSel.value = 'definition';
+              modeSel.dispatchEvent(new Event('change', { bubbles: true }));
+              const prevAtStart = document.getElementById('flashPrevBtn').disabled;
+              const startCount = Number(document.getElementById('flashCounter').textContent.split('/')[1].trim());
+              const firstMeaning = document.querySelector('#flashFront').textContent;
+
+              // Helper to answer current definition card using HSK/STORY lookup
+              const answerCur = () => {
+                const spk = document.querySelector('#flashFront [data-speak]');
+                // In definition mode there is no top speak button, so find matching entry by meaning text
+                const mText = document.querySelector('#flashFront .flash-front-center > div').textContent.trim();
+                const hit = (window.HSK_COMPLETE_RAW || []).find(r => mText.includes(r[3].split(';')[0].trim()))
+                  || (window.STORY_ENTRIES || []).find(s => mText.includes(s.meaning.split(';')[0].trim()));
+                return hit ? (Array.isArray(hit) ? hit[2] : hit.pinyin) : 'bai';
+              };
+
+              // Card 1: answer correctly -> advance -> Previous must stay disabled
+              document.getElementById('flashTypeInput').value = answerCur();
+              document.getElementById('flashCheckBtn').click();
+              const prevWhileCorrect = document.getElementById('flashPrevBtn').disabled;
+              document.getElementById('flashNextBtn').click();
+              const prevAfterDoneCard1 = document.getElementById('flashPrevBtn').disabled;
+
+              // Card 2: fail 1 wrong -> Previous disabled; fail 3 -> Check/Hint disabled -> click 不知道 -> requeued -> Enter advances
+              document.getElementById('flashTypeInput').value = 'wrong1';
+              document.getElementById('flashCheckBtn').click();
+              const prevAfterWrong = document.getElementById('flashPrevBtn').disabled;
+              document.getElementById('flashTypeInput').value = 'wrong2';
+              document.getElementById('flashCheckBtn').click();
+              document.getElementById('flashTypeInput').value = 'wrong3';
+              document.getElementById('flashCheckBtn').click();
+              const checkLocked0 = document.getElementById('flashCheckBtn').disabled;
+              const revealEnabled0 = !document.getElementById('flashRevealBtn').disabled;
+              document.getElementById('flashRevealBtn').click();
+              const totalAfterRequeue = Number(document.getElementById('flashCounter').textContent.split('/')[1].trim());
+              document.getElementById('flashcardEl').dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+              const prevAfterRequeuedCard2 = document.getElementById('flashPrevBtn').disabled;
+
+              // Finish remaining cards forward -> reaches Session Complete (never wraps around)
+              for (let step = 0; step < 30; step++) {
+                if (document.querySelector('#flashFront').textContent.includes('Session Complete')) break;
+                document.getElementById('flashNextBtn').click();
+              }
+              const reachedComplete = document.querySelector('#flashFront').textContent.includes('Session Complete');
+              const prevAtEnd = document.getElementById('flashPrevBtn').disabled;
+              const nextAtEnd = document.getElementById('flashNextBtn').disabled;
+
+              return {
+                prevAtStart, startCount, prevWhileCorrect, prevAfterDoneCard1,
+                prevAfterWrong, checkLocked0, revealEnabled0, totalAfterRequeue,
+                prevAfterRequeuedCard2, reachedComplete, prevAtEnd, nextAtEnd
+              };
+            })()""")
+            assert nav_res["prevAtStart"] is True and nav_res["prevWhileCorrect"] is True and nav_res["prevAfterDoneCard1"] is True, nav_res
+            assert nav_res["prevAfterWrong"] is True and nav_res["checkLocked0"] is True and nav_res["revealEnabled0"] is True, nav_res
+            assert nav_res["totalAfterRequeue"] == nav_res["startCount"] + 1 and nav_res["prevAfterRequeuedCard2"] is True, nav_res
+            assert nav_res["reachedComplete"] is True and nav_res["prevAtEnd"] is True and nav_res["nextAtEnd"] is True, nav_res
+            print("  T15 Mastered tab, zero UI overflow (1280/820/375), Bai/lv answers & forward-only nav PASSED")
 
             cdp.drain_events()
             assert not cdp.page_errors, f"Unexpected pageErrors in Suite A: {cdp.page_errors}"

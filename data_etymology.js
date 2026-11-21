@@ -2625,6 +2625,12 @@ window.IDIOM_STORIES = {
           storyEn: "Prince Xiao Tong praised Tao Yuanming's poetry as so captivating that readers hold the scroll close and cannot bear to set it down.",
           storyVi: "Nguồn 《Đào Uyên Minh Tập Tự》 của Tiêu Thống: Khen tác phẩm hay đến mức người đọc cầm trên tay mãi chẳng nỡ buông xuống.",
           exampleZh: "这本装帧精美的汉字词典让他拿到手里就爱不释手。 — He loved this finely crafted Hanzi guide so much he could hardly put it down."
+        },
+        "因地制宜": {
+          source: "Zhao Ye · Annals of Wu and Yue: Inner Biography of Helü (汉·赵晔《吴越春秋·阖闾内传》)",
+          storyEn: "From Wu Zixu's counsel on building the great capital of Helü: 'To construct city walls and establish granaries, one must adapt measures to local terrain and conditions (夫筑城郭，立仓库，因地制宜)'—planning and acting according to specific local circumstances.",
+          storyVi: "Nguồn 《Ngô Việt Xuân Thu · Hạp Lư Nội Truyện》 của Triệu Diệp thời Đông Hán: Ngũ Tử Tư bàn việc xây thành lập kho phải tùy theo địa thế và điều kiện thực tế của từng vùng (phu trúc thành quách, lập thương khố, nhân địa chế nghi).",
+          exampleZh: "农业生产应当因地制宜，充分发挥各地的自然优势。 — Agricultural planning should adapt to local conditions to make full use of regional strengths."
         }
       };
 
@@ -2835,4 +2841,625 @@ window.WORD_ORIGIN_STORIES = {
         }
       };
 
+window.COMBINATOR_ROOTS = [
+  { char: "青", pinyin: "qīng", rootNote: "Blue-green sprout — sound family centered on -ing" },
+  { char: "包", pinyin: "bāo", rootNote: "Wrapped bundle — sound family centered on b/p-ao" },
+  { char: "交", pinyin: "jiāo", rootNote: "Crossed / intersect — sound family centered on j/x-iao" },
+  { char: "巴", pinyin: "bā", rootNote: "Curled / clinging — sound family centered on ba / pa" },
+  { char: "可", pinyin: "kě", rootNote: "Exhaling / singing — sound family centered on ke / he" },
+  { char: "莫", pinyin: "mò", rootNote: "Sun in grass — sound family centered on mo / mu" },
+  { char: "马", pinyin: "mǎ", rootNote: "Running horse — sound family centered on ma" },
+  { char: "方", pinyin: "fāng", rootNote: "Square / spreading out — sound family centered on fang" },
+  { char: "肖", pinyin: "xiāo", rootNote: "Resemble / taper small — sound family centered on xiao / shao" },
+  { char: "主", pinyin: "zhǔ", rootNote: "Oil lamp wick / host — sound family centered on zhu" },
+  { char: "丁", pinyin: "dīng", rootNote: "Nail / peg — sound family centered on ding / deng" },
+  { char: "工", pinyin: "gōng", rootNote: "Artisan work — sound family centered on gong / hong / kong" },
+  { char: "每", pinyin: "měi", rootNote: "Lush mother / each — sound family centered on mei / hai / hui" },
+  { char: "良", pinyin: "liáng", rootNote: "Fine granary — sound family centered on liang / lang / niang" },
+  { char: "门", pinyin: "mén", rootNote: "Double gate — sound family centered on men / wen" },
+  { char: "白", pinyin: "bái", rootNote: "Clear white thumb — sound family centered on bai / bo / pai" },
+  { char: "羊", pinyin: "yáng", rootNote: "Horned sheep — sound family centered on yang / xiang" },
+  { char: "皮", pinyin: "pí", rootNote: "Skin / bark surface — sound family centered on pi / po / bo" },
+  { char: "分", pinyin: "fēn", rootNote: "Knife dividing grain — sound family centered on fen" },
+  { char: "令", pinyin: "lìng", rootNote: "Kneeling decree / order — sound family centered on ling / leng" },
+  { char: "寺", pinyin: "sì", rootNote: "Official court / temple — sound family centered on si / shi / dai / deng" },
+  { char: "占", pinyin: "zhàn", rootNote: "Divination crack & mouth — sound family centered on zhan / dian / tie" },
+  { char: "己", pinyin: "jǐ", rootNote: "Coiled thread / self — sound family centered on ji / qi / pei" },
+  { char: "斤", pinyin: "jīn", rootNote: "Heavy axe — sound family centered on jin / xin / qin" },
+  { char: "仓", pinyin: "cāng", rootNote: "Grain storehouse — sound family centered on cang / qiang / chuang" },
+  { char: "半", pinyin: "bàn", rootNote: "Split in half — sound family centered on ban / pan" },
+  { char: "长", pinyin: "cháng", rootNote: "Long flowing hair — sound family centered on chang / zhang" },
+  { char: "召", pinyin: "zhào", rootNote: "Summon / call — sound family centered on zhao / shao / chao" },
+  { char: "周", pinyin: "zhōu", rootNote: "Dense & complete — sound family centered on zhou / diao / tiao" },
+  { char: "其", pinyin: "qí", rootNote: "Winnowing basket — sound family centered on qi / si" }
+];
 
+window.COMBINATOR_RADICALS = [
+  { rad: "日", name: "Sun / Time" },
+  { rad: "讠", name: "Speech" },
+  { rad: "氵", name: "Water" },
+  { rad: "忄", name: "Heart" },
+  { rad: "目", name: "Eye" },
+  { rad: "扌", name: "Hand" },
+  { rad: "饣", name: "Food" },
+  { rad: "⻊", name: "Foot" },
+  { rad: "火", name: "Fire" },
+  { rad: "艹", name: "Plant" },
+  { rad: "木", name: "Tree" },
+  { rad: "口", name: "Mouth" },
+  { rad: "亻", name: "Person" },
+  { rad: "女", name: "Woman" },
+  { rad: "钅", name: "Metal" },
+  { rad: "纟", name: "Silk" },
+  { rad: "石", name: "Stone" },
+  { rad: "王", name: "Jade" },
+  { rad: "土", name: "Earth" },
+  { rad: "户", name: "House" },
+  { rad: "阝", name: "Mound / City" },
+  { rad: "攵", name: "Action" },
+  { rad: "禾", name: "Crop" },
+  { rad: "米", name: "Rice" },
+  { rad: "月", name: "Moon" },
+  { rad: "耳", name: "Ear" },
+  { rad: "心", name: "Mind" },
+  { rad: "犭", name: "Beast" },
+  { rad: "虫", name: "Insect" },
+  { rad: "力", name: "Strength" },
+  { rad: "车", name: "Vehicle" },
+  { rad: "穴", name: "Cave" },
+  { rad: "页", name: "Head" },
+  { rad: "马", name: "Horse" },
+  { rad: "巾", name: "Cloth" },
+  { rad: "父", name: "Father" },
+  { rad: "爪", name: "Claw" },
+  { rad: "革", name: "Leather" },
+  { rad: "宀", name: "Roof" },
+  { rad: "疒", name: "Sickness" },
+  { rad: "衤", name: "Clothing" },
+  { rad: "⺮", name: "Bamboo" },
+  { rad: "雨", name: "Rain" },
+  { rad: "山", name: "Mountain" },
+  { rad: "贝", name: "Shell / Money" },
+  { rad: "辶", name: "Walk / Road" },
+  { rad: "刂", name: "Knife" },
+  { rad: "彳", name: "Step" },
+  { rad: "酉", name: "Wine" },
+  { rad: "鱼", name: "Fish" },
+  { rad: "鸟", name: "Bird" },
+  { rad: "礻", name: "Spirit / Ritual" },
+  { rad: "田", name: "Field" },
+  { rad: "舟", name: "Boat" },
+  { rad: "皿", name: "Dish" },
+  { rad: "广", name: "Building / Shelter" },
+  { rad: "冫", name: "Ice" },
+  { rad: "牜", name: "Ox / Cattle" },
+  { rad: "弓", name: "Bow" },
+  { rad: "戈", name: "Spear" },
+  { rad: "斤", name: "Axe" },
+  { rad: "羽", name: "Feather" },
+  { rad: "隹", name: "Short-tailed bird" },
+  { rad: "立", name: "Stand" },
+  { rad: "欠", name: "Lack / Yawn" },
+  { rad: "走", name: "Walk / Run" }
+];
+
+window.COMBINATOR_MAP = {
+  "青+日": { res: "晴", trad: "晴", pinyin: "qíng", shift: "Same syllable, 2nd tone", meaning: "sunny / clear sky", formula: "日 (sun) + 青 (qīng)", ex: "晴天 (qíngtiān, sunny day)" },
+  "青+讠": { res: "请", trad: "請", pinyin: "qǐng", shift: "Same syllable, 3rd tone", meaning: "please / invite", formula: "讠 (speech) + 青 (qīng)", ex: "请问 (qǐngwèn, excuse me)" },
+  "青+氵": { res: "清", trad: "清", pinyin: "qīng", shift: "Exact match", meaning: "clear / pure water", formula: "氵 (water) + 青 (qīng)", ex: "清楚 (qīngchu, clear)" },
+  "青+忄": { res: "情", trad: "情", pinyin: "qíng", shift: "Same syllable, 2nd tone", meaning: "feeling / emotion", formula: "忄 (heart) + 青 (qīng)", ex: "感情 (gǎnqíng, emotion)" },
+  "青+目": { res: "睛", trad: "睛", pinyin: "jīng", shift: "Sound shift: q -> j", meaning: "eyeball / pupil", formula: "目 (eye) + 青 (qīng)", ex: "眼睛 (yǎnjing, eyes)" },
+  "包+扌": { res: "抱", trad: "抱", pinyin: "bào", shift: "Same initial b-, 4th tone", meaning: "to hug / hold", formula: "扌 (hand) + 包 (bāo)", ex: "拥抱 (yōngbào, embrace)" },
+  "包+饣": { res: "饱", trad: "飽", pinyin: "bǎo", shift: "Same syllable, 3rd tone", meaning: "full (from eating)", formula: "饣 (food) + 包 (bāo)", ex: "吃饱了 (chībǎo le, full)" },
+  "包+氵": { res: "泡", trad: "泡", pinyin: "pào", shift: "Sound shift: b -> p", meaning: "bubble / soak / steep", formula: "氵 (water) + 包 (bāo)", ex: "泡茶 (pàochá, brew tea)" },
+  "包+⻊": { res: "跑", trad: "跑", pinyin: "pǎo", shift: "Sound shift: b -> p", meaning: "to run / jog", formula: "⻊ (foot) + 包 (bāo)", ex: "跑步 (pǎobù, run)" },
+  "包+火": { res: "炮", trad: "炮", pinyin: "pào", shift: "Sound shift: b -> p", meaning: "cannon / firecracker", formula: "火 (fire) + 包 (bāo)", ex: "鞭炮 (biānpào, firecrackers)" },
+  "包+口": { res: "咆", trad: "咆", pinyin: "páo", shift: "Sound shift: b -> p", meaning: "to roar", formula: "口 (mouth) + 包 (bāo)", ex: "咆哮 (páoxiào, roar)" },
+  "交+木": { res: "校", trad: "校", pinyin: "xiào", shift: "Sound shift: j -> x", meaning: "school", formula: "木 (wood) + 交 (jiāo)", ex: "学校 (xuéxiào, school)" },
+  "交+⻊": { res: "跤", trad: "跤", pinyin: "jiāo", shift: "Exact match", meaning: "wrestle / trip", formula: "⻊ (foot) + 交 (jiāo)", ex: "摔跤 (shuāijiāo, wrestle)" },
+  "交+口": { res: "咬", trad: "咬", pinyin: "yǎo", shift: "Initial dropped: j -> y", meaning: "to bite", formula: "口 (mouth) + 交 (jiāo)", ex: "咬一口 (take a bite)" },
+  "交+艹": { res: "茭", trad: "茭", pinyin: "jiāo", shift: "Exact match", meaning: "water bamboo", formula: "艹 (plant) + 交 (jiāo)", ex: "茭白 (jiāobái)" },
+  "交+车": { res: "较", trad: "較", pinyin: "jiào", shift: "Same syllable, 4th tone", meaning: "compare / comparatively", formula: "车 (carriage) + 交 (jiāo)", ex: "比较 (bǐjiào, compare)" },
+  "交+阝": { res: "郊", trad: "郊", pinyin: "jiāo", shift: "Exact match", meaning: "suburbs / outskirts", formula: "交 (jiāo) + 阝 (district)", ex: "郊区 (jiāoqū, suburbs)" },
+  "交+攵": { res: "效", trad: "效", pinyin: "xiào", shift: "Sound shift: j -> x", meaning: "effect / imitate", formula: "交 (jiāo) + 攵 (action)", ex: "效果 (xiàoguǒ, effect)" },
+  "巴+扌": { res: "把", trad: "把", pinyin: "bǎ", shift: "Same syllable, 3rd tone", meaning: "to grasp / handle", formula: "扌 (hand) + 巴 (bā)", ex: "把手 (bǎshǒu, handle)" },
+  "巴+艹": { res: "芭", trad: "芭", pinyin: "bā", shift: "Exact match", meaning: "fragrant plant", formula: "艹 (plant) + 巴 (bā)", ex: "芭蕾 (bālěi, ballet)" },
+  "巴+口": { res: "吧", trad: "吧", pinyin: "ba", shift: "Neutral tone", meaning: "suggestion particle", formula: "口 (mouth) + 巴 (bā)", ex: "走吧 (zǒu ba, let's go)" },
+  "巴+木": { res: "杷", trad: "杷", pinyin: "pá", shift: "Sound shift: b -> p", meaning: "loquat tree", formula: "木 (tree) + 巴 (bā)", ex: "枇杷 (pípa, loquat)" },
+  "巴+父": { res: "爸", trad: "爸", pinyin: "bà", shift: "Same syllable, 4th tone", meaning: "father / dad", formula: "父 (father) + 巴 (bā)", ex: "爸爸 (bàba, dad)" },
+  "巴+爪": { res: "爬", trad: "爬", pinyin: "pá", shift: "Sound shift: b -> p", meaning: "to crawl / climb", formula: "爪 (claw) + 巴 (bā)", ex: "爬山 (páshān, hike)" },
+  "巴+革": { res: "靶", trad: "靶", pinyin: "bǎ", shift: "Same syllable, 3rd tone", meaning: "archery target", formula: "革 (leather) + 巴 (bā)", ex: "靶子 (bǎzi, target)" },
+  "可+氵": { res: "河", trad: "河", pinyin: "hé", shift: "Sound shift: k -> h", meaning: "river", formula: "氵 (water) + 可 (kě)", ex: "山河 (rivers & mountains)" },
+  "可+口": { res: "呵", trad: "呵", pinyin: "hē", shift: "Sound shift: k -> h", meaning: "exhale / laugh", formula: "口 (mouth) + 可 (kě)", ex: "笑呵呵 (beaming)" },
+  "可+艹": { res: "苛", trad: "苛", pinyin: "kē", shift: "1st tone", meaning: "harsh / severe", formula: "艹 (plant) + 可 (kě)", ex: "苛刻 (kēkè, harsh)" },
+  "可+木": { res: "柯", trad: "柯", pinyin: "kē", shift: "1st tone", meaning: "axe handle / branch", formula: "木 (wood) + 可 (kě)", ex: "南柯一梦" },
+  "莫+日": { res: "暮", trad: "暮", pinyin: "mù", shift: "Vowel shift: o -> u", meaning: "dusk / twilight", formula: "莫 + 日 (sun)", ex: "朝三暮四" },
+  "莫+氵": { res: "漠", trad: "漠", pinyin: "mò", shift: "Exact match", meaning: "vast desert", formula: "氵 (water) + 莫 (mò)", ex: "沙漠 (shāmò, desert)" },
+  "莫+扌": { res: "摸", trad: "摸", pinyin: "mō", shift: "1st tone", meaning: "to feel / touch", formula: "扌 (hand) + 莫 (mò)", ex: "摸索 (explore)" },
+  "莫+巾": { res: "幕", trad: "幕", pinyin: "mù", shift: "Vowel shift: o -> u", meaning: "curtain / screen", formula: "莫 + 巾 (cloth)", ex: "屏幕 (píngmù, screen)" },
+  "马+口": { res: "吗", trad: "嗎", pinyin: "ma", shift: "Neutral tone", meaning: "question particle", formula: "口 (mouth) + 马 (mǎ)", ex: "好吗？ (hǎo ma, good?)" },
+  "马+女": { res: "妈", trad: "媽", pinyin: "mā", shift: "Same syllable, 1st tone", meaning: "mom / mother", formula: "女 (woman) + 马 (mǎ)", ex: "妈妈 (māma, mom)" },
+  "马+石": { res: "码", trad: "碼", pinyin: "mǎ", shift: "Exact match", meaning: "code / number / wharf", formula: "石 (stone) + 马 (mǎ)", ex: "号码 (hàomǎ, number)" },
+  "马+王": { res: "玛", trad: "瑪", pinyin: "mǎ", shift: "Exact match", meaning: "agate gemstone", formula: "王 (jade) + 马 (mǎ)", ex: "玛瑙 (mǎnǎo, agate)" },
+  "马+虫": { res: "蚂", trad: "螞", pinyin: "mǎ", shift: "Exact match", meaning: "ant / grasshopper", formula: "虫 (insect) + 马 (mǎ)", ex: "蚂蚁 (mǎyǐ, ant)" },
+  "方+户": { res: "房", trad: "房", pinyin: "fáng", shift: "Same syllable, 2nd tone", meaning: "house / room", formula: "户 (house) + 方 (fāng)", ex: "房间 (fángjiān, room)" },
+  "方+阝": { res: "防", trad: "防", pinyin: "fáng", shift: "Same syllable, 2nd tone", meaning: "defend / guard", formula: "阝 (mound/rampart) + 方 (fāng)", ex: "防止 (fángzhǐ, prevent)" },
+  "方+讠": { res: "访", trad: "訪", pinyin: "fǎng", shift: "Same syllable, 3rd tone", meaning: "visit / inquire", formula: "讠 (speech) + 方 (fāng)", ex: "访问 (fǎngwèn, visit)" },
+  "方+攵": { res: "放", trad: "放", pinyin: "fàng", shift: "Same syllable, 4th tone", meaning: "release / place / put", formula: "方 (fāng) + 攵 (action)", ex: "放心 (fàngxīn, relax)" },
+  "方+纟": { res: "纺", trad: "紡", pinyin: "fǎng", shift: "Same syllable, 3rd tone", meaning: "spin thread / weave", formula: "纟 (silk) + 方 (fāng)", ex: "纺织 (fǎngzhī, textile)" },
+  "方+艹": { res: "芳", trad: "芳", pinyin: "fāng", shift: "Exact match", meaning: "fragrant herb", formula: "艹 (plant) + 方 (fāng)", ex: "芳香 (fāngxiāng, fragrant)" },
+  "肖+氵": { res: "消", trad: "消", pinyin: "xiāo", shift: "Exact match", meaning: "vanish / spend / news", formula: "氵 (water) + 肖 (xiāo)", ex: "消息 (xiāoxi, news)" },
+  "肖+钅": { res: "销", trad: "銷", pinyin: "xiāo", shift: "Exact match", meaning: "melt / cancel / sell", formula: "钅 (metal) + 肖 (xiāo)", ex: "销售 (xiāoshòu, sell)" },
+  "肖+木": { res: "梢", trad: "梢", pinyin: "shāo", shift: "Sound shift: x -> sh", meaning: "treetop / branch tip", formula: "木 (tree) + 肖 (xiāo)", ex: "树梢 (shùshāo, treetop)" },
+  "肖+禾": { res: "稍", trad: "稍", pinyin: "shāo", shift: "Sound shift: x -> sh", meaning: "slightly / a bit", formula: "禾 (crop) + 肖 (xiāo)", ex: "稍微 (shāowēi, slightly)" },
+  "肖+口": { res: "哨", trad: "哨", pinyin: "shào", shift: "Sound shift: x -> sh", meaning: "whistle / lookout", formula: "口 (mouth) + 肖 (xiāo)", ex: "吹口哨 (whistle)" },
+  "主+亻": { res: "住", trad: "住", pinyin: "zhù", shift: "Same syllable, 4th tone", meaning: "live / stay / dwell", formula: "亻 (person) + 主 (zhǔ)", ex: "居住 (jūzhù, reside)" },
+  "主+氵": { res: "注", trad: "注", pinyin: "zhù", shift: "Same syllable, 4th tone", meaning: "pour / pay attention", formula: "氵 (water) + 主 (zhǔ)", ex: "注意 (zhùyì, notice)" },
+  "主+木": { res: "柱", trad: "柱", pinyin: "zhù", shift: "Same syllable, 4th tone", meaning: "pillar / column", formula: "木 (tree/wood) + 主 (zhǔ)", ex: "柱子 (zhùzi, pillar)" },
+  "主+马": { res: "驻", trad: "駐", pinyin: "zhù", shift: "Same syllable, 4th tone", meaning: "station / garrison", formula: "马 (horse) + 主 (zhǔ)", ex: "驻守 (zhùshǒu, garrison)" },
+  "丁+讠": { res: "订", trad: "訂", pinyin: "dìng", shift: "Same syllable, 4th tone", meaning: "order / draft agreement", formula: "讠 (speech) + 丁 (dīng)", ex: "预订 (yùdìng, reserve)" },
+  "丁+目": { res: "盯", trad: "盯", pinyin: "dīng", shift: "Exact match", meaning: "stare closely", formula: "目 (eye) + 丁 (dīng)", ex: "盯着 (stare at)" },
+  "丁+页": { res: "顶", trad: "頂", pinyin: "dǐng", shift: "Same syllable, 3rd tone", meaning: "peak / crown of head", formula: "丁 (dīng) + 页 (head)", ex: "山顶 (shāndǐng, summit)" },
+  "丁+口": { res: "叮", trad: "叮", pinyin: "dīng", shift: "Exact match", meaning: "sting / remind earnestly", formula: "口 (mouth) + 丁 (dīng)", ex: "叮嘱 (dīngzhǔ, urge)" },
+  "丁+钅": { res: "钉", trad: "釘", pinyin: "dīng", shift: "Exact match", meaning: "iron nail / fasten", formula: "钅 (metal) + 丁 (dīng)", ex: "钉子 (dīngzi, nail)" },
+  "丁+火": { res: "灯", trad: "燈", pinyin: "dēng", shift: "Rime shift: -ing -> -eng", meaning: "lamp / light", formula: "火 (fire) + 丁 (dīng)", ex: "灯光 (dēngguāng, light)" },
+  "工+力": { res: "功", trad: "功", pinyin: "gōng", shift: "Exact match", meaning: "merit / effort / success", formula: "工 (work) + 力 (strength)", ex: "成功 (chénggōng, succeed)" },
+  "工+纟": { res: "红", trad: "紅", pinyin: "hóng", shift: "Initial shift: g -> h", meaning: "red", formula: "纟 (silk) + 工 (gōng)", ex: "红色 (hóngsè, red)" },
+  "工+氵": { res: "江", trad: "江", pinyin: "jiāng", shift: "Old velar palatalized: g -> j", meaning: "great river", formula: "氵 (water) + 工 (gōng)", ex: "长江 (Yangtze River)" },
+  "工+穴": { res: "空", trad: "空", pinyin: "kōng", shift: "Aspirated: g -> k", meaning: "empty / sky", formula: "穴 (cave) + 工 (gōng)", ex: "空气 (kōngqì, air)" },
+  "工+虫": { res: "虹", trad: "虹", pinyin: "hóng", shift: "Initial shift: g -> h", meaning: "rainbow", formula: "虫 (sky dragon) + 工 (gōng)", ex: "彩虹 (cǎihóng, rainbow)" },
+  "每+氵": { res: "海", trad: "海", pinyin: "hǎi", shift: "Sound shift: m -> h", meaning: "sea / ocean", formula: "氵 (water) + 每 (měi)", ex: "大海 (dàhǎi, ocean)" },
+  "每+木": { res: "梅", trad: "梅", pinyin: "méi", shift: "Same syllable, 2nd tone", meaning: "plum blossom", formula: "木 (tree) + 每 (měi)", ex: "梅花 (méihuā, plum bloom)" },
+  "每+忄": { res: "悔", trad: "悔", pinyin: "huǐ", shift: "Sound shift: m -> h", meaning: "regret / repent", formula: "忄 (heart) + 每 (měi)", ex: "后悔 (hòuhuǐ, regret)" },
+  "每+艹": { res: "莓", trad: "莓", pinyin: "méi", shift: "Same syllable, 2nd tone", meaning: "berry", formula: "艹 (plant) + 每 (měi)", ex: "草莓 (cǎoméi, strawberry)" },
+  "良+氵": { res: "浪", trad: "浪", pinyin: "làng", shift: "Vowel shift: -iang -> -ang", meaning: "wave / roam", formula: "氵 (water) + 良 (liáng)", ex: "波浪 (bōlàng, waves)" },
+  "良+月": { res: "朗", trad: "朗", pinyin: "lǎng", shift: "Vowel shift: -iang -> -ang", meaning: "bright / crisp", formula: "良 (liáng) + 月 (moon)", ex: "朗读 (read aloud clearly)" },
+  "良+犭": { res: "狼", trad: "狼", pinyin: "láng", shift: "Vowel shift: -iang -> -ang", meaning: "wolf", formula: "犭 (beast) + 良 (liáng)", ex: "野狼 (yěláng, wild wolf)" },
+  "良+米": { res: "粮", trad: "糧", pinyin: "liáng", shift: "Exact match", meaning: "grain / rations", formula: "米 (rice) + 良 (liáng)", ex: "粮食 (liángshi, grain)" },
+  "良+女": { res: "娘", trad: "娘", pinyin: "niáng", shift: "Nasal shift: l -> n", meaning: "mother / young woman", formula: "女 (woman) + 良 (liáng)", ex: "姑娘 (gūniang, girl)" },
+  "门+亻": { res: "们", trad: "們", pinyin: "men", shift: "Neutral tone", meaning: "plural for people", formula: "亻 (person) + 门 (mén)", ex: "我们 (wǒmen, we)" },
+  "门+口": { res: "问", trad: "問", pinyin: "wèn", shift: "Sound shift: m -> w", meaning: "ask / question", formula: "门 (mén) + 口 (mouth)", ex: "问题 (wèntí, question)" },
+  "门+耳": { res: "闻", trad: "聞", pinyin: "wén", shift: "Sound shift: m -> w", meaning: "hear / smell / news", formula: "门 (mén) + 耳 (ear)", ex: "新闻 (xīnwén, news)" },
+  "门+心": { res: "闷", trad: "悶", pinyin: "mèn", shift: "Same syllable, 4th tone", meaning: "stuffy / depressed", formula: "门 (mén) + 心 (mind)", ex: "闷热 (mēnrè, muggy)" },
+  "白+木": { res: "柏", trad: "柏", pinyin: "bǎi", shift: "Same initial b-, 3rd tone", meaning: "cypress / cedar", formula: "木 (tree) + 白 (bái)", ex: "松柏 (pine & cypress)" },
+  "白+亻": { res: "伯", trad: "伯", pinyin: "bó", shift: "Same initial b-: bai -> bo", meaning: "elder uncle / earl", formula: "亻 (person) + 白 (bái)", ex: "伯伯 (bóbo, uncle)" },
+  "白+扌": { res: "拍", trad: "拍", pinyin: "pāi", shift: "Aspirated: b -> p", meaning: "clap / pat / snap photo", formula: "扌 (hand) + 白 (bái)", ex: "拍照 (pāizhào, take photo)" },
+  "白+忄": { res: "怕", trad: "怕", pinyin: "pà", shift: "Initial p-, pale with fear", meaning: "fear / afraid", formula: "忄 (heart) + 白 (bái)", ex: "害怕 (hàipà, afraid)" },
+  "羊+氵": { res: "洋", trad: "洋", pinyin: "yáng", shift: "Exact match", meaning: "ocean / vast", formula: "氵 (water) + 羊 (yáng)", ex: "海洋 (hǎiyáng, ocean)" },
+  "羊+木": { res: "样", trad: "樣", pinyin: "yàng", shift: "Same syllable, 4th tone", meaning: "appearance / pattern", formula: "木 (tree) + 羊 (yáng)", ex: "一样 (yīyàng, same)" },
+  "羊+讠": { res: "详", trad: "詳", pinyin: "xiáng", shift: "Sound shift: y -> x", meaning: "detailed / clear", formula: "讠 (speech) + 羊 (yáng)", ex: "详细 (xiángxì, detailed)" },
+  "皮+石": { res: "破", trad: "破", pinyin: "pò", shift: "Rime shift: -i -> -o", meaning: "break / tear apart", formula: "石 (stone) + 皮 (pí)", ex: "破坏 (pòhuài, destroy)" },
+  "皮+土": { res: "坡", trad: "坡", pinyin: "pō", shift: "Rime shift: -i -> -o", meaning: "hillside / slope", formula: "土 (earth) + 皮 (pí)", ex: "山坡 (shānpō, hillside)" },
+  "皮+扌": { res: "披", trad: "披", pinyin: "pī", shift: "Same syllable, 1st tone", meaning: "drape over / spread", formula: "扌 (hand) + 皮 (pí)", ex: "披肩 (shawl)" },
+  "皮+氵": { res: "波", trad: "波", pinyin: "bō", shift: "Labial shift: p -> b", meaning: "water wave / ripple", formula: "氵 (water) + 皮 (pí)", ex: "波浪 (bōlàng, waves)" },
+  "皮+王": { res: "玻", trad: "玻", pinyin: "bō", shift: "Labial shift: p -> b", meaning: "glass / crystal", formula: "王 (jade) + 皮 (pí)", ex: "玻璃 (bōli, glass)" },
+  "分+亻": { res: "份", trad: "份", pinyin: "fèn", shift: "Same syllable, 4th tone", meaning: "portion / share / copy", formula: "亻 (person) + 分 (fēn)", ex: "一份 (one portion)" },
+  "分+米": { res: "粉", trad: "粉", pinyin: "fěn", shift: "Same syllable, 3rd tone", meaning: "powder / flour / pink", formula: "米 (rice) + 分 (fēn)", ex: "面粉 (miànfěn, flour)" },
+  "分+纟": { res: "纷", trad: "紛", pinyin: "fēn", shift: "Exact match", meaning: "numerous / confused", formula: "纟 (silk) + 分 (fēn)", ex: "纷纷 (fēnfēn, one after another)" },
+  "分+艹": { res: "芬", trad: "芬", pinyin: "fēn", shift: "Exact match", meaning: "fragrant / aroma", formula: "艹 (plant) + 分 (fēn)", ex: "芬芳 (fēnfāng, fragrance)" },
+  "青+立": { res: "靖", trad: "靖", pinyin: "jìng", shift: "Initial shift: q -> j", meaning: "peaceful / pacify", formula: "立 (stand) + 青 (qīng)", ex: "平静 / 靖平" },
+  "青+鱼": { res: "鲭", trad: "鯖", pinyin: "qīng", shift: "Exact match", meaning: "mackerel", formula: "鱼 (fish) + 青 (qīng)", ex: "鲭鱼 (qīngyú, mackerel)" },
+  "包+衤": { res: "袍", trad: "袍", pinyin: "páo", shift: "Sound shift: b -> p", meaning: "long gown / robe", formula: "衤 (clothing) + 包 (bāo)", ex: "长袍 (chángpáo, robe)" },
+  "包+雨": { res: "雹", trad: "雹", pinyin: "báo", shift: "Same syllable, 2nd tone", meaning: "hail / hailstone", formula: "雨 (rain) + 包 (bāo)", ex: "冰雹 (bīngbáo, hail)" },
+  "包+刂": { res: "刨", trad: "刨", pinyin: "bào", shift: "Same syllable, 4th tone", meaning: "plane / shave / dig", formula: "包 (bāo) + 刂 (knife)", ex: "刨子 (bàozi, carpenter's plane)" },
+  "包+鱼": { res: "鲍", trad: "鮑", pinyin: "bào", shift: "Same syllable, 4th tone", meaning: "abalone", formula: "鱼 (fish) + 包 (bāo)", ex: "鲍鱼 (bàoyú, abalone)" },
+  "包+疒": { res: "疱", trad: "皰", pinyin: "pào", shift: "Sound shift: b -> p", meaning: "blister / pimple", formula: "疒 (sickness) + 包 (bāo)", ex: "水疱 (shuǐpào, blister)" },
+  "巴+疒": { res: "疤", trad: "疤", pinyin: "bā", shift: "Exact match", meaning: "scar / scab", formula: "疒 (sickness) + 巴 (bā)", ex: "伤疤 (shāngbā, scar)" },
+  "巴+⺮": { res: "笆", trad: "笆", pinyin: "bā", shift: "Exact match", meaning: "bamboo fence", formula: "⺮ (bamboo) + 巴 (bā)", ex: "篱笆 (líba, fence)" },
+  "方+舟": { res: "舫", trad: "舫", pinyin: "fǎng", shift: "Same syllable, 3rd tone", meaning: "pleasure boat / ferry", formula: "舟 (boat) + 方 (fāng)", ex: "画舫 (huàfǎng, painted boat)" },
+  "方+彳": { res: "彷", trad: "彷", pinyin: "páng", shift: "Sound shift: f -> p", meaning: "pace back and forth", formula: "彳 (step) + 方 (fāng)", ex: "彷徨 (pánghuáng, pace undecided)" },
+  "方+广": { res: "庞", trad: "龐", pinyin: "páng", shift: "Sound shift: f -> p", meaning: "huge / colossal", formula: "广 (shelter) + 方/龍 (fāng)", ex: "庞大 (pángdà, huge)" },
+  "肖+宀": { res: "宵", trad: "宵", pinyin: "xiāo", shift: "Exact match", meaning: "night / evening", formula: "宀 (roof) + 肖 (xiāo)", ex: "元宵节 (Lantern Festival)" },
+  "肖+⺮": { res: "箫", trad: "簫", pinyin: "xiāo", shift: "Exact match", meaning: "vertical bamboo flute", formula: "⺮ (bamboo) + 肖/肅 (xiāo)", ex: "吹箫 (play xiao flute)" },
+  "肖+雨": { res: "霄", trad: "霄", pinyin: "xiāo", shift: "Exact match", meaning: "sky / firmament", formula: "雨 (rain/sky) + 肖 (xiāo)", ex: "云霄 (yúnxiāo, clouds & sky)" },
+  "肖+山": { res: "峭", trad: "峭", pinyin: "qiào", shift: "Initial shift: x -> q", meaning: "steep / precipitous", formula: "山 (mountain) + 肖 (xiāo)", ex: "陡峭 (dǒuqiào, steep)" },
+  "肖+辶": { res: "逍", trad: "逍", pinyin: "xiāo", shift: "Exact match", meaning: "leisurely / carefree", formula: "辶 (walk) + 肖 (xiāo)", ex: "逍遥 (xiāoyáo, carefree)" },
+  "肖+刂": { res: "削", trad: "削", pinyin: "xiāo", shift: "Exact match", meaning: "peel / pare / cut", formula: "肖 (xiāo) + 刂 (knife)", ex: "削苹果 (peel an apple)" },
+  "丁+宀": { res: "宁", trad: "寧", pinyin: "níng", shift: "Sound shift: d -> n", meaning: "peaceful / rather", formula: "宀 (roof) + 丁 (dīng)", ex: "安宁 (ānníng, peaceful)" },
+  "工+贝": { res: "贡", trad: "貢", pinyin: "gòng", shift: "Same syllable, 4th tone", meaning: "tribute / contribute", formula: "工 (gōng) + 贝 (shell/money)", ex: "贡献 (gòngxiàn, contribute)" },
+  "工+鸟": { res: "鸿", trad: "鴻", pinyin: "hóng", shift: "Initial shift: g -> h", meaning: "swan goose / grand", formula: "氵+工 (gōng) + 鸟 (bird)", ex: "鸿沟 (hónggōu, chasm)" },
+  "良+广": { res: "廊", trad: "廊", pinyin: "láng", shift: "Vowel shift: -iang -> -ang", meaning: "corridor / porch", formula: "广 (building) + 良 (liáng)", ex: "走廊 (zǒuláng, hallway)" },
+  "白+辶": { res: "迫", trad: "迫", pinyin: "pò", shift: "Sound shift: b -> p", meaning: "compel / urgent", formula: "辶 (walk) + 白 (bái)", ex: "强迫 (qiǎngpò, force)" },
+  "羊+疒": { res: "痒", trad: "癢", pinyin: "yǎng", shift: "Same syllable, 3rd tone", meaning: "itch / tickle", formula: "疒 (sickness) + 羊 (yáng)", ex: "发痒 (fāyǎng, itch)" },
+  "羊+羽": { res: "翔", trad: "翔", pinyin: "xiáng", shift: "Sound shift: y -> x", meaning: "soar / glide", formula: "羊 (yáng) + 羽 (feather)", ex: "飞翔 (fēixiáng, soar)" },
+  "羊+礻": { res: "祥", trad: "祥", pinyin: "xiáng", shift: "Sound shift: y -> x", meaning: "auspicious / lucky", formula: "礻 (ritual) + 羊 (yáng)", ex: "吉祥 (jíxiáng, auspicious)" },
+  "皮+疒": { res: "疲", trad: "疲", pinyin: "pí", shift: "Exact match", meaning: "weary / tired", formula: "疒 (sickness) + 皮 (pí)", ex: "疲劳 (píláo, fatigued)" },
+  "皮+衤": { res: "被", trad: "被", pinyin: "bèi", shift: "Labial shift: p -> b", meaning: "quilt / cover / by", formula: "衤 (clothing) + 皮 (pí)", ex: "被子 (bèizi, quilt)" },
+  "分+贝": { res: "贫", trad: "貧", pinyin: "pín", shift: "Sound shift: f -> p", meaning: "poor / needy", formula: "分 (fēn) + 贝 (money)", ex: "贫穷 (pínqióng, poor)" },
+  "分+皿": { res: "盆", trad: "盆", pinyin: "pén", shift: "Sound shift: f -> p", meaning: "basin / flower pot", formula: "分 (fēn) + 皿 (dish)", ex: "花盆 (huāpén, flowerpot)" },
+  "分+山": { res: "岔", trad: "岔", pinyin: "chà", shift: "Meaning combo", meaning: "fork / branch road", formula: "分 (divide) + 山 (mountain)", ex: "岔路 (chàlù, side road)" },
+  "令+冫": { res: "冷", trad: "冷", pinyin: "lěng", shift: "Rime shift: -ing -> -eng", meaning: "cold", formula: "冫 (ice) + 令 (lìng)", ex: "寒冷 (hánlěng, cold)" },
+  "令+雨": { res: "零", trad: "零", pinyin: "líng", shift: "Same syllable, 2nd tone", meaning: "zero / drizzle", formula: "雨 (rain) + 令 (lìng)", ex: "零钱 (língqián, loose change)" },
+  "令+山": { res: "岭", trad: "嶺", pinyin: "lǐng", shift: "Same syllable, 3rd tone", meaning: "mountain ridge", formula: "山 (mountain) + 令 (lìng)", ex: "山岭 (shānlǐng, mountain range)" },
+  "令+页": { res: "领", trad: "領", pinyin: "lǐng", shift: "Same syllable, 3rd tone", meaning: "collar / neck / lead", formula: "令 (lìng) + 页 (head)", ex: "领导 (lǐngdǎo, leader)" },
+  "令+钅": { res: "铃", trad: "鈴", pinyin: "líng", shift: "Same syllable, 2nd tone", meaning: "bell", formula: "钅 (metal) + 令 (lìng)", ex: "门铃 (ménlíng, doorbell)" },
+  "令+扌": { res: "拎", trad: "拎", pinyin: "līn", shift: "Nasal shift: -ing -> -in", meaning: "lift / carry in hand", formula: "扌 (hand) + 令 (lìng)", ex: "拎包 (līnbāo, carry a bag)" },
+  "寺+牜": { res: "特", trad: "特", pinyin: "tè", shift: "Old alveolar stop", meaning: "special / unique", formula: "牜 (ox) + 寺 (sì)", ex: "特别 (tèbié, special)" },
+  "寺+⺮": { res: "等", trad: "等", pinyin: "děng", shift: "Old sound link: s -> d", meaning: "wait / rank / class", formula: "⺮ (bamboo) + 寺 (sì)", ex: "等待 (děngdài, wait)" },
+  "寺+彳": { res: "待", trad: "待", pinyin: "dài", shift: "Old sound link: s -> d", meaning: "wait / treat / deal with", formula: "彳 (step) + 寺 (sì)", ex: "招待 (zhāodài, entertain)" },
+  "寺+讠": { res: "诗", trad: "詩", pinyin: "shī", shift: "Initial shift: s -> sh", meaning: "poem / poetry", formula: "讠 (speech) + 寺 (sì)", ex: "诗歌 (shīgē, poetry)" },
+  "寺+日": { res: "时", trad: "時", pinyin: "shí", shift: "Initial shift: s -> sh", meaning: "time / hour", formula: "日 (sun/time) + 寺 (sì)", ex: "时间 (shíjiān, time)" },
+  "寺+扌": { res: "持", trad: "持", pinyin: "chí", shift: "Initial shift: s -> ch", meaning: "hold / support", formula: "扌 (hand) + 寺 (sì)", ex: "坚持 (jiānchí, persist)" },
+  "占+立": { res: "站", trad: "站", pinyin: "zhàn", shift: "Exact match", meaning: "stand / station", formula: "立 (stand) + 占 (zhàn)", ex: "车站 (chēzhàn, station)" },
+  "占+广": { res: "店", trad: "店", pinyin: "diàn", shift: "Alveolar shift: zh -> d", meaning: "shop / inn / store", formula: "广 (building) + 占 (zhàn)", ex: "商店 (shāngdiàn, shop)" },
+  "占+贝": { res: "贴", trad: "貼", pinyin: "tiē", shift: "Alveolar shift: zh -> t", meaning: "paste / stick / subsidy", formula: "贝 (shell/money) + 占 (zhàn)", ex: "粘贴 (zhāntiē, paste)" },
+  "占+戈": { res: "战", trad: "戰", pinyin: "zhàn", shift: "Exact match (Simplified)", meaning: "war / fight / battle", formula: "占 (zhàn) + 戈 (spear)", ex: "战争 (zhànzhēng, war)" },
+  "占+扌": { res: "拈", trad: "拈", pinyin: "niān", shift: "Sound shift: zh -> n", meaning: "pick up with fingers", formula: "扌 (hand) + 占 (zhàn)", ex: "拈花 (pick a flower)" },
+  "己+走": { res: "起", trad: "起", pinyin: "qǐ", shift: "Velar palatalized: j -> q", meaning: "rise / get up / start", formula: "走 (walk/run) + 己 (jǐ)", ex: "起床 (qǐchuáng, get up)" },
+  "己+酉": { res: "配", trad: "配", pinyin: "pèi", shift: "Meaning + sound link", meaning: "match / pair / brew", formula: "酉 (wine) + 己 (jǐ)", ex: "配合 (pèihé, cooperate)" },
+  "己+讠": { res: "记", trad: "記", pinyin: "jì", shift: "Same syllable, 4th tone", meaning: "remember / record", formula: "讠 (speech) + 己 (jǐ)", ex: "记得 (jìde, remember)" },
+  "己+纟": { res: "纪", trad: "紀", pinyin: "jì", shift: "Same syllable, 4th tone", meaning: "discipline / era / record", formula: "纟 (silk) + 己 (jǐ)", ex: "世纪 (shìjì, century)" },
+  "己+心": { res: "忌", trad: "忌", pinyin: "jì", shift: "Same syllable, 4th tone", meaning: "avoid / taboo / envy", formula: "己 (jǐ) + 心 (mind)", ex: "忌讳 (jìhui, taboo)" },
+  "斤+辶": { res: "近", trad: "近", pinyin: "jìn", shift: "Same syllable, 4th tone", meaning: "near / close", formula: "辶 (walk) + 斤 (jīn)", ex: "最近 (zuìjìn, recently)" },
+  "斤+欠": { res: "欣", trad: "欣", pinyin: "xīn", shift: "Initial shift: j -> x", meaning: "glad / joyful", formula: "斤 (jīn) + 欠 (yawn/breath)", ex: "欣赏 (xīnshǎng, appreciate)" },
+  "斤+礻": { res: "祈", trad: "祈", pinyin: "qí", shift: "Sound shift: j -> q", meaning: "pray / implore", formula: "礻 (ritual) + 斤 (jīn)", ex: "祈祷 (qídǎo, pray)" },
+  "斤+车": { res: "斩", trad: "斬", pinyin: "zhǎn", shift: "Meaning combo", meaning: "chop / sever", formula: "车 (chariot) + 斤 (axe)", ex: "斩断 (zhǎnduàn, sever)" },
+  "斤+艹": { res: "芹", trad: "芹", pinyin: "qín", shift: "Sound shift: j -> q", meaning: "celery", formula: "艹 (plant) + 斤 (jīn)", ex: "芹菜 (qíncài, celery)" },
+  "仓+舟": { res: "舱", trad: "艙", pinyin: "cāng", shift: "Exact match", meaning: "cabin / hold", formula: "舟 (boat) + 仓 (cāng)", ex: "船舱 (chuáncāng, ship cabin)" },
+  "仓+刂": { res: "创", trad: "創", pinyin: "chuàng", shift: "Sound shift: c -> ch", meaning: "create / initiate", formula: "仓 (cāng) + 刂 (knife)", ex: "创造 (chuàngzào, create)" },
+  "仓+扌": { res: "抢", trad: "搶", pinyin: "qiǎng", shift: "Sound shift: c -> q", meaning: "snatch / rush for", formula: "扌 (hand) + 仓 (cāng)", ex: "抢救 (qiǎngjiù, rescue)" },
+  "仓+氵": { res: "沧", trad: "滄", pinyin: "cāng", shift: "Exact match", meaning: "vast blue sea", formula: "氵 (water) + 仓 (cāng)", ex: "沧海 (cānghǎi, vast sea)" },
+  "仓+艹": { res: "苍", trad: "蒼", pinyin: "cāng", shift: "Exact match", meaning: "deep green / pale", formula: "艹 (plant) + 仓 (cāng)", ex: "苍白 (cāngbái, pale)" },
+  "仓+木": { res: "枪", trad: "槍", pinyin: "qiāng", shift: "Sound shift: c -> q", meaning: "spear / rifle", formula: "木 (wood) + 仓 (cāng)", ex: "手枪 (shǒuqiāng, pistol)" },
+  "半+田": { res: "畔", trad: "畔", pinyin: "pàn", shift: "Aspirated: b -> p", meaning: "bank / field border", formula: "田 (field) + 半 (bàn)", ex: "湖畔 (húpàn, lakeside)" },
+  "半+刂": { res: "判", trad: "判", pinyin: "pàn", shift: "Aspirated: b -> p", meaning: "judge / distinguish", formula: "半 (bàn) + 刂 (knife)", ex: "判断 (pànduàn, judge)" },
+  "半+亻": { res: "伴", trad: "伴", pinyin: "bàn", shift: "Exact match", meaning: "partner / accompany", formula: "亻 (person) + 半 (bàn)", ex: "伙伴 (huǒbàn, partner)" },
+  "半+扌": { res: "拌", trad: "拌", pinyin: "bàn", shift: "Exact match", meaning: "mix / toss", formula: "扌 (hand) + 半 (bàn)", ex: "搅拌 (jiǎobàn, stir)" },
+  "半+月": { res: "胖", trad: "胖", pinyin: "pàng", shift: "Aspirated: b -> p", meaning: "plump / chubby", formula: "月 (flesh) + 半 (bàn)", ex: "胖子 (pàngzi, chubby)" },
+  "长+弓": { res: "张", trad: "張", pinyin: "zhāng", shift: "Sound shift: ch -> zh", meaning: "stretch / sheet / open", formula: "弓 (bow) + 长 (cháng)", ex: "紧张 (jǐnzhāng, nervous)" },
+  "长+氵": { res: "涨", trad: "漲", pinyin: "zhǎng", shift: "Sound shift: ch -> zh", meaning: "rise / swell (tide/price)", formula: "氵 (water) + 长 (cháng)", ex: "涨价 (zhǎngjià, price rise)" },
+  "长+巾": { res: "帐", trad: "帳", pinyin: "zhàng", shift: "Sound shift: ch -> zh", meaning: "tent / curtain", formula: "巾 (cloth) + 长 (cháng)", ex: "帐篷 (zhàngpeng, tent)" },
+  "长+贝": { res: "账", trad: "賬", pinyin: "zhàng", shift: "Sound shift: ch -> zh", meaning: "account / bill", formula: "贝 (money) + 长 (cháng)", ex: "账单 (zhàngdān, bill)" },
+  "长+月": { res: "胀", trad: "脹", pinyin: "zhàng", shift: "Sound shift: ch -> zh", meaning: "swell / bloat", formula: "月 (flesh) + 长 (cháng)", ex: "膨胀 (péngzhàng, expand)" },
+  "召+走": { res: "超", trad: "超", pinyin: "chāo", shift: "Sound shift: zh -> ch", meaning: "exceed / super", formula: "走 (walk/run) + 召 (zhào)", ex: "超市 (chāoshì, supermarket)" },
+  "召+扌": { res: "招", trad: "招", pinyin: "zhāo", shift: "Same syllable, 1st tone", meaning: "beckon / recruit", formula: "扌 (hand) + 召 (zhào)", ex: "招呼 (zhāohu, greet)" },
+  "召+纟": { res: "绍", trad: "紹", pinyin: "shào", shift: "Sound shift: zh -> sh", meaning: "continue / introduce", formula: "纟 (silk) + 召 (zhào)", ex: "介绍 (jièshào, introduce)" },
+  "召+日": { res: "昭", trad: "昭", pinyin: "zhāo", shift: "Same syllable, 1st tone", meaning: "bright / manifest", formula: "日 (sun) + 召 (zhào)", ex: "昭然 (zhāorán, obvious)" },
+  "召+氵": { res: "沼", trad: "沼", pinyin: "zhǎo", shift: "Same syllable, 3rd tone", meaning: "pond / marsh", formula: "氵 (water) + 召 (zhào)", ex: "沼泽 (zhǎozé, swamp)" },
+  "周+隹": { res: "雕", trad: "雕", pinyin: "diāo", shift: "Old alveolar link", meaning: "carve / eagle", formula: "周 (zhōu) + 隹 (bird)", ex: "雕刻 (diāokè, carve)" },
+  "周+讠": { res: "调", trad: "調", pinyin: "tiáo", shift: "Sound shift: zh -> t / d", meaning: "adjust / tune / transfer", formula: "讠 (speech) + 周 (zhōu)", ex: "调整 (tiáozhěng, adjust)" },
+  "周+冫": { res: "凋", trad: "凋", pinyin: "diāo", shift: "Old alveolar link", meaning: "wither / fade", formula: "冫 (ice) + 周 (zhōu)", ex: "凋谢 (diāoxiè, wither)" },
+  "周+纟": { res: "绸", trad: "綢", pinyin: "chóu", shift: "Sound shift: zh -> ch", meaning: "silk fabric", formula: "纟 (silk) + 周 (zhōu)", ex: "丝绸 (sīchóu, silk)" },
+  "其+斤": { res: "斯", trad: "斯", pinyin: "sī", shift: "Sound link", meaning: "this / split", formula: "其 (qí) + 斤 (axe)", ex: "斯文 (sīwén, refined)" },
+  "其+欠": { res: "欺", trad: "欺", pinyin: "qī", shift: "Same syllable, 1st tone", meaning: "deceive / bully", formula: "其 (qí) + 欠 (yawn/mouth)", ex: "欺骗 (qīpiàn, deceive)" },
+  "其+木": { res: "棋", trad: "棋", pinyin: "qí", shift: "Exact match", meaning: "chess / board game", formula: "木 (wood) + 其 (qí)", ex: "下棋 (xiàqí, play chess)" },
+  "其+月": { res: "期", trad: "期", pinyin: "qī", shift: "Same syllable, 1st tone", meaning: "period / expect / date", formula: "其 (qí) + 月 (moon/time)", ex: "星期 (xīngqī, week)" }
+};
+
+// Beginner-friendly Six Writings guide
+window.LIUSHU_SIMPLE = [
+  {
+    title: "1. Picture Words (象形)",
+    formula: "Sketch = Meaning",
+    desc: "Simple drawings of real objects you can see in nature.",
+    examples: ["山", "水", "日", "月", "木", "火"]
+  },
+  {
+    title: "2. Pointer Words (指事)",
+    formula: "Picture + Pointer Mark = Meaning",
+    desc: "Adds a dot or line to point at an exact spot on a picture.",
+    examples: ["本", "末", "刃", "上"]
+  },
+  {
+    title: "3. Story Combos (会意)",
+    formula: "Picture + Picture = New Idea",
+    desc: "Two or more pictures team up to tell a quick visual story (person + tree = rest).",
+    examples: ["休", "家", "明", "看", "喜"]
+  },
+  {
+    title: "4. Sound + Meaning (形声)",
+    formula: "Topic Clue + Sound Clue = New Word",
+    desc: "Used by 80%+ of Hanzi: one side hints at the topic, the other hints at the pronunciation.",
+    examples: ["晴", "请", "清", "抱", "饱"]
+  },
+  {
+    title: "5. Sibling Words (转注)",
+    formula: "One Ancestor -> Two Siblings",
+    desc: "A single old root splits into two closely linked words that share a core idea.",
+    examples: ["北 → 背"]
+  },
+  {
+    title: "6. Sound Borrowers (假借)",
+    formula: "Old Sound + New Meaning",
+    desc: "Borrows a character just for its sound to write an abstract word (like 莫 sunset -> 'do not').",
+    examples: ["莫 → 暮"]
+  }
+];
+
+window.PHONETIC_FAMILIES = [
+  {
+    root: "青", pinyin: "qīng", origin: "Lush sprout over a mineral well",
+    members: [
+      { char: "清", pinyin: "qīng", radical: "氵 water", meaning: "clear / pure" },
+      { char: "晴", pinyin: "qíng", radical: "日 sun", meaning: "sunny sky" },
+      { char: "情", pinyin: "qíng", radical: "忄 heart", meaning: "feeling" },
+      { char: "请", pinyin: "qǐng", radical: "讠 speech", meaning: "please / invite" },
+      { char: "睛", pinyin: "jīng", radical: "目 eye", meaning: "eyeball (q -> j)" }
+    ]
+  },
+  {
+    root: "包", pinyin: "bāo", origin: "Wrapped child inside womb",
+    members: [
+      { char: "抱", pinyin: "bào", radical: "扌 hand", meaning: "hug / hold" },
+      { char: "饱", pinyin: "bǎo", radical: "饣 food", meaning: "full" },
+      { char: "泡", pinyin: "pào", radical: "氵 water", meaning: "bubble (b -> p)" },
+      { char: "跑", pinyin: "pǎo", radical: "⻊ foot", meaning: "run (b -> p)" },
+      { char: "炮", pinyin: "pào", radical: "火 fire", meaning: "cannon / firecracker" }
+    ]
+  },
+  {
+    root: "莫", pinyin: "mò", origin: "Sun sinking in tall grass",
+    members: [
+      { char: "暮", pinyin: "mù", radical: "日 sun", meaning: "dusk / twilight" },
+      { char: "漠", pinyin: "mò", radical: "氵 water", meaning: "desert / aloof" },
+      { char: "摸", pinyin: "mō", radical: "扌 hand", meaning: "touch / feel" },
+      { char: "幕", pinyin: "mù", radical: "巾 cloth", meaning: "curtain / screen" },
+      { char: "莫", pinyin: "mò", radical: "borrowed", meaning: "do not / none" }
+    ]
+  },
+  {
+    root: "马", pinyin: "mǎ", origin: "Side-profile pictograph of a swift horse",
+    members: [
+      { char: "妈", pinyin: "mā", radical: "女 woman", meaning: "mother / mom" },
+      { char: "吗", pinyin: "ma", radical: "口 mouth", meaning: "question particle" },
+      { char: "码", pinyin: "mǎ", radical: "石 stone", meaning: "number / code / pier" },
+      { char: "骂", pinyin: "mà", radical: "吅 two mouths", meaning: "scold / yell" },
+      { char: "蚂", pinyin: "mǎ", radical: "虫 insect", meaning: "ant (蚂蚁)" }
+    ]
+  },
+  {
+    root: "方", pinyin: "fāng", origin: "Knife/plow or two boats lashed side-by-side",
+    members: [
+      { char: "房", pinyin: "fáng", radical: "户 house", meaning: "room / house" },
+      { char: "防", pinyin: "fáng", radical: "阝 rampart", meaning: "defend / guard" },
+      { char: "访", pinyin: "fǎng", radical: "讠 speech", meaning: "visit / interview" },
+      { char: "放", pinyin: "fàng", radical: "攵 hand stick", meaning: "release / place" },
+      { char: "芳", pinyin: "fāng", radical: "艹 plant", meaning: "fragrant herbs" }
+    ]
+  },
+  {
+    root: "交", pinyin: "jiāo", origin: "Person standing with crossed legs",
+    members: [
+      { char: "校", pinyin: "xiào", radical: "木 wood", meaning: "school (j -> x)" },
+      { char: "较", pinyin: "jiào", radical: "车 vehicle", meaning: "compare / rather" },
+      { char: "郊", pinyin: "jiāo", radical: "阝 district", meaning: "suburbs / outskirts" },
+      { char: "效", pinyin: "xiào", radical: "攵 action", meaning: "effect / result" },
+      { char: "咬", pinyin: "yǎo", radical: "口 mouth", meaning: "bite (j -> y)" }
+    ]
+  },
+  {
+    root: "巴", pinyin: "bā", origin: "Coiled figure or clinging hand",
+    members: [
+      { char: "把", pinyin: "bǎ", radical: "扌 hand", meaning: "grasp / handle" },
+      { char: "吧", pinyin: "ba", radical: "口 mouth", meaning: "suggestion particle" },
+      { char: "爸", pinyin: "bà", radical: "父 father", meaning: "dad / father" },
+      { char: "爬", pinyin: "pá", radical: "爪 claw", meaning: "crawl / climb (b -> p)" },
+      { char: "芭", pinyin: "bā", radical: "艹 plant", meaning: "fragrant herb / ballet" }
+    ]
+  },
+  {
+    root: "可", pinyin: "kě", origin: "Chanting mouth exhaling freely",
+    members: [
+      { char: "河", pinyin: "hé", radical: "氵 water", meaning: "river (k -> h)" },
+      { char: "呵", pinyin: "hē", radical: "口 mouth", meaning: "laugh / breathe out" },
+      { char: "哥", pinyin: "gē", radical: "可×2 stacked", meaning: "older brother (k -> g)" },
+      { char: "苛", pinyin: "kē", radical: "艹 grass", meaning: "harsh / severe" },
+      { char: "柯", pinyin: "kē", radical: "木 wood", meaning: "axe handle / branch" }
+    ]
+  },
+  {
+    root: "肖", pinyin: "xiāo", origin: "Small piece of flesh resembling its source",
+    members: [
+      { char: "消", pinyin: "xiāo", radical: "氵 water", meaning: "vanish / news" },
+      { char: "销", pinyin: "xiāo", radical: "钅 metal", meaning: "sell / cancel" },
+      { char: "梢", pinyin: "shāo", radical: "木 tree", meaning: "treetop (x -> sh)" },
+      { char: "稍", pinyin: "shāo", radical: "禾 grain", meaning: "slightly / a little" },
+      { char: "哨", pinyin: "shào", radical: "口 mouth", meaning: "whistle / sentry" }
+    ]
+  },
+  {
+    root: "主", pinyin: "zhǔ", origin: "Steady flame atop a bronze oil-lamp stand",
+    members: [
+      { char: "住", pinyin: "zhù", radical: "亻 person", meaning: "live / stay" },
+      { char: "注", pinyin: "zhù", radical: "氵 water", meaning: "pour / pay attention" },
+      { char: "柱", pinyin: "zhù", radical: "木 wood", meaning: "pillar / column" },
+      { char: "驻", pinyin: "zhù", radical: "马 horse", meaning: "station / camp" }
+    ]
+  },
+  {
+    root: "丁", pinyin: "dīng", origin: "Flat head of a hammered bronze nail",
+    members: [
+      { char: "订", pinyin: "dìng", radical: "讠 speech", meaning: "subscribe / draft" },
+      { char: "盯", pinyin: "dīng", radical: "目 eye", meaning: "stare intently" },
+      { char: "顶", pinyin: "dǐng", radical: "页 head", meaning: "summit / crown" },
+      { char: "钉", pinyin: "dīng", radical: "钅 metal", meaning: "iron nail / fasten" },
+      { char: "灯", pinyin: "dēng", radical: "火 fire", meaning: "lamp / lantern (-ing -> -eng)" }
+    ]
+  },
+  {
+    root: "工", pinyin: "gōng", origin: "Carpenter's T-square tool",
+    members: [
+      { char: "功", pinyin: "gōng", radical: "力 strength", meaning: "merit / success" },
+      { char: "红", pinyin: "hóng", radical: "纟 silk", meaning: "red (g -> h)" },
+      { char: "江", pinyin: "jiāng", radical: "氵 water", meaning: "great river (g -> j)" },
+      { char: "空", pinyin: "kōng", radical: "穴 cave", meaning: "empty / sky (g -> k)" },
+      { char: "虹", pinyin: "hóng", radical: "虫 sky-dragon", meaning: "rainbow (g -> h)" }
+    ]
+  },
+  {
+    root: "每", pinyin: "měi", origin: "Mother adorned with sprouting hairpins",
+    members: [
+      { char: "海", pinyin: "hǎi", radical: "氵 water", meaning: "sea / ocean (*m > h)" },
+      { char: "梅", pinyin: "méi", radical: "木 tree", meaning: "plum blossom" },
+      { char: "悔", pinyin: "huǐ", radical: "忄 heart", meaning: "regret / repent" },
+      { char: "莓", pinyin: "méi", radical: "艹 plant", meaning: "strawberry / berry" }
+    ]
+  },
+  {
+    root: "良", pinyin: "liáng", origin: "Airy high granary pavilion",
+    members: [
+      { char: "浪", pinyin: "làng", radical: "氵 water", meaning: "wave / roam" },
+      { char: "朗", pinyin: "lǎng", radical: "月 moon", meaning: "bright / clear" },
+      { char: "狼", pinyin: "láng", radical: "犭 beast", meaning: "wolf" },
+      { char: "粮", pinyin: "liáng", radical: "米 rice", meaning: "grain / rations" },
+      { char: "娘", pinyin: "niáng", radical: "女 woman", meaning: "young woman / mom" }
+    ]
+  },
+  {
+    root: "门", pinyin: "mén", origin: "Two hinged leaves of a courtyard gate",
+    members: [
+      { char: "们", pinyin: "men", radical: "亻 person", meaning: "people plural (-s)" },
+      { char: "问", pinyin: "wèn", radical: "口 mouth", meaning: "ask (m -> w)" },
+      { char: "闻", pinyin: "wén", radical: "耳 ear", meaning: "hear / smell / news" },
+      { char: "闷", pinyin: "mèn", radical: "心 heart", meaning: "stuffy / gloomy" },
+      { char: "间", pinyin: "jiān", radical: "日 sun", meaning: "space / between" }
+    ]
+  },
+  {
+    root: "白", pinyin: "bái", origin: "Pale thumb or bright rising dawn sun",
+    members: [
+      { char: "百", pinyin: "bǎi", radical: "一 stroke", meaning: "hundred" },
+      { char: "柏", pinyin: "bǎi", radical: "木 tree", meaning: "cypress / cedar" },
+      { char: "伯", pinyin: "bó", radical: "亻 person", meaning: "elder uncle" },
+      { char: "拍", pinyin: "pāi", radical: "扌 hand", meaning: "clap / photograph (b -> p)" },
+      { char: "怕", pinyin: "pà", radical: "忄 heart", meaning: "fear / turn pale (b -> p)" }
+    ]
+  },
+  {
+    root: "皮", pinyin: "pí", origin: "Hand peeling raw animal hide",
+    members: [
+      { char: "破", pinyin: "pò", radical: "石 stone", meaning: "break / tear" },
+      { char: "坡", pinyin: "pō", radical: "土 earth", meaning: "hillside / slope" },
+      { char: "披", pinyin: "pī", radical: "扌 hand", meaning: "drape over shoulders" },
+      { char: "波", pinyin: "bō", radical: "氵 water", meaning: "water wave (p -> b)" },
+      { char: "玻", pinyin: "bō", radical: "王 jade", meaning: "glass / crystal (p -> b)" }
+    ]
+  },
+  {
+    root: "分", pinyin: "fēn", origin: "Knife cutting cleanly into eight portions",
+    members: [
+      { char: "份", pinyin: "fèn", radical: "亻 person", meaning: "portion / share" },
+      { char: "粉", pinyin: "fěn", radical: "米 rice", meaning: "powder / flour" },
+      { char: "纷", pinyin: "fēn", radical: "纟 silk", meaning: "tangled / numerous" },
+      { char: "芬", pinyin: "fēn", radical: "艹 plant", meaning: "fragrant aroma" }
+    ]
+  },
+  {
+    root: "令", pinyin: "lìng", origin: "Kneeling person receiving a royal decree",
+    members: [
+      { char: "冷", pinyin: "lěng", radical: "冫 ice", meaning: "cold" },
+      { char: "零", pinyin: "líng", radical: "雨 rain", meaning: "zero / drizzle" },
+      { char: "岭", pinyin: "lǐng", radical: "山 mountain", meaning: "mountain ridge" },
+      { char: "领", pinyin: "lǐng", radical: "页 head", meaning: "collar / lead" },
+      { char: "铃", pinyin: "líng", radical: "钅 metal", meaning: "small bell" }
+    ]
+  },
+  {
+    root: "寺", pinyin: "sì", origin: "Official courtyard where affairs are held",
+    members: [
+      { char: "特", pinyin: "tè", radical: "牜 ox", meaning: "special / unique" },
+      { char: "等", pinyin: "děng", radical: "⺮ bamboo", meaning: "wait / rank / class" },
+      { char: "待", pinyin: "dài", radical: "彳 step", meaning: "wait / treat" },
+      { char: "诗", pinyin: "shī", radical: "讠 speech", meaning: "poem / poetry" },
+      { char: "时", pinyin: "shí", radical: "日 sun", meaning: "time / hour" },
+      { char: "持", pinyin: "chí", radical: "扌 hand", meaning: "hold / persist" }
+    ]
+  },
+  {
+    root: "占", pinyin: "zhàn", origin: "Reading oracle cracks by mouth",
+    members: [
+      { char: "站", pinyin: "zhàn", radical: "立 stand", meaning: "stand / station" },
+      { char: "店", pinyin: "diàn", radical: "广 shelter", meaning: "shop / store" },
+      { char: "贴", pinyin: "tiē", radical: "贝 shell", meaning: "paste / subsidy" },
+      { char: "战", pinyin: "zhàn", radical: "戈 spear", meaning: "war / fight" }
+    ]
+  },
+  {
+    root: "己", pinyin: "jǐ", origin: "Coiled silk thread",
+    members: [
+      { char: "起", pinyin: "qǐ", radical: "走 walk", meaning: "rise / get up" },
+      { char: "配", pinyin: "pèi", radical: "酉 wine", meaning: "match / pair" },
+      { char: "记", pinyin: "jì", radical: "讠 speech", meaning: "remember / note" },
+      { char: "纪", pinyin: "jì", radical: "纟 silk", meaning: "era / discipline" },
+      { char: "忌", pinyin: "jì", radical: "心 mind", meaning: "taboo / avoid" }
+    ]
+  },
+  {
+    root: "斤", pinyin: "jīn", origin: "Curved woodcutting axe",
+    members: [
+      { char: "近", pinyin: "jìn", radical: "辶 walk", meaning: "near / close" },
+      { char: "欣", pinyin: "xīn", radical: "欠 yawn", meaning: "glad / appreciate" },
+      { char: "祈", pinyin: "qí", radical: "礻 ritual", meaning: "pray / implore" },
+      { char: "斩", pinyin: "zhǎn", radical: "车 vehicle", meaning: "chop / sever" },
+      { char: "芹", pinyin: "qín", radical: "艹 plant", meaning: "celery" }
+    ]
+  },
+  {
+    root: "仓", pinyin: "cāng", origin: "Thatched granary storehouse",
+    members: [
+      { char: "舱", pinyin: "cāng", radical: "舟 boat", meaning: "ship/plane cabin" },
+      { char: "创", pinyin: "chuàng", radical: "刂 knife", meaning: "create / wound" },
+      { char: "抢", pinyin: "qiǎng", radical: "扌 hand", meaning: "snatch / rush" },
+      { char: "沧", pinyin: "cāng", radical: "氵 water", meaning: "vast blue sea" },
+      { char: "枪", pinyin: "qiāng", radical: "木 wood", meaning: "spear / gun" }
+    ]
+  },
+  {
+    root: "半", pinyin: "bàn", origin: "Ox divided neatly down the middle",
+    members: [
+      { char: "畔", pinyin: "pàn", radical: "田 field", meaning: "bank / lakeside" },
+      { char: "判", pinyin: "pàn", radical: "刂 knife", meaning: "judge / decide" },
+      { char: "伴", pinyin: "bàn", radical: "亻 person", meaning: "partner / companion" },
+      { char: "拌", pinyin: "bàn", radical: "扌 hand", meaning: "mix / stir" },
+      { char: "胖", pinyin: "pàng", radical: "月 flesh", meaning: "plump / chubby" }
+    ]
+  },
+  {
+    root: "长", pinyin: "cháng", origin: "Elder with long flowing hair",
+    members: [
+      { char: "张", pinyin: "zhāng", radical: "弓 bow", meaning: "stretch / sheet" },
+      { char: "涨", pinyin: "zhǎng", radical: "氵 water", meaning: "rise / swell" },
+      { char: "帐", pinyin: "zhàng", radical: "巾 cloth", meaning: "tent / curtain" },
+      { char: "账", pinyin: "zhàng", radical: "贝 money", meaning: "bill / account" },
+      { char: "胀", pinyin: "zhàng", radical: "月 flesh", meaning: "swell / bloat" }
+    ]
+  },
+  {
+    root: "召", pinyin: "zhào", origin: "Mouth calling over a blade",
+    members: [
+      { char: "超", pinyin: "chāo", radical: "走 walk", meaning: "exceed / super" },
+      { char: "招", pinyin: "zhāo", radical: "扌 hand", meaning: "beckon / recruit" },
+      { char: "绍", pinyin: "shào", radical: "纟 silk", meaning: "introduce / continue" },
+      { char: "昭", pinyin: "zhāo", radical: "日 sun", meaning: "bright / obvious" },
+      { char: "沼", pinyin: "zhǎo", radical: "氵 water", meaning: "pond / swamp" }
+    ]
+  },
+  {
+    root: "周", pinyin: "zhōu", origin: "Dense crop rows filling a field",
+    members: [
+      { char: "雕", pinyin: "diāo", radical: "隹 bird", meaning: "carve / eagle" },
+      { char: "调", pinyin: "tiáo", radical: "讠 speech", meaning: "adjust / tune" },
+      { char: "凋", pinyin: "diāo", radical: "冫 ice", meaning: "wither / fade" },
+      { char: "绸", pinyin: "chóu", radical: "纟 silk", meaning: "silk fabric" }
+    ]
+  },
+  {
+    root: "其", pinyin: "qí", origin: "Woven bamboo winnowing basket",
+    members: [
+      { char: "斯", pinyin: "sī", radical: "斤 axe", meaning: "this / refined" },
+      { char: "欺", pinyin: "qī", radical: "欠 yawn", meaning: "deceive / bully" },
+      { char: "棋", pinyin: "qí", radical: "木 wood", meaning: "chess / board game" },
+      { char: "期", pinyin: "qī", radical: "月 moon", meaning: "period / expect" }
+    ]
+  }
+];
+
+window.RADICAL_GROUPS = [
+  { key: "all", label: "All Radicals", chars: "" },
+  { key: "nature", label: "Nature & Elements", chars: "氵水日火灬土石山风風雨川谷气青赤黄黑玄阜阝干艮冫月田夕白" },
+  { key: "body", label: "People & Body", chars: "亻人女儿子口目耳心忄手扌⻊足尸页頁身舌齿齒首面骨血鼻髟彡彳父母毋老耂士自牙而臣长長比见見肉疒卩走歹" },
+  { key: "actions", label: "Tools & Actions", chars: "力刂刀戈斤欠止攵攴弓矢爫爪又寸工支斗片爿弋干革韦韋聿殳匕" },
+  { key: "home", label: "Speech, Home & Travel", chars: "讠言钅金纟糸宀门門户广厂辶廴穴立皿玉王贝貝车車舟文方邑里瓦缶网罒酉高鬼鼎鼓龠衣衤示礻囗巾彐卜匚勹厶亠冖冂凵辛辰行音色" },
+  { key: "life", label: "Plants, Animals & Food", chars: "木艹竹⺮禾米谷虫鸟鳥犭马馬鱼魚羊羽牛牜犬隹虎虍豕豸鹿鼠龙龍龟龜毛皮生瓜麦麥麻豆韭耒黍香甘食饣食卤滷飞飛角齐齊" },
+  { key: "other", label: "Abstract & Strokes", chars: "" }
+];
